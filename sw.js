@@ -2,10 +2,39 @@
  * CGo OpenMap - PWA 渐进式离线缓存 Service Worker (sw.js)
  */
 
-const CACHE_NAME = 'cgo-openmap-v261123.131500';
+const CACHE_NAME = 'cgo-openmap-v261123.211500';
 // 地图瓦片专用缓存：与静态资源版本无关，激活新版本时需保留
 const TILE_CACHE_NAME = 'map-tiles-cache';
 const ASSETS_TO_CACHE = [
+    './scripts/check-singapore-airport.mjs',
+    './scripts/check-singapore-construction.mjs',
+    './scripts/check-singapore-transfers.mjs',
+    './scripts/check-singapore-geometry.mjs',
+    './city/singapore/README.md',
+    './city/singapore/MAINTAINER_GUIDE.md',
+    './city/singapore/FONT-NOTICE.md',
+    './city/singapore/assets/water-light.svg',
+    './city/singapore/assets/water-dark.svg',
+    './city/singapore/assets/fonts/Lato-Regular.ttf',
+    './city/singapore/assets/fonts/Lato-Bold.ttf',
+    './city/singapore/assets/fonts/OFL.txt',
+    './city/singapore/modules/unpaid-transfer.js',
+    './city/singapore/data_crossings.js',
+    './city/singapore/modules/airport-shuttle.js',
+    './city/singapore/modules/construction.js',
+    './city/singapore/data_construction.js',
+    // Singapore SMRT
+    './city/singapore/data_legend.js',
+    './city/singapore/data_stations.js',
+    './city/singapore/singapore.js',
+    './city/singapore/style.css',
+    './city/singapore/data_virtual_transfers.js',
+    './city/singapore/data_scattered.js',
+    './city/singapore/data_timetable.js',
+    './city/singapore/data_notopen.js',
+    './city/singapore/data_lines.js',
+    './city/singapore/stacard/script.js',
+
     // 页面与入口
     './',
     './index.html',

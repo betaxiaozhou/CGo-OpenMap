@@ -47,6 +47,46 @@
      * 漏配时带时间字段的公告不会展示并告警，`editor/tests/selfcheck.js` 会直接报错。
      */
     const CITY_REGISTRY = {
+        "singapore": {
+            "id": "singapore",
+            "name": "新加坡",
+            "timezone": "Asia/Singapore",
+            "themeColor": "#c8192e",
+            "themeColorDark": "#ff7083",
+            "svglogo": null,
+            "folder": "./city/singapore",
+            "mainLogic": "./city/singapore/singapore.js",
+            "center": {
+                        "x": 1680,
+                        "y": 1200
+            },
+            "defaultScale": 0.37,
+            "mapSize": {
+                        "width": 3400,
+                        "height": 2300
+            },
+            "searchCity": "Singapore",
+            "title": "CGo OpenMap - 新加坡地铁与轻轨线路图",
+            "keywords": "Singapore, SMRT, SBS Transit, MRT, LRT, 新加坡, 地铁",
+            "description": "新加坡完整 MRT/LRT 运营网：6 条地铁、武吉班让/盛港/榜鹅轻轨，184 个去重车站。",
+            "officialMapUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html",
+            "maintainers": [
+                        {
+                                    "name": "Deming ZHOU",
+                                    "role": "城市主理人（申请中）",
+                                    "github": "https://github.com/betaxiaozhou/"
+                        }
+            ],
+            "stationCount": 184,
+            "routeNodeCount": 187,
+            "plannedStationCount": 3,
+            "totalNodeCount": 190,
+            "outOfPaidAreaTransferCount": 3,
+            "status": "updating",
+            "registerDate": "2026-11-23",
+            "isDefault": false,
+            "lang": "en-SG"
+},
         "jinhua": {
         id: "jinhua",
         name: "金华",

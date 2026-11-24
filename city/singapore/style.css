@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'Singapore Lato';
+    src: url('./assets/fonts/Lato-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Singapore Lato';
+    src: url('./assets/fonts/Lato-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+.map-singapore .stacn { font-family: 'Singapore Lato', sans-serif; font-size: 22px; line-height: 25px; font-weight: 400; }
+.map-singapore .label-group { line-height: 1.08; }
+.map-singapore .label-group.type-tsf .stacn { font-weight: 700; }
+.map-singapore .staen { display: none; }
+.map-singapore .sg-station-sign text { font-family: 'Singapore Lato', sans-serif; }
+.map-singapore .station.sg-station-sign.active { transform: translate(-50%, -50%) scale(1.12); }
+.map-singapore #scattered-layer { pointer-events: none; }
+.map-singapore #scattered-layer .scattered-item:has(img[src*="water-dark.svg"]) { display: none; }
+.map-singapore[data-theme="dark"] #scattered-layer .scattered-item:has(img[src*="water-light.svg"]) { display: none; }
+.map-singapore[data-theme="dark"] #scattered-layer .scattered-item:has(img[src*="water-dark.svg"]) { display: block; }
+
+@media (prefers-color-scheme: dark) {
+    .map-singapore:not([data-theme="light"]) #scattered-layer .scattered-item:has(img[src*="water-light.svg"]) { display: none; }
+    .map-singapore:not([data-theme="light"]) #scattered-layer .scattered-item:has(img[src*="water-dark.svg"]) { display: block; }
+}
+
+/* LRT labels follow the denser neighbourhood-loop scale of the reference map. */
+.map-singapore .label-group[data-sid^="SE"] .stacn,
+.map-singapore .label-group[data-sid^="SW"] .stacn,
+.map-singapore .label-group[data-sid^="PE"] .stacn,
+.map-singapore .label-group[data-sid^="PW"] .stacn,
+.map-singapore .label-group.type-dot[data-sid^="BP"] .stacn { font-size: 16px; line-height: 18px; }
+
+/* Official tap-out treatment: separate code plates joined by a narrow, two-colour solid neck. */
+.map-singapore .virtual-connectors > path { display: none; }
+.map-singapore .sg-tap-out-bridge { pointer-events: none; }
+.sg-transfer-key { margin-top: 8px; display: grid; gap: 10px; font-weight: 400; }
+.sg-transfer-key-row { display: flex; align-items: center; gap: 10px; }
+.sg-transfer-key-sign { width: 154px; flex: 0 0 154px; display: flex; align-items: center; justify-content: center; }
+.sg-transfer-key-sign > svg { width: 130px; height: 35px; }
+.sg-transfer-key-sign .sg-key-code { display: flex; width: 67px; height: 35px; }
+.sg-key-code svg { width: 100%; height: 100%; }
+.sg-transfer-key-sign > svg.sg-key-neck { width: 24px; height: 11px; margin: 0 -3px; flex: 0 0 24px; }
+.sg-transfer-key-label { display: flex; flex-direction: column; font-size: 12px; color: var(--text-main); line-height: 1.4; }
+.sg-transfer-key-label small { font-size: 10px; color: var(--text-light); }
+.map-singapore .label-group.type-tsfo .stacn { font-weight: 700; }
+.sg-unpaid-transfer { margin-bottom: 14px; padding: 12px; border: 1px solid var(--border-color); border-left: 3px solid var(--primary-color); border-radius: 8px; background: var(--card-sub-bg); color: var(--text-main); font-size: 13px; line-height: 1.65; }
+.sg-unpaid-transfer h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 14px; }
+.sg-unpaid-transfer p { margin: 6px 0; }
+.sg-transfer-button { display: block; margin: 10px 0 6px; padding: 7px 10px; border: 1px solid var(--border-color); border-radius: 5px; background: var(--map-bg); color: var(--text-main); cursor: pointer; }
+.sg-unpaid-transfer a { color: var(--text-main); text-decoration: underline; }
+/* Both sides may be selected together; preserve the visible gap between fare-paid areas. */
+.map-singapore .station.sg-tap-out-sign.active { transform: translate(-50%, -50%); }
+
+/* PDF widths × 0.65; airport outer band minus hollow core leaves two 4.032px rails. */
+.map-singapore #lines-layer .line-visual-inner,
+.map-singapore #highlight-layer .line-visual-inner { stroke-width: 9.52445px !important; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="BP"] .line-visual-inner { stroke-width: 3.96695px !important; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="BPL"] .line-visual-inner { stroke-width: 3.96695px !important; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SE"] .line-visual-inner { stroke-width: 3.96695px !important; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SW"] .line-visual-inner { stroke-width: 3.96695px !important; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="PE"] .line-visual-inner { stroke-width: 3.96695px !important; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="PW"] .line-visual-inner { stroke-width: 3.96695px !important; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="CG"] .line-visual-inner { stroke-width: 13.5564px !important; }
+.map-singapore .line-visual-outer { stroke: none !important; }
+.map-singapore .sg-crossing-gaps { pointer-events: none; }
+
+.sg-airport-shuttle { margin-bottom: 14px; padding: 12px; border: 1px solid var(--border-color); border-left: 3px solid #009645; border-radius: 8px; background: var(--card-sub-bg); color: var(--text-main); font-size: 13px; line-height: 1.65; }
+.sg-airport-shuttle h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 14px; }
+.sg-airport-shuttle ol { margin: 8px 0; padding-left: 22px; }
+.sg-airport-shuttle p { margin: 8px 0; }
+.sg-airport-shuttle a { color: var(--text-main); text-decoration: underline; }
+
+/* LTA construction enclosure: coloured tracks/codes, dotted limits and a solid left bracket. */
+.map-singapore { --sg-construction-ink: #2d2a26; }
+.map-singapore[data-theme="dark"] { --sg-construction-ink: #d5d2ce; }
+@media (prefers-color-scheme: dark) {
+    .map-singapore:not([data-theme="light"]) { --sg-construction-ink: #d5d2ce; }
+}
+.map-singapore .sg-construction-annotation { pointer-events: none; }
+.map-singapore .sg-construction-annotation text { font-family: 'Singapore Lato', sans-serif; font-weight: 700; }
+.map-singapore .label-group.type-no .stacn { color: var(--text-main) !important; font-weight: 400; }
+.map-singapore .label-group[data-sid="TE31"] .stacn { font-weight: 700; }
+.sg-construction-info { margin-bottom: 14px; padding: 12px; border: 1px solid var(--border-color); border-left: 3px solid var(--text-main); border-radius: 8px; background: var(--card-sub-bg); color: var(--text-main); font-size: 13px; line-height: 1.65; }
+.sg-construction-info h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 14px; }
+.sg-construction-info p { margin: 8px 0; }
+.sg-construction-info a { color: var(--text-main); text-decoration: underline; }
+.sg-construction-key { display: flex; align-items: center; gap: 12px; font-weight: 400; }
+.sg-construction-key > span { flex: 0 0 auto; padding: 7px 10px; border-radius: 7px; background: #231f20; color: #ffffff; font-family: 'Singapore Lato', sans-serif; font-weight: 700; text-align: center; line-height: 1.2; }
+.sg-construction-key p { margin: 0; font-size: 12px; line-height: 1.5; }
