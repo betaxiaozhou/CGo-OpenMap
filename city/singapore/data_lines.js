@@ -1094,7 +1094,10 @@ const linesData = [
         "r": 0
       }
     ],
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/NSL.svg",
+    "svgclr": "#e1251b",
+    "svgtext": "#ffffff"
   },
   {
     "id": "EW",
@@ -2402,7 +2405,10 @@ const linesData = [
         "r": 0
       }
     ],
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/EWL.svg",
+    "svgclr": "#009645",
+    "svgtext": "#ffffff"
   },
   {
     "id": "CG",
@@ -2604,7 +2610,10 @@ const linesData = [
         "opacity": 1,
         "linecap": "butt"
       }
-    ]
+    ],
+    "svg": "./city/singapore/assets/line/EWL.svg",
+    "svgclr": "#009645",
+    "svgtext": "#ffffff"
   },
   {
     "id": "CC",
@@ -5623,7 +5632,10 @@ const linesData = [
       }
     ],
     "isLoop": true,
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/CCL.svg",
+    "svgclr": "#fa9e0d",
+    "svgtext": "#2d2a26"
   },
   {
     "id": "CCE",
@@ -5938,7 +5950,10 @@ const linesData = [
         "r": 0
       }
     ],
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/CCL.svg",
+    "svgclr": "#fa9e0d",
+    "svgtext": "#2d2a26"
   },
   {
     "id": "TE",
@@ -6984,7 +6999,10 @@ const linesData = [
         "r": 0
       }
     ],
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/TEL.svg",
+    "svgclr": "#9d5918",
+    "svgtext": "#ffffff"
   },
   {
     "id": "BP",
@@ -7113,7 +7131,10 @@ const linesData = [
         "r": 0
       }
     ],
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/BP.svg",
+    "svgclr": "#718472",
+    "svgtext": "#ffffff"
   },
   {
     "id": "BPL",
@@ -7463,7 +7484,10 @@ const linesData = [
       }
     ],
     "isLoop": true,
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/BP.svg",
+    "svgclr": "#718472",
+    "svgtext": "#ffffff"
   },
   {
     "id": "NE",
@@ -8119,7 +8143,10 @@ const linesData = [
         "r": 0
       }
     ],
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/NEL.svg",
+    "svgclr": "#9e28b5",
+    "svgtext": "#ffffff"
   },
   {
     "id": "DT",
@@ -9761,7 +9788,10 @@ const linesData = [
         "r": 0
       }
     ],
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/DTL.svg",
+    "svgclr": "#0055b8",
+    "svgtext": "#ffffff"
   },
   {
     "id": "SE",
@@ -10147,7 +10177,10 @@ const linesData = [
       }
     ],
     "isLoop": true,
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/STC.svg",
+    "svgclr": "#718472",
+    "svgtext": "#ffffff"
   },
   {
     "id": "SW",
@@ -10524,7 +10557,10 @@ const linesData = [
       }
     ],
     "isLoop": true,
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/STC.svg",
+    "svgclr": "#718472",
+    "svgtext": "#ffffff"
   },
   {
     "id": "PE",
@@ -10909,7 +10945,10 @@ const linesData = [
       }
     ],
     "isLoop": true,
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/PTC.svg",
+    "svgclr": "#718472",
+    "svgtext": "#ffffff"
   },
   {
     "id": "PW",
@@ -11264,7 +11303,10 @@ const linesData = [
       }
     ],
     "isLoop": true,
-    "noOuter": true
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/PTC.svg",
+    "svgclr": "#718472",
+    "svgtext": "#ffffff"
   },
   {
     "id": "TE-UC",
@@ -11277,7 +11319,10 @@ const linesData = [
       "TE31"
     ],
     "distances": [],
-    "pathPoints": []
+    "pathPoints": [],
+    "svg": "./city/singapore/assets/line/TEL.svg",
+    "svgclr": "#9d5918",
+    "svgtext": "#ffffff"
   },
   {
     "id": "DT-UC",
@@ -11290,6 +11335,9 @@ const linesData = [
       "TE31"
     ],
     "distances": [],
-    "pathPoints": []
+    "pathPoints": [],
+    "svg": "./city/singapore/assets/line/DTL.svg",
+    "svgclr": "#0055b8",
+    "svgtext": "#ffffff"
   }
 ];

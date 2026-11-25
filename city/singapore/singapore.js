@@ -86,6 +86,19 @@
     };
     // The generic 'free interchange' wording does not describe Singapore distance fares.
     City.stationBoard = { modules: { transfers: { enabled: false } } };
+    City.stationBoard.modules['header-badges'] = {
+        slot: 'header', order: 30,
+        render({ relatedLinesInfo = [] }) {
+            const seen = new Set();
+            const escape = window.CGoA11y.escapeHtml;
+            const badges = relatedLinesInfo.filter(info => {
+                if (!info.svg || seen.has(info.svg)) return false;
+                seen.add(info.svg);
+                return true;
+            }).map(info => `<span class="svg-icon-placeholder line-badge" data-src="${escape(info.svg)}" title="${escape(info.name)}" style="--svgclr:${escape(info.svgclr)};--svgtext:${escape(info.svgtext)}"></span>`).join('');
+            return `<div class="panel-badges sg-line-badges">${badges}</div>`;
+        }
+    };
     if (typeof document !== 'undefined' && document.write) {
         const v = window.CGO_ASSET_VERSION;
         document.write('<script src="./city/singapore/data_crossings.js' + (v ? '?v=' + v : '') + '"><\/script>');

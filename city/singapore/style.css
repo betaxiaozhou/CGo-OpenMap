@@ -17,6 +17,8 @@
 .map-singapore .label-group.type-tsf .stacn { font-weight: 700; }
 .map-singapore .staen { display: none; }
 .map-singapore .sg-station-sign text { font-family: 'Singapore Lato', sans-serif; }
+.map-singapore .sg-line-badges .line-badge { height: 32px; width: auto; flex-shrink: 0; border-radius: 0; }
+.map-singapore .sg-line-badges .sg-line-mark { display: block; height: 100%; width: auto; }
 .map-singapore .station.sg-station-sign.active { transform: translate(-50%, -50%) scale(1.12); }
 .map-singapore #scattered-layer { pointer-events: none; }
 .map-singapore #scattered-layer .scattered-item:has(img[src*="water-dark.svg"]) { display: none; }
