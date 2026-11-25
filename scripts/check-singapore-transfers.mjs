@@ -21,7 +21,7 @@ for (const [a, b, aLines, bLines] of cases) {
     assert(links.some(link => link.from === a && link.to === b));
     for (const [id, peer, expected] of [[a, b, aLines], [b, a, bLines]]) {
         assert.equal(stations[id].type, 'tsfo');
-        assert.equal(stations[id].en, id, `${id}: do not fuse paid areas in one code badge`);
+        assert.equal(stations[id].stationCodes, id, `${id}: do not fuse paid areas in one code badge`);
         assert.deepEqual(peers[id], [peer]);
         assert.equal(stations[id].paidAreaTransfer.peerId, peer);
         assert.equal(stations[id].paidAreaTransfer.limitMinutes, 15);

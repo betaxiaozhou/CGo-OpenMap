@@ -1,4 +1,4 @@
-// LTA SM-26-01-EN construction bracket and dotted limits; redrawn text uses open-source Lato.
+// Official Chinese construction enclosure and callout.
 const SG_CONSTRUCTION_ANNOTATION = [
   {
     "tag": "path",
@@ -31,29 +31,21 @@ const SG_CONSTRUCTION_ANNOTATION = [
   },
   {
     "tag": "rect",
-    "x": 2710.273,
-    "y": 1223.504,
-    "width": 162.999,
-    "height": 69.901,
-    "rx": 10.25,
+    "x": 2736.773,
+    "y": 1234.454,
+    "width": 110,
+    "height": 48,
+    "rx": 7,
     "fill": "#231f20"
   },
   {
     "tag": "text",
     "x": 2791.773,
-    "y": 1250.504,
+    "y": 1258.454,
     "text-anchor": "middle",
+    "dominant-baseline": "central",
     "fill": "#ffffff",
-    "font-size": 23.4,
-    "text": "Under"
-  },
-  {
-    "tag": "text",
-    "x": 2791.773,
-    "y": 1276.504,
-    "text-anchor": "middle",
-    "fill": "#ffffff",
-    "font-size": 23.4,
-    "text": "Construction"
+    "font-size": 25.5,
+    "text": "施工中"
   }
 ];

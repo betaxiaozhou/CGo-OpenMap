@@ -1,17 +1,15 @@
-# English font: Lato
+# 字体说明
 
-Station names, water labels and station-code signs use the locally bundled Lato font by Łukasz Dziedzic. It is a humanist sans-serif substitute; it is not LTA Identity and does not claim to reproduce the proprietary font exactly.
+## 站码和线路标：Lato Bold
 
-Files: `assets/fonts/Lato-Regular.ttf`, `assets/fonts/Lato-Bold.ttf`.
-Source: https://github.com/google/fonts/tree/main/ofl/lato
-Downloaded: 2026-11-23.
-License: SIL Open Font License 1.1, reproduced unmodified in [assets/fonts/OFL.txt](assets/fonts/OFL.txt).
+车站站码及 NSL / EWL / NEL / CCL / DTL / TEL / BP / STC / PTC 线路标统一使用 **Lato Bold（700）**。车站站码直接引用本地字体，线路标以同一份 `Lato-Bold.ttf` 的字形转成 SVG 路径，手机不依赖本机字体；不再使用 Roboto Slab。英文详情使用 Lato Regular。
 
-The font files are unmodified upstream distributions. The Open Font License applies to the fonts independently of the repository's code/data licences. No LTA Identity binary is included or required; the map works offline with the same font on all devices.
+源文件：`assets/fonts/Lato-Regular.ttf`、`Lato-Bold.ttf`。来源：https://github.com/google/fonts/tree/main/ofl/lato 。授权为 SIL Open Font License 1.1，见 [OFL.txt](assets/fonts/OFL.txt)。字体二进制未经修改，线路标只分发字形轮廓。
 
-## Line abbreviation badges
+## 中文站名：Noto Sans CJK SC 子集
 
-The NSL, EWL, NEL, CCL, DTL, TEL, BP, STC and PTC badges use **Roboto Slab Bold (700)** glyph outlines as an open-source slab-serif substitute for the LTA Identity lettering. Their bowed capsule geometry follows the reference map. No proprietary font glyphs are extracted. All abbreviation text is converted to SVG paths, so the badge does not depend on installed fonts.
+中文站名、施工牌和水系文字使用开源 Noto Sans CJK SC Regular / Bold。为保证手机、离线及桌面排版一致，按本站所需字符制作 WOFF 子集，并将字体内部名称改为 **Singapore Chinese**；原始版权为 © 2014–2021 Adobe。两份子集位于 `assets/fonts/SingaporeChinese-Regular.woff`、`SingaporeChinese-Bold.woff`。水系名称转成矢量路径。
 
-Source: https://github.com/google/fonts/tree/main/apache/robotoslab
-Licence: Apache License 2.0; see [licence](assets/line/LICENSE-RobotoSlab.txt) and [upstream copyright](assets/line/COPYRIGHT-RobotoSlab.txt). Only outlined glyph artwork is distributed for these badges; the Roboto Slab font binary is not bundled.
+来源：https://github.com/notofonts/noto-cjk 。授权为 SIL Open Font License 1.1，完整文本及修改说明见 [OFL-NotoSansCJK.txt](assets/fonts/OFL-NotoSansCJK.txt)。新增中文字符后应同步更新子集。
+
+这些开源字体用于风格替代，不宣称是 LTA Identity。项目不包含或提取专有字体字形。字体许可独立于仓库代码及数据许可。

@@ -23,9 +23,9 @@ for(let i=1;i<points.length;i++){
     assert(points[i].y >= points[i-1].y-0.001,'Forward centreline must not double back');
 }
 assert.equal(airport.overlayStyles[0].width,5.4925);
-assert.equal(stations.EW4.en,'EW4 / CG');
-assert.equal(stations.CG1.en,'CG1 / DT35');
-assert.equal(stations.CG2.en,'CG2');
+assert.equal(stations.EW4.stationCodes,'EW4 / CG');
+assert.equal(stations.CG1.stationCodes,'CG1 / DT35');
+assert.equal(stations.CG2.stationCodes,'CG2');
 globalThis.window={};
 globalThis.document={createElement:()=>({}),head:{appendChild(){}},documentElement:{classList:{add(){}}},addEventListener(){}};
 new Function(readFileSync(new URL('../city/singapore/singapore.js',import.meta.url),'utf8'))();

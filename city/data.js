@@ -85,7 +85,7 @@
             "status": "updating",
             "registerDate": "2026-11-23",
             "isDefault": false,
-            "lang": "en-SG"
+            "lang": "zh-Hans-SG"
 },
         "jinhua": {
         id: "jinhua",

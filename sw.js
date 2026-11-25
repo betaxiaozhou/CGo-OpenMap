@@ -2,16 +2,18 @@
  * CGo OpenMap - PWA 渐进式离线缓存 Service Worker (sw.js)
  */
 
-const CACHE_NAME = 'cgo-openmap-v261125.120000';
+const CACHE_NAME = 'cgo-openmap-v261125.154000';
 // 地图瓦片专用缓存：与静态资源版本无关，激活新版本时需保留
 const TILE_CACHE_NAME = 'map-tiles-cache';
 const ASSETS_TO_CACHE = [
+    './scripts/check-singapore-language.mjs',
+    './city/singapore/assets/fonts/SingaporeChinese-Regular.woff',
+    './city/singapore/assets/fonts/SingaporeChinese-Bold.woff',
+    './city/singapore/assets/fonts/OFL-NotoSansCJK.txt',
     './city/singapore/assets/line/BP.svg',
     './city/singapore/assets/line/CCL.svg',
-    './city/singapore/assets/line/COPYRIGHT-RobotoSlab.txt',
     './city/singapore/assets/line/DTL.svg',
     './city/singapore/assets/line/EWL.svg',
-    './city/singapore/assets/line/LICENSE-RobotoSlab.txt',
     './city/singapore/assets/line/NEL.svg',
     './city/singapore/assets/line/NSL.svg',
     './city/singapore/assets/line/PTC.svg',

@@ -23,18 +23,19 @@
 - 汤东线运营至 Bayshore TE29，滨海市区线运营至 Expo DT35。另按施工状态绘出 TE30 Bedok South、TE31/DT37 Sungei Bedok 和 DT36 Xilin，未接入运营站序。LTA 已宣布 TEL5 / DTL3e 计划于 2026-12-26 开放载客。
 - 不收录未运营的 NS6 Sungei Kadut、CC18 Bukit Brown、TE10 Mount Pleasant、TE21 Marina South，以及已关闭的 BP14 Ten Mile Junction。
 - 已补齐东北线（含 Punggol Coast）、滨海市区线（含 Hume）与盛港/榜鹅轻轨全部已开通站（含 Teck Lee）。跨运营商换乘已按付费区内/外的实际关系显示。Newton（NS21↔DT11）、Bukit Panjang（BP6↔DT1）、Tampines（EW2↔DT32）均需出闸；已拆分站码、以双色窄实心带连接，并提供换乘条件与另一侧节点的跳转按钮。
-- 英文站名与站码可搜索；另提供部分主要站点中文搜索别名。英语名字存储在引擎的 `cn` 主标签字段，站码存储在 `en` 次标签字段，沿用悉尼城市的英文主标签模式。轻轨小站使用较小站码与字号，以适配街区环路尺度。
+- 画布按 LTA 华文图展示中文站名，中文、英文和站码均可搜索。`cn` 为官方中文站名，`en` 为英文名，`stationCodes` 独立保存站码，避免改为中文后破坏自绘标牌。车站详情以中文为主，副标题保留站码和英文名供对照。轻轨小站使用较小站码与字号。
 - 未核实的站距统一使用规范允许的 `"??"`，未加入估算时刻、票价、行程耗时、实时服务或站点经纬度。
 
 ## 来源与版次
 
 1. [LTA Rail Network](https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html)：核对运营商分工。
 2. [LTA SM-26-01-EN 全网矢量图（2026-07-21 版本）](https://www.lta.gov.sg/content/dam/ltagov/getting_around/public_transport/rail_network/pdf/SM_EN_(Ver210726)_CCL6.pdf)：站名、编号、拓扑、排版参考。
-3. [SMRT 官方全网入口](https://journey.smrt.com.sg/journey/mrt_network_map/)：旅客查看完整网络的入口。
-4. [LTA：环线三座新站 2026-07-12 开通](https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/6/news-releases/explore-three-new-circle-line-stage-6-stations-on-4-july-2026.html)。
-5. [LTA：TEL5 / DTL3e 于 2026-12-26 开通](https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/11/news-releases/tel5-dtl3e-passenger-service-26-dec-2026.html)。
+3. [LTA 官方华文全网图（2026-07-21）](https://www.lta.gov.sg/content/dam/ltagov/getting_around/public_transport/rail_network/pdf/SM_CH_(Ver210726)_CCL6.pdf)：190 个节点的中文名逐站核对，包含三座施工站及全部轻轨站。
+4. [SMRT 官方全网入口](https://journey.smrt.com.sg/journey/mrt_network_map/)：旅客查看完整网络的入口。
+5. [LTA：环线三座新站 2026-07-12 开通](https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/6/news-releases/explore-three-new-circle-line-stage-6-stations-on-4-july-2026.html)。
+6. [LTA：TEL5 / DTL3e 于 2026-12-26 开通](https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/11/news-releases/tel5-dtl3e-passenger-service-26-dec-2026.html)。
 
-坐标来自官方 PDF 中心线与站码锚点，转换为 `x=(PDF_x−200)×0.65`、`y=(PDF_y−1000)×0.65`。官方贝塞尔曲线按原形采样，直线样本合并；`r:0` 避免引擎二次倒角。普通站内换乘合并 ID，出闸换乘拆分两侧 ID；标牌与线路中心线独立，各线路保留官方参考图中的独立中心线，不为迁就标牌中心而强制汇聚，避免换乘站前后的尖折与平行线扭曲。图为非官方社区交互版本，不附官方 PDF、不打包官方标志或字体；官方原图版权属于 LTA，引用不代表其背书或授予原图再许可。公开提交前应按上游要求确认来源与派生几何的使用许可。
+站名核对使用官方华文版；现有线路几何继续采用英文版的坐标，保持已修复的线路中心线。坐标来自官方 PDF 中心线与站码锚点，转换为 `x=(PDF_x−200)×0.65`、`y=(PDF_y−1000)×0.65`。官方贝塞尔曲线按原形采样，直线样本合并；`r:0` 避免引擎二次倒角。普通站内换乘合并 ID，出闸换乘拆分两侧 ID；标牌与线路中心线独立，各线路保留官方参考图中的独立中心线，不为迁就标牌中心而强制汇聚，避免换乘站前后的尖折与平行线扭曲。图为非官方社区交互版本，不附官方 PDF、不打包官方标志或字体；官方原图版权属于 LTA，引用不代表其背书或授予原图再许可。公开提交前应按上游要求确认来源与派生几何的使用许可。
 
 新增线路核对资料：
 - [LTA 东北线：17 站](https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_east_line.html)
@@ -52,7 +53,7 @@ Tanah Merah 标牌的 EW4 与 CG 绿色色块之间保留白色分隔；中空�
 
 ## 施工区段
 
-参照 LTA 全网图的施工表示法，TEL5 与 DTL3e 保留棕/蓝色实线及彩色站码，以两条点状边界、实体圆角左括线和深底白字 **Under Construction** 标牌圈出范围；不把轨道改成通用灰色虚线。线路宽度仍为 `9.52445px`，边界直径与间距由参考图同比换算。暗色主题仅调亮边界线，施工牌仍为深底白字，英文使用已打包的开源 Lato。
+参照 LTA 全网图的施工表示法，TEL5 与 DTL3e 保留棕/蓝色实线及彩色站码，以两条点状边界、实体圆角左括线和深底白字 **施工中** 标牌圈出范围；不把轨道改成通用灰色虚线。线路宽度仍为 `9.52445px`，边界直径与间距由参考图同比换算。暗色主题仅调亮边界线，施工牌仍为深底白字，中文使用已打包的 Noto 子集。
 
 三座施工站统一 `type: "no"`，可按站名、TE30、TE31、DT36、DT37 搜索；Sungei Bedok 使用 TE31/DT37 联合站码，但明确提示换乘尚未启用。置顶信息卡展示项目与计划开通日期。`data_notopen.js` 只负责施工走向，`data_construction.js` 保存施工边界与标牌；两条 `isPointOnly` 元数据项提供线路/运营商信息，不绘运营轨道、不接入现有线路站序。当前运营统计仍为 184 个物理站 / 187 个线路侧节点；连同 3 座施工站合计 190 个节点、16 个元数据条目（14 个运营条目、2 个施工条目）。开通须人工核实，不按日期自动变更。
 
@@ -74,27 +75,28 @@ Tanah Merah 标牌的 EW4 与 CG 绿色色块之间保留白色分隔；中空�
 
 ## 水系底图
 
-新增海岸水域、新加坡河及滨海湾，水域边界提取自上述 LTA 图中的两组水色路径，使用同一坐标变换与线网对齐。采用完整 SVG 贝塞尔曲线，亮/暗主题使用两套静态颜色资源；通过城市 `data_scattered.js` 放置在轨道下层，未修改通用渲染逻辑。水系名称以 Lato 轮廓写入 SVG，外部图片不依赖字体跨文件加载。海岸为交通图示意形状，并非 GIS 精确海岸数据。
+新增海岸水域、新加坡河及滨海湾，水域边界提取自上述 LTA 图中的两组水色路径，使用同一坐标变换与线网对齐。采用完整 SVG 贝塞尔曲线，亮/暗主题使用两套静态颜色资源；通过城市 `data_scattered.js` 放置在轨道下层，未修改通用渲染逻辑。中文水系名称以 Noto Sans CJK SC 轮廓写入 SVG，外部图片不依赖字体跨文件加载。海岸为交通图示意形状，并非 GIS 精确海岸数据。
 
 ## 面板线路标
 
-车站面板顶端、搜索和线路图例使用 LTA 全网图样式的线路缩写标：NSL / EWL / NEL / CCL / DTL / TEL，以及 BP / STC / PTC。素材位于 `assets/line/`，采用线路色、弧形两端及白色外轮廓；DTL 等标识使用白字，CCL 使用深色字。字形以 Apache 2.0 授权的 Roboto Slab Bold 替代并转成路径，不依赖手机字体。
+车站面板顶端、搜索和线路图例使用 LTA 全网图样式的线路缩写标：NSL / EWL / NEL / CCL / DTL / TEL，以及 BP / STC / PTC。素材位于 `assets/line/`，采用线路色、弧形两端及白色外轮廓；DTL 等标识使用白字，CCL 使用深色字。字形与车站站码统一，直接使用已打包的 Lato Bold 并转成路径，不依赖手机字体。
 
 `data_lines.js` 为各交路配置 SVG；机场支线共用 EWL、多美歌支线共用 CCL。城市层只覆盖面板徽标渲染，将同一 SVG 的支线/环路徽标去重；其他线路选项卡与换乘关系保持各自的数据。
 
-## 英文字体
+## 中英文字体
 
-按用户允许使用开源字体的要求，现将 **Lato Regular / Bold** 随项目本地打包，用于站名、自绘站牌站码及水系名称。字体采用 SIL Open Font License 1.1，包含完整授权文本，首次在线加载后可离线显示，不再依赖本机 LTA Identity。Lato 是风格替代，不宣称与官方定制字体完全相同。见 [字体说明](FONT-NOTICE.md)。
+中文站名采用本地打包的 Noto Sans CJK SC 字符子集（内部名称 Singapore Chinese），保证手机和桌面的字宽一致；线路标及车站站码均采用同一份 **Lato Bold**，英文详情采用 Lato Regular。均为 SIL OFL 开源字体，附授权文本。线路标与水系文字转为路径，首次加载后可离线显示。未打包专有 LTA Identity，见 [字体说明](FONT-NOTICE.md)。
 
 ## 文件与维护
 
-`data_stations.js` 保存车站与搜索别名，`data_lines.js` 保存站序、中心线与站距；`data_legend.js` 保存分组图例；`singapore.js` 配置城市导航与初始取景；`style.css` 调整英文标签。普通站由城市钩子自绘两端弧形、上下平直的站码色块，换乘站采用较大的连续外形、多线路无缝拼接，去除独立切角、白缝与黑色外框；所有 190 个站码节点（含 3 个施工站）均不使用引擎默认圆点或默认换乘图元。其余数据文件满足标准加载链，未承诺尚未提供的功能。`stacard/script.js` 为合法空模块，未启用地图卡片服务。
+`data_stations.js` 保存车站与搜索别名，`data_lines.js` 保存站序、中心线与站距；`data_legend.js` 保存分组图例；`singapore.js` 配置城市导航与初始取景；`style.css` 调整中文标签。普通站由城市钩子自绘两端弧形、上下平直的站码色块，换乘站采用较大的连续外形、多线路无缝拼接，去除独立切角、白缝与黑色外框；所有 190 个站码节点（含 3 个施工站）均不使用引擎默认圆点或默认换乘图元。其余数据文件满足标准加载链，未承诺尚未提供的功能。`stacard/script.js` 为合法空模块，未启用地图卡片服务。
 
 本城市在注册表中设为 `updating`，等待来源许可确认、人工视觉质量评审和官方主理人接纳，不自行宣称达到 B/A 级。
 
 修改后必须同步全站缓存版本并运行：
 
 ```sh
+node scripts/check-singapore-language.mjs
 node scripts/check-singapore-construction.mjs
 node scripts/check-singapore-airport.mjs
 node scripts/check-singapore-transfers.mjs

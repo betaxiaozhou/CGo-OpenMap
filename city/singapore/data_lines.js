@@ -1,10 +1,10 @@
-// Reference centrelines; CG is an open shuttle; construction metadata is point-only.
+// Chinese route names; independent reference centrelines and operational topology unchanged.
 const linesData = [
   {
     "id": "NS",
-    "name": "南北线 North–South Line",
+    "name": "南北线",
     "color": "#e1251b",
-    "company": "SMRT Trains",
+    "company": "SMRT地铁",
     "stationIds": [
       "NS1",
       "NS2",
@@ -1101,9 +1101,9 @@ const linesData = [
   },
   {
     "id": "EW",
-    "name": "东西线 East–West Line",
+    "name": "东西线",
     "color": "#009645",
-    "company": "SMRT Trains",
+    "company": "SMRT地铁",
     "stationIds": [
       "EW1",
       "EW2",
@@ -2412,9 +2412,9 @@ const linesData = [
   },
   {
     "id": "CG",
-    "name": "东西线机场支线（接驳） Changi Airport Shuttle",
+    "name": "东西线机场支线（接驳）",
     "color": "#009645",
-    "company": "SMRT Trains",
+    "company": "SMRT地铁",
     "stationIds": [
       "EW4",
       "CG1",
@@ -2617,9 +2617,9 @@ const linesData = [
   },
   {
     "id": "CC",
-    "name": "环线 Circle Line",
+    "name": "环线",
     "color": "#fa9e0d",
-    "company": "SMRT Trains",
+    "company": "SMRT地铁",
     "stationIds": [
       "CC4",
       "CC5",
@@ -5639,9 +5639,9 @@ const linesData = [
   },
   {
     "id": "CCE",
-    "name": "环线多美歌支线 Dhoby Ghaut",
+    "name": "环线多美歌支线",
     "color": "#fa9e0d",
-    "company": "SMRT Trains",
+    "company": "SMRT地铁",
     "stationIds": [
       "CC4",
       "CC3",
@@ -5957,9 +5957,9 @@ const linesData = [
   },
   {
     "id": "TE",
-    "name": "汤申—东海岸线 Thomson–East Coast",
+    "name": "汤申—东海岸线",
     "color": "#9d5918",
-    "company": "SMRT Trains",
+    "company": "SMRT地铁",
     "stationIds": [
       "TE1",
       "NS9",
@@ -7006,9 +7006,9 @@ const linesData = [
   },
   {
     "id": "BP",
-    "name": "武吉班让轻轨 Bukit Panjang LRT",
+    "name": "武吉班让轻轨线",
     "color": "#718472",
-    "company": "SMRT Light Rail",
+    "company": "SMRT轻轨",
     "stationIds": [
       "NS4",
       "BP2",
@@ -7138,9 +7138,9 @@ const linesData = [
   },
   {
     "id": "BPL",
-    "name": "武吉班让轻轨环路 BPLRT Loop",
+    "name": "武吉班让轻轨环路",
     "color": "#718472",
-    "company": "SMRT Light Rail",
+    "company": "SMRT轻轨",
     "stationIds": [
       "BP6",
       "BP7",
@@ -7491,9 +7491,9 @@ const linesData = [
   },
   {
     "id": "NE",
-    "name": "东北线 North East Line",
+    "name": "东北线",
     "color": "#9e28b5",
-    "company": "SBS Transit",
+    "company": "新捷运",
     "stationIds": [
       "CC29",
       "EW16",
@@ -8150,9 +8150,9 @@ const linesData = [
   },
   {
     "id": "DT",
-    "name": "滨海市区线 Downtown Line",
+    "name": "滨海市区线",
     "color": "#0055b8",
-    "company": "SBS Transit",
+    "company": "新捷运",
     "stationIds": [
       "DT1",
       "DT2",
@@ -9795,9 +9795,9 @@ const linesData = [
   },
   {
     "id": "SE",
-    "name": "盛港轻轨东环 Sengkang East",
+    "name": "盛港轻轨东环",
     "color": "#718472",
-    "company": "SBS Transit",
+    "company": "新捷运",
     "stationIds": [
       "NE16",
       "SE1",
@@ -10184,9 +10184,9 @@ const linesData = [
   },
   {
     "id": "SW",
-    "name": "盛港轻轨西环 Sengkang West",
+    "name": "盛港轻轨西环",
     "color": "#718472",
-    "company": "SBS Transit",
+    "company": "新捷运",
     "stationIds": [
       "NE16",
       "SW1",
@@ -10564,9 +10564,9 @@ const linesData = [
   },
   {
     "id": "PE",
-    "name": "榜鹅轻轨东环 Punggol East",
+    "name": "榜鹅轻轨东环",
     "color": "#718472",
-    "company": "SBS Transit",
+    "company": "新捷运",
     "stationIds": [
       "NE17",
       "PE1",
@@ -10952,9 +10952,9 @@ const linesData = [
   },
   {
     "id": "PW",
-    "name": "榜鹅轻轨西环 Punggol West",
+    "name": "榜鹅轻轨西环",
     "color": "#718472",
-    "company": "SBS Transit",
+    "company": "新捷运",
     "stationIds": [
       "NE17",
       "PW1",
@@ -11310,9 +11310,9 @@ const linesData = [
   },
   {
     "id": "TE-UC",
-    "name": "汤东线 TEL5（施工中）",
+    "name": "汤东线第五阶段（施工中）",
     "color": "#9d5918",
-    "company": "SMRT Trains",
+    "company": "SMRT地铁",
     "isPointOnly": true,
     "stationIds": [
       "TE30",
@@ -11326,9 +11326,9 @@ const linesData = [
   },
   {
     "id": "DT-UC",
-    "name": "滨海市区线 DTL3e（施工中）",
+    "name": "滨海市区线延长段（施工中）",
     "color": "#0055b8",
-    "company": "SBS Transit",
+    "company": "新捷运",
     "isPointOnly": true,
     "stationIds": [
       "DT36",

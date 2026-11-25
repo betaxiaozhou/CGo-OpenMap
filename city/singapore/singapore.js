@@ -46,7 +46,7 @@
 };
     // Bow-sided station codes; interchange segments share one continuous silhouette.
     City.renderStationIcon = function (station) {
-        const codes = (station.en || '').split(' / ').filter(code => /^(?:(NS|EW|CG|CC|TE|BP|NE|DT|SE|SW|PE|PW)\d+|STC|PTC|CG)$/.test(code));
+        const codes = (station.stationCodes || station.en || '').split(' / ').filter(code => /^(?:(NS|EW|CG|CC|TE|BP|NE|DT|SE|SW|PE|PW)\d+|STC|PTC|CG)$/.test(code));
         if (!codes.length) return null;
         const palette = { NS: '#e1251b', EW: '#009645', CG: '#009645', CC: '#fa9e0d', TE: '#9d5918', BP: '#718472', NE: '#9e28b5', DT: '#0055b8', SE: '#718472', SW: '#718472', PE: '#718472', PW: '#718472', STC: '#718472', PTC: '#718472' };
         const transfer = codes.length > 1 || station.type === 'tsfo';
@@ -86,6 +86,13 @@
     };
     // The generic 'free interchange' wording does not describe Singapore distance fares.
     City.stationBoard = { modules: { transfers: { enabled: false } } };
+    City.stationBoard.modules['header-title'] = {
+        slot: 'header', order: 20,
+        render({ station }) {
+            const escape = window.CGoA11y.escapeHtml;
+            return `<div class="header-name-group"><div class="panel-cn-name" role="heading" aria-level="2" tabindex="-1">${escape(station.cn)}</div><div class="panel-en-name" lang="en">${escape(station.stationCodes)} · ${escape(station.en)}</div></div>`;
+        }
+    };
     City.stationBoard.modules['header-badges'] = {
         slot: 'header', order: 30,
         render({ relatedLinesInfo = [] }) {
@@ -176,9 +183,9 @@
     City.minScale = 0.1;
     City.isTramLine = function (id) { return this.TRAM_LINES.includes(id); };
     City.isTramStation = function (s) { return Boolean(s?.relatedLines?.some(id => this.isTramLine(id))); };
-    City.formatOwnerName = raw => raw || 'SMRT / SBS Transit';
+    City.formatOwnerName = raw => raw || 'SMRT / 新捷运';
     City.formatCompanyString = list => [...new Set(list)].join(' / ');
-    City.getNavigationUrl = name => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name + ' MRT station Singapore');
+    City.getNavigationUrl = (name, rail, { station } = {}) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((station?.en || name) + ' MRT station Singapore');
     document.addEventListener('DOMContentLoaded', () => {
         City.renderCrossingGaps();
         City.renderTapOutBridges();

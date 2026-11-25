@@ -8,7 +8,7 @@ const tracks = read('data_notopen.js', 'NOT_OPEN_LINES');
 const annotation = read('data_construction.js', 'SG_CONSTRUCTION_ANNOTATION');
 const futureIds = ['TE30', 'TE31', 'DT36'];
 assert.deepEqual(Object.keys(stations).filter(id => stations[id].type === 'no').sort(), futureIds.slice().sort());
-assert.equal(stations.TE31.en, 'TE31 / DT37');
+assert.equal(stations.TE31.stationCodes, 'TE31 / DT37');
 for (const id of futureIds) {
     assert.equal(stations[id].construction.plannedOpening, '2026-12-26');
     assert(!lines.some(line => !line.isPointOnly && line.stationIds.includes(id)), `${id}: unopened station must not become an operating stop`);
@@ -26,5 +26,5 @@ assert.equal(lines.find(line => line.id === 'DT').stationIds.at(-1), 'CG1');
 assert.equal(annotation.filter(item => item['stroke-dasharray']).length, 2, 'Dotted top and bottom boundary');
 assert(annotation.some(item => item.tag === 'path' && !item['stroke-dasharray'] && item.d.includes('C')), 'Solid curved left bracket');
 assert(annotation.some(item => item.tag === 'rect' && item.fill === '#231f20'), 'Dark construction callout');
-assert.deepEqual(annotation.filter(item => item.tag === 'text').map(item => item.text), ['Under', 'Construction']);
+assert.deepEqual(annotation.filter(item => item.tag === 'text').map(item => item.text), ['施工中']);
 console.log('PASS: 3 unopened stations; full-colour TEL5/DTL3e extensions; dotted enclosure, curved bracket and dark callout; no operating-route leakage.');

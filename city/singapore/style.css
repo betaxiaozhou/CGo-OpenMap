@@ -12,10 +12,26 @@
     font-weight: 700;
     font-display: swap;
 }
-.map-singapore .stacn { font-family: 'Singapore Lato', sans-serif; font-size: 22px; line-height: 25px; font-weight: 400; }
+@font-face {
+    font-family: 'Singapore Chinese';
+    src: url('./assets/fonts/SingaporeChinese-Regular.woff') format('woff');
+    font-style: normal;
+    font-weight: 400 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Singapore Chinese';
+    src: url('./assets/fonts/SingaporeChinese-Bold.woff') format('woff');
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+.map-singapore .stacn { font-family: 'Singapore Chinese', 'Noto Sans SC', 'PingFang SC', sans-serif; font-size: 24px; line-height: 28px; font-weight: 400; }
 .map-singapore .label-group { line-height: 1.08; }
 .map-singapore .label-group.type-tsf .stacn { font-weight: 700; }
 .map-singapore .staen { display: none; }
+.map-singapore .panel-cn-name { font-family: 'Singapore Chinese', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+.map-singapore .panel-en-name { font-family: 'Singapore Lato', sans-serif; }
 .map-singapore .sg-station-sign text { font-family: 'Singapore Lato', sans-serif; }
 .map-singapore .sg-line-badges .line-badge { height: 32px; width: auto; flex-shrink: 0; border-radius: 0; }
 .map-singapore .sg-line-badges .sg-line-mark { display: block; height: 100%; width: auto; }
@@ -35,7 +51,10 @@
 .map-singapore .label-group[data-sid^="SW"] .stacn,
 .map-singapore .label-group[data-sid^="PE"] .stacn,
 .map-singapore .label-group[data-sid^="PW"] .stacn,
-.map-singapore .label-group.type-dot[data-sid^="BP"] .stacn { font-size: 16px; line-height: 18px; }
+.map-singapore .label-group.type-dot[data-sid^="BP"] .stacn { font-size: 19px; line-height: 22px; }
+.map-singapore :is(#label_NE5, #label_NS25, #label_DT18) .stacn { width: 2em; white-space: normal; }
+.map-singapore #label_CC32 .stacn { width: 3em; white-space: normal; }
+.map-singapore :is(#label_TE18, #label_DT18) .stacn { font-size: 22px; line-height: 25px; }
 
 /* Official tap-out treatment: separate code plates joined by a narrow, two-colour solid neck. */
 .map-singapore .virtual-connectors > path { display: none; }
@@ -84,7 +103,7 @@
     .map-singapore:not([data-theme="light"]) { --sg-construction-ink: #d5d2ce; }
 }
 .map-singapore .sg-construction-annotation { pointer-events: none; }
-.map-singapore .sg-construction-annotation text { font-family: 'Singapore Lato', sans-serif; font-weight: 700; }
+.map-singapore .sg-construction-annotation text { font-family: 'Singapore Chinese', sans-serif; font-weight: 700; }
 .map-singapore .label-group.type-no .stacn { color: var(--text-main) !important; font-weight: 400; }
 .map-singapore .label-group[data-sid="TE31"] .stacn { font-weight: 700; }
 .sg-construction-info { margin-bottom: 14px; padding: 12px; border: 1px solid var(--border-color); border-left: 3px solid var(--text-main); border-radius: 8px; background: var(--card-sub-bg); color: var(--text-main); font-size: 13px; line-height: 1.65; }
