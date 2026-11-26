@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 const source = readFileSync(fileURLToPath(new URL('../city/singapore/data_lines.js', import.meta.url)), 'utf8');
 const lines = new Function(`${source}; return linesData;`)();
+const stations = new Function(readFileSync(new URL('../city/singapore/data_stations.js', import.meta.url), 'utf8') + ';return stationsData;')();
 const points = id => lines.find(line => line.id === id).pathPoints;
 function xAtY(route, y) {
     for (let i = 1; i < route.length; i++) {
@@ -27,4 +28,11 @@ for (const id of ['EW', 'TE', 'NE']) {
     const deviations = route.map(p => Math.abs(dx * (p.y - a.y) - dy * (p.x - a.x)) / Math.hypot(dx, dy));
     assert(Math.max(...deviations) < 0.05, `${id} develops an artificial bend at Outram Park`);
 }
-console.log('PASS: City Hall–Raffles Place tracks remain straight and parallel; EW, TE and NE stay collinear through Outram Park.');
+const dhoby = stations.NS24;
+const approach = points('CCE');
+const end = approach.at(-1), tangent = approach.at(-2);
+assert(Math.abs(end.y - dhoby.y) < 0.01 && Math.abs(tangent.y - dhoby.y) < 0.01, 'CC1 approach must meet the middle of the station plate, not its top edge');
+assert(end.x > dhoby.x + 35 && end.x < dhoby.x + 89, 'Circle Line ends inside its yellow CC1 cell');
+const arc = approach.filter(p => p.x >= tangent.x && p.x <= 1826 && p.y < 1564);
+for (let i = 1; i < arc.length; i++) assert(arc[i].x < arc[i-1].x && arc[i].y <= arc[i-1].y, 'Dhoby terminal arc must not reverse or hook back');
+console.log('PASS: City Hall/Raffles and Outram corridors preserved; Dhoby Circle Line enters the CC1 cell from the right at plate mid-height without a hook.');
