@@ -26,8 +26,11 @@
     font-weight: 700;
     font-display: swap;
 }
-.map-singapore .stacn { font-family: 'Singapore Chinese', 'Noto Sans SC', 'PingFang SC', sans-serif; font-size: 24px; line-height: 28px; font-weight: 400; }
-.map-singapore .label-group { line-height: 1.08; }
+.map-singapore .stacn { font-family: 'Singapore Chinese', 'Noto Sans SC', 'PingFang SC', sans-serif; font-weight: 400; }
+.map-singapore .label-group { --sg-label-size: 24px; --sg-label-leading: 28px; line-height: 1.08; }
+/* Keep the city label metrics when the generic selected-state style is applied. */
+.map-singapore .label-group .stacn,
+.map-singapore .label-group.active .stacn { font-size: var(--sg-label-size); line-height: var(--sg-label-leading); }
 .map-singapore .label-group.type-tsf .stacn { font-weight: 700; }
 .map-singapore .staen { display: none; }
 .map-singapore .panel-cn-name { font-family: 'Singapore Chinese', 'Noto Sans SC', 'PingFang SC', sans-serif; }
@@ -47,14 +50,14 @@
 }
 
 /* LRT labels follow the denser neighbourhood-loop scale of the reference map. */
-.map-singapore .label-group[data-sid^="SE"] .stacn,
-.map-singapore .label-group[data-sid^="SW"] .stacn,
-.map-singapore .label-group[data-sid^="PE"] .stacn,
-.map-singapore .label-group[data-sid^="PW"] .stacn,
-.map-singapore .label-group.type-dot[data-sid^="BP"] .stacn { font-size: 19px; line-height: 22px; }
+.map-singapore .label-group[data-sid^="SE"],
+.map-singapore .label-group[data-sid^="SW"],
+.map-singapore .label-group[data-sid^="PE"],
+.map-singapore .label-group[data-sid^="PW"],
+.map-singapore .label-group.type-dot[data-sid^="BP"] { --sg-label-size: 19px; --sg-label-leading: 22px; }
 .map-singapore :is(#label_NE5, #label_NS25, #label_DT18) .stacn { width: 2em; white-space: normal; }
 .map-singapore #label_CC32 .stacn { width: 3em; white-space: normal; }
-.map-singapore :is(#label_TE18, #label_DT18) .stacn { font-size: 22px; line-height: 25px; }
+.map-singapore :is(#label_TE18, #label_DT18) { --sg-label-size: 22px; --sg-label-leading: 25px; }
 
 /* Official tap-out treatment: separate code plates joined by a narrow, two-colour solid neck. */
 .map-singapore .virtual-connectors > path { display: none; }
