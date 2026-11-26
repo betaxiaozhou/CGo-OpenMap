@@ -58,17 +58,17 @@
             "mainLogic": "./city/singapore/singapore.js",
             "center": {
                         "x": 1680,
-                        "y": 1200
+                        "y": 1250
             },
             "defaultScale": 0.37,
             "mapSize": {
                         "width": 3400,
-                        "height": 2300
+                        "height": 2450
             },
             "searchCity": "Singapore",
             "title": "CGo OpenMap - 新加坡地铁与轻轨线路图",
             "keywords": "Singapore, SMRT, SBS Transit, MRT, LRT, 新加坡, 地铁",
-            "description": "新加坡完整 MRT/LRT 运营网：6 条地铁、武吉班让/盛港/榜鹅轻轨，184 个去重车站。",
+            "description": "新加坡地铁与轻轨184站，另含圣淘沙捷运4站及港湾步行衔接。",
             "officialMapUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html",
             "maintainers": [
                         {
@@ -77,10 +77,12 @@
                                     "github": "https://github.com/betaxiaozhou/"
                         }
             ],
-            "stationCount": 184,
-            "routeNodeCount": 187,
+            "stationCount": 188,
+            "routeNodeCount": 191,
+            "mrtLrtStationCount": 184,
+            "sentosaExpressStationCount": 4,
             "plannedStationCount": 3,
-            "totalNodeCount": 190,
+            "totalNodeCount": 194,
             "outOfPaidAreaTransferCount": 3,
             "status": "updating",
             "registerDate": "2026-11-23",

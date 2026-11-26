@@ -7,7 +7,7 @@ const lines = read('data_lines.js', 'linesData');
 const peers = read('data_virtual_transfers.js', 'VIRTUAL_FREE_TRANSFER_MAP');
 const links = read('data_virtual_transfers.js', 'VIRTUAL_FREE_CONNECT_LINES');
 const cases = [['NS21', 'DT11', ['NS'], ['DT']], ['BP6', 'DT1', ['BP', 'BPL'], ['DT']], ['EW2', 'DT32', ['EW'], ['DT']]];
-const operatingStations = Object.entries(stations).filter(([, s]) => s.type !== 'no');
+const operatingStations = Object.entries(stations).filter(([, s]) => s.type !== 'no' && !s.sentosaExpress);
 assert.equal(operatingStations.length, 187, 'Operating route-side nodes');
 assert.equal(new Set(operatingStations.map(([id, s]) => s.physicalHubId || id)).size, 184, 'Operating physical stations');
 assert.equal(Object.values(stations).filter(s => s.type === 'tsf').length, 27);
@@ -35,8 +35,9 @@ for (const line of lines) {
     assert.equal(line.distances.length, line.stationIds.length - (line.isLoop ? 0 : 1));
     for (let i = 1; i < ids.length; i++) { graph.get(ids[i - 1]).add(ids[i]); graph.get(ids[i]).add(ids[i - 1]); }
 }
-for (const [id, targets] of Object.entries(peers)) for (const peer of targets) graph.get(id).add(peer);
+const walking = read('data_virtual_transfers.js', 'VIRTUAL_TRANSFER_MAP');
+for (const map of [peers, walking]) for (const [id, targets] of Object.entries(map)) for (const peer of targets) graph.get(id).add(peer);
 const seen = new Set(), queue = ['NS1'];
 while (queue.length) { const id = queue.pop(); if (seen.has(id)) continue; seen.add(id); queue.push(...graph.get(id)); }
-assert.equal(seen.size, 187, 'Complete network including explicitly modelled walking links');
-console.log('PASS: Newton, Bukit Panjang and Tampines have separate paid areas and symmetric walking links; 187 route nodes / 184 physical stations; all routes and transfer edges connected.');
+assert.equal(seen.size, 191, 'Complete network including explicitly modelled walking links');
+console.log('PASS: Newton, Bukit Panjang and Tampines have separate paid areas and symmetric walking links; 187 route nodes / 184 physical stations; Sentosa access is separately ticketed; all routes and walking edges connected.');

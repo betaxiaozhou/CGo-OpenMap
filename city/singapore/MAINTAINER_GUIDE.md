@@ -25,7 +25,7 @@ git switch -c feat/singapore-network
 
 阅读 [城市 README](README.md) 的来源、运营日期、范围与缺项，特别是尚未开通的 TEL5 / DTL3e 三站 和其他运营商换乘信息。现已打包 SIL OFL 授权的 Lato 与 Noto 中文子集及授权文本，无需 LTA Identity；另需确认参考图版权与派生几何使用范围；勿将网上能下载理解为自动取得开放许可。
 
-当前已完成标准城市文件、注册、184 个运营物理站（187 个运营线路侧节点）、3 个施工站的拓扑与状态和缓存登记。站距用 `??`，没有伪造时刻与公里数。若补齐数据，应保存官方来源与有效日期。检查英文站名/站码检索、主要中文别名、普通付费区内换乘合并、三处出闸换乘拆分、环路闭合、线路高亮、缩放拖动、手机布局、亮暗主题和离线打开；定位需补充可靠地理坐标后才能作为完整功能验收。
+当前已完成标准城市文件、注册、184 个 MRT/LRT 运营物理站（187 个线路侧节点）、圣淘沙捷运 4 站及 3 个施工站的拓扑与状态和缓存登记。站距用 `??`，没有伪造时刻与公里数。若补齐数据，应保存官方来源与有效日期。检查英文站名/站码检索、主要中文别名、普通付费区内换乘合并、三处出闸换乘拆分、环路闭合、线路高亮、缩放拖动、手机布局、亮暗主题和离线打开；定位需补充可靠地理坐标后才能作为完整功能验收。
 
 在仓库根目录执行：
 
@@ -33,6 +33,7 @@ git switch -c feat/singapore-network
 python3 -m http.server 8080
 # 浏览器打开 http://localhost:8080/main.html?city=singapore
 # 在另一个终端执行：
+node scripts/check-singapore-sentosa.mjs
 node scripts/check-singapore-language.mjs
 node scripts/check-singapore-construction.mjs
 node scripts/check-singapore-airport.mjs
@@ -57,7 +58,7 @@ git commit -m "Add Singapore MRT/LRT network and maintainer application"
 git push -u origin feat/singapore-network
 ```
 
-然后在 GitHub 创建 Pull Request：base 为官方仓库 `main`，compare 为 `betaxiaozhou:feat/singapore-network`。标题可用 `新增新加坡 MRT/LRT 线路图及城市主理人申请`。正文写明申请人、范围、184 个运营站/14 个运营渲染条目，另有 3 座施工站/2 个施工元数据条目、资料版次、缺项、验证结果，附桌面/手机/暗色截图，并复制 CONTRIBUTING.md 的完整 PR 自查清单，只勾选已实际完成的项。不要把待核实站距、未接入时刻表或未经评审的质量分数写成已完成。
+然后在 GitHub 创建 Pull Request：base 为官方仓库 `main`，compare 为 `betaxiaozhou:feat/singapore-network`。标题可用 `新增新加坡 MRT/LRT 线路图及城市主理人申请`。正文写明申请人、范围、184 个运营站/14 个运营渲染条目，另有圣淘沙捷运 4 站/1 个条目及 3 座施工站/2 个施工元数据条目、资料版次、缺项、验证结果，附桌面/手机/暗色截图，并复制 CONTRIBUTING.md 的完整 PR 自查清单，只勾选已实际完成的项。不要把待核实站距、未接入时刻表或未经评审的质量分数写成已完成。
 
 ## 5. 评审、合入与署名确认
 

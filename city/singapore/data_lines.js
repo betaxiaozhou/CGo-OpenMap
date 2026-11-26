@@ -1,4 +1,4 @@
-// Chinese route names; independent reference centrelines and operational topology unchanged.
+// MRT/LRT reference centrelines unchanged; Sentosa Express is a separate four-stop monorail schematic.
 const linesData = [
   {
     "id": "NS",
@@ -11339,5 +11339,49 @@ const linesData = [
     "svg": "./city/singapore/assets/line/DTL.svg",
     "svgclr": "#0055b8",
     "svgtext": "#ffffff"
+  },
+  {
+    "id": "SENTOSA",
+    "name": "圣淘沙捷运",
+    "color": "#44403c",
+    "company": "圣淘沙发展局",
+    "stationIds": [
+      "SENTOSA_VIVO",
+      "SENTOSA_RWS",
+      "SENTOSA_IMBIAH",
+      "SENTOSA_BEACH"
+    ],
+    "distances": [
+      "??",
+      "??",
+      "??"
+    ],
+    "isLoop": false,
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/sentosa-express.svg",
+    "svgclr": "#f7931e",
+    "svgtext": "#ffffff",
+    "pathPoints": [
+      {
+        "x": 1420,
+        "y": 2132,
+        "r": 0
+      },
+      {
+        "x": 1420,
+        "y": 2240,
+        "r": 14
+      },
+      {
+        "x": 1320,
+        "y": 2285,
+        "r": 12
+      },
+      {
+        "x": 1260,
+        "y": 2320,
+        "r": 0
+      }
+    ]
   }
 ];

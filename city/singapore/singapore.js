@@ -10,12 +10,12 @@
     "name": "新加坡",
     "center": {
         "x": 1680,
-        "y": 1200
+        "y": 1250
     },
     "defaultScale": 0.37,
     "mapSize": {
         "width": 3400,
-        "height": 2300
+        "height": 2450
     },
     "maintainers": [
         {
@@ -25,7 +25,7 @@
         }
     ],
     "LINE_META": {},
-    "LINE_SORT_ORDER": ["NS", "EW", "CG", "NE", "CC", "CCE", "DT", "TE", "BP", "BPL", "SE", "SW", "PE", "PW", "TE-UC", "DT-UC"],
+    "LINE_SORT_ORDER": ["NS", "EW", "CG", "NE", "CC", "CCE", "DT", "TE", "BP", "BPL", "SE", "SW", "PE", "PW", "SENTOSA", "TE-UC", "DT-UC"],
     "LINE_SYNC_GROUPS": [
         [
             "CC",
@@ -46,6 +46,12 @@
 };
     // Bow-sided station codes; interchange segments share one continuous silhouette.
     City.renderStationIcon = function (station) {
+        if (station.sentosaExpress) {
+            return {
+                html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 32" aria-hidden="true" data-symbol="monorail"><rect x="1" y="1" width="32" height="30" rx="6" fill="#f7931e" stroke="#ffffff" stroke-width="1.2"/><path d="M10 6H24Q28 6 28 10V19Q28 23 24 23H10Q6 23 6 19V10Q6 6 10 6Z" fill="#ffffff"/><path d="M10 10H16V16H10ZM18 10H24V16H18Z" fill="#f7931e"/><path d="M17 23V28M12 28H22" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none"/></svg>',
+                width: 36, height: 34, className: 'sg-station-sign sg-sentosa-sign', zIndex: 18
+            };
+        }
         const codes = (station.stationCodes || station.en || '').split(' / ').filter(code => /^(?:(NS|EW|CG|CC|TE|BP|NE|DT|SE|SW|PE|PW)\d+|STC|PTC|CG)$/.test(code));
         if (!codes.length) return null;
         const palette = { NS: '#e1251b', EW: '#009645', CG: '#009645', CC: '#fa9e0d', TE: '#9d5918', BP: '#718472', NE: '#9e28b5', DT: '#0055b8', SE: '#718472', SW: '#718472', PE: '#718472', PW: '#718472', STC: '#718472', PTC: '#718472' };
@@ -90,7 +96,8 @@
         slot: 'header', order: 20,
         render({ station }) {
             const escape = window.CGoA11y.escapeHtml;
-            return `<div class="header-name-group"><div class="panel-cn-name" role="heading" aria-level="2" tabindex="-1">${escape(station.cn)}</div><div class="panel-en-name" lang="en">${escape(station.stationCodes)} · ${escape(station.en)}</div></div>`;
+            const subtitle = [station.stationCodes || station.transportLabel, station.en].filter(Boolean).join(' · ');
+            return `<div class="header-name-group"><div class="panel-cn-name" role="heading" aria-level="2" tabindex="-1">${escape(station.cn)}</div><div class="panel-en-name" lang="en">${escape(subtitle)}</div></div>`;
         }
     };
     City.stationBoard.modules['header-badges'] = {
@@ -113,6 +120,7 @@
         document.write('<script src="./city/singapore/modules/construction.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/modules/airport-shuttle.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/modules/unpaid-transfer.js' + (v ? '?v=' + v : '') + '"><\/script>');
+        document.write('<script src="./city/singapore/modules/sentosa-express.js' + (v ? '?v=' + v : '') + '"><\/script>');
     }
     City.renderCrossingGaps = function () {
         const layer = document.getElementById('lines-layer');
@@ -180,19 +188,43 @@
             layer.appendChild(group);
         }
     };
+    City.renderSentosaAccess = function () {
+        const layer = document.querySelector('#lines-layer .virtual-connectors');
+        if (!layer || !stationsData.SENTOSA_VIVO) return;
+        layer.querySelector('.sg-sentosa-access')?.remove();
+        const ns = 'http://www.w3.org/2000/svg';
+        const group = document.createElementNS(ns, 'g');
+        group.setAttribute('class', 'sg-sentosa-access');
+        group.setAttribute('aria-label', '港湾出闸后步行至怡丰城3楼，另行检票乘圣淘沙捷运');
+        const path = document.createElementNS(ns, 'path');
+        path.setAttribute('d', 'M1460 2039 V2100 L1420 2132');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', 'var(--text-light)');
+        path.setAttribute('stroke-width', '2.4');
+        path.setAttribute('stroke-dasharray', '5 4');
+        group.appendChild(path);
+        const text = document.createElementNS(ns, 'text');
+        text.setAttribute('x', '1472');
+        text.setAttribute('y', '2080');
+        text.setAttribute('fill', 'var(--text-light)');
+        text.textContent = '步行';
+        group.appendChild(text);
+        layer.appendChild(group);
+    };
     City.minScale = 0.1;
     City.isTramLine = function (id) { return this.TRAM_LINES.includes(id); };
     City.isTramStation = function (s) { return Boolean(s?.relatedLines?.some(id => this.isTramLine(id))); };
     City.formatOwnerName = raw => raw || 'SMRT / 新捷运';
     City.formatCompanyString = list => [...new Set(list)].join(' / ');
-    City.getNavigationUrl = (name, rail, { station } = {}) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((station?.en || name) + ' MRT station Singapore');
+    City.getNavigationUrl = (name, rail, { station } = {}) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((station?.en || name) + (station?.sentosaExpress ? ' Sentosa Express station Singapore' : ' MRT station Singapore'));
     document.addEventListener('DOMContentLoaded', () => {
         City.renderCrossingGaps();
         City.renderTapOutBridges();
+        City.renderSentosaAccess();
         City.renderConstruction();
         const mobile = innerWidth < 600;
-        const scale = mobile ? 0.65 : Math.max(0.1, Math.min((innerWidth - 100) / 3400, (innerHeight - 130) / 2300, 0.7));
-        window.setMapView?.({ scale, x: innerWidth / 2 - (mobile ? 1750 : 1680) * scale, y: innerHeight / 2 - (mobile ? 1500 : 1200) * scale });
+        const scale = mobile ? 0.65 : Math.max(0.1, Math.min((innerWidth - 100) / 3400, (innerHeight - 130) / 2450, 0.7));
+        window.setMapView?.({ scale, x: innerWidth / 2 - (mobile ? 1750 : 1680) * scale, y: innerHeight / 2 - (mobile ? 1500 : 1250) * scale });
     }, { once: true });
     window.CURRENT_CITY = City;
     window.SINGAPORE_CITY = City;

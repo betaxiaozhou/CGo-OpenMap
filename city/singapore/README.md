@@ -1,10 +1,10 @@
-# 新加坡 MRT / LRT 完整线路图
+# 新加坡地铁、轻轨与圣淘沙捷运线路图
 
 本地预览：在仓库根目录运行 `python3 -m http.server 8080`，打开 <http://localhost:8080/main.html?city=singapore>。无需安装依赖或构建。主理人申请署名：**Deming ZHOU**（[betaxiaozhou](https://github.com/betaxiaozhou/)）。这项本地登记不代表官方已批准申请。
 
 ## 收录范围
 
-以 **2026-11-23** 为运营状态截点，收录 **SMRT 与 SBS Transit 完整 MRT/LRT 运营网络**：6 条地铁、3 个轻轨系统，共 **184 个去重物理车站**、30 个换乘标识枢纽（含 Tanah Merah 机场支线换乘；27 个付费区内换乘、3 个出闸换乘）。运营方向与支线拆为 14 个可选渲染条目，不能把条目数当成独立线路数。
+以 **2026-11-23** 为运营状态截点，收录 **SMRT 与 SBS Transit 完整 MRT/LRT 运营网络**：6 条地铁、3 个轻轨系统，共 **184 个去重物理车站**、30 个换乘标识枢纽（含 Tanah Merah 机场支线换乘；27 个付费区内换乘、3 个出闸换乘）。运营方向与支线拆为 14 个可选渲染条目，不能把条目数当成独立线路数。另收录圣淘沙捷运 4 站，合计 188 个运营物理车站；圣淘沙捷运独立检票、单独计费。
 
 | 系统 | 线路/环路 | 运营商 | 按线路停站数（含换乘） |
 |---|---|---|---:|
@@ -18,7 +18,7 @@
 | LRT | 盛港 SE / SW，经 Sengkang STC | SBS Transit | 14 |
 | LRT | 榜鹅 PE / PW，经 Punggol PTC | SBS Transit | 15 |
 
-普通付费区内换乘使用共享节点；Newton、Bukit Panjang、Tampines 的两侧分别建模，合计 187 个线路侧节点，184 仍为去重物理车站数。所有环路均闭合。图中展示线路拓扑，不承诺具体列车交路、班次或直通服务。
+MRT/LRT 普通付费区内换乘使用共享节点；Newton、Bukit Panjang、Tampines 的两侧分别建模，合计 187 个线路侧节点，184 仍为去重物理车站数。所有环路均闭合。图中展示线路拓扑，不承诺具体列车交路、班次或直通服务。
 - 环线已包含 2026-07-12 开通的 Keppel CC30、Cantonment CC31、Prince Edward Road CC32。
 - 汤东线运营至 Bayshore TE29，滨海市区线运营至 Expo DT35。另按施工状态绘出 TE30 Bedok South、TE31/DT37 Sungei Bedok 和 DT36 Xilin，未接入运营站序。LTA 已宣布 TEL5 / DTL3e 计划于 2026-12-26 开放载客。
 - 不收录未运营的 NS6 Sungei Kadut、CC18 Bukit Brown、TE10 Mount Pleasant、TE21 Marina South，以及已关闭的 BP14 Ten Mile Junction。
@@ -55,7 +55,17 @@ Tanah Merah 标牌的 EW4 与 CG 绿色色块之间保留白色分隔；中空�
 
 参照 LTA 全网图的施工表示法，TEL5 与 DTL3e 保留棕/蓝色实线及彩色站码，以两条点状边界、实体圆角左括线和深底白字 **施工中** 标牌圈出范围；不把轨道改成通用灰色虚线。线路宽度仍为 `9.52445px`，边界直径与间距由参考图同比换算。暗色主题仅调亮边界线，施工牌仍为深底白字，中文使用已打包的 Noto 子集。
 
-三座施工站统一 `type: "no"`，可按站名、TE30、TE31、DT36、DT37 搜索；Sungei Bedok 使用 TE31/DT37 联合站码，但明确提示换乘尚未启用。置顶信息卡展示项目与计划开通日期。`data_notopen.js` 只负责施工走向，`data_construction.js` 保存施工边界与标牌；两条 `isPointOnly` 元数据项提供线路/运营商信息，不绘运营轨道、不接入现有线路站序。当前运营统计仍为 184 个物理站 / 187 个线路侧节点；连同 3 座施工站合计 190 个节点、16 个元数据条目（14 个运营条目、2 个施工条目）。开通须人工核实，不按日期自动变更。
+三座施工站统一 `type: "no"`，可按站名、TE30、TE31、DT36、DT37 搜索；Sungei Bedok 使用 TE31/DT37 联合站码，但明确提示换乘尚未启用。置顶信息卡展示项目与计划开通日期。`data_notopen.js` 只负责施工走向，`data_construction.js` 保存施工边界与标牌；两条 `isPointOnly` 元数据项提供线路/运营商信息，不绘运营轨道、不接入现有线路站序。MRT/LRT 口径为 184 个运营物理站 / 187 个运营线路侧节点，连同 3 座施工站为 190 个节点；另有圣淘沙捷运 4 站，详见下节。开通须人工核实，不按日期自动变更。
+
+## 圣淘沙岛与圣淘沙捷运
+
+恢复原先遗漏的圣淘沙岛形，采用 LTA 全网图同一坐标变换下的岛屿轮廓；南部画布从 2300 扩到 2450，水系背景同步延伸，既有 MRT/LRT 站点坐标与线路中心线不变。海峡名称移到岛南侧。
+
+按[圣淘沙官方交通页](https://www.sentosa.com.sg/getting-around)和[2026 年官方华文交通指南](https://www.sentosa.com.sg/-/media/sentosa/hero-asset/promos/discovery-pass/fun-discovery-pass/brochure/2026/fun-discovery-pass-brochure-8-may-2026-cn.pdf)绘出 **怡丰城 → 名胜世界 → 英比奥 → 海滩** 四站。采用橙色自绘单轨图标及深色实线，不使用默认圆点、不编造 MRT 站码；该线路为社区示意走向，站距仍用 `??`。
+
+港湾地铁站与怡丰城捷运站为两个独立站点，在 `VIRTUAL_TRANSFER_MAP` 中以非免费计费换乘关系连接，地图以标注“步行”的虚线表示。置顶卡片解释：从港湾出闸后步行到怡丰城 L 大厅 3 楼，再入闸乘车；地铁 15 分钟换乘计费规则不适用于这段捷运。怡丰城进岛标准票价 4 新元，岛内及出岛乘车免费，优惠和当日安排以官方为准。所有四站可搜索，并提供双向衔接与站点跳转。
+
+现有 MRT/LRT 统计仍为 184 个物理站 / 187 个线路侧节点；新增圣淘沙 4 站后，共 188 个运营物理站 / 191 个运营节点，另有 3 个施工节点，总计 194 个节点。15 个运营渲染条目加 2 个施工元数据条目共 17 项。中文字体子集已补齐新站名和“圣淘沙、步行”等字符。
 
 ## 付费区外换乘
 
@@ -89,13 +99,14 @@ Tanah Merah 标牌的 EW4 与 CG 绿色色块之间保留白色分隔；中空�
 
 ## 文件与维护
 
-`data_stations.js` 保存车站与搜索别名，`data_lines.js` 保存站序、中心线与站距；`data_legend.js` 保存分组图例；`singapore.js` 配置城市导航与初始取景；`style.css` 调整中文标签。普通站由城市钩子自绘两端弧形、上下平直的站码色块，换乘站采用较大的连续外形、多线路无缝拼接，去除独立切角、白缝与黑色外框；所有 190 个站码节点（含 3 个施工站）均不使用引擎默认圆点或默认换乘图元。其余数据文件满足标准加载链，未承诺尚未提供的功能。`stacard/script.js` 为合法空模块，未启用地图卡片服务。
+`data_stations.js` 保存车站与搜索别名，`data_lines.js` 保存站序、中心线与站距；`data_legend.js` 保存分组图例；`singapore.js` 配置城市导航与初始取景；`style.css` 调整中文标签。MRT/LRT 普通站由城市钩子自绘两端弧形、上下平直的站码色块，换乘站采用较大的连续外形、多线路无缝拼接，去除独立切角、白缝与黑色外框；所有 194 个站点节点（含 3 个施工站、4 个圣淘沙单轨站）均不使用引擎默认圆点或默认换乘图元。其余数据文件满足标准加载链，未承诺尚未提供的功能。`stacard/script.js` 为合法空模块，未启用地图卡片服务。
 
 本城市在注册表中设为 `updating`，等待来源许可确认、人工视觉质量评审和官方主理人接纳，不自行宣称达到 B/A 级。
 
 修改后必须同步全站缓存版本并运行：
 
 ```sh
+node scripts/check-singapore-sentosa.mjs
 node scripts/check-singapore-language.mjs
 node scripts/check-singapore-construction.mjs
 node scripts/check-singapore-airport.mjs

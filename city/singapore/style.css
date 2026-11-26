@@ -58,6 +58,10 @@
 .map-singapore :is(#label_NE5, #label_NS25, #label_DT18) .stacn { width: 2em; white-space: normal; }
 .map-singapore #label_CC32 .stacn { width: 3em; white-space: normal; }
 .map-singapore :is(#label_TE18, #label_DT18) { --sg-label-size: 22px; --sg-label-leading: 25px; }
+.map-singapore .label-group[data-sid^="SENTOSA_"] { --sg-label-size: 22px; --sg-label-leading: 26px; }
+.map-singapore .sg-sentosa-access { pointer-events: none; }
+.map-singapore .sg-sentosa-access text { font-family: 'Singapore Chinese', sans-serif; font-size: 15px; }
+.map-singapore .sg-line-badges .sg-sentosa-mark { display: block; height: 100%; width: auto; }
 
 /* Official tap-out treatment: separate code plates joined by a narrow, two-colour solid neck. */
 .map-singapore .virtual-connectors > path { display: none; }
@@ -92,12 +96,22 @@
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="CG"] .line-visual-inner { stroke-width: 13.5564px !important; }
 .map-singapore .line-visual-outer { stroke: none !important; }
 .map-singapore .sg-crossing-gaps { pointer-events: none; }
+.map-singapore { --sg-sentosa-track: #44403c; }
+.map-singapore[data-theme="dark"] { --sg-sentosa-track: #c6c4c1; }
+@media (prefers-color-scheme: dark) {
+    .map-singapore:not([data-theme="light"]) { --sg-sentosa-track: #c6c4c1; }
+}
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SENTOSA"] .line-visual-inner { stroke-width: 5.5px !important; stroke: var(--sg-sentosa-track); }
 
 .sg-airport-shuttle { margin-bottom: 14px; padding: 12px; border: 1px solid var(--border-color); border-left: 3px solid #009645; border-radius: 8px; background: var(--card-sub-bg); color: var(--text-main); font-size: 13px; line-height: 1.65; }
 .sg-airport-shuttle h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 14px; }
 .sg-airport-shuttle ol { margin: 8px 0; padding-left: 22px; }
 .sg-airport-shuttle p { margin: 8px 0; }
 .sg-airport-shuttle a { color: var(--text-main); text-decoration: underline; }
+.sg-sentosa-info { margin-bottom: 14px; padding: 12px; border: 1px solid var(--border-color); border-left: 3px solid #f7931e; border-radius: 8px; background: var(--card-sub-bg); color: var(--text-main); font-size: 13px; line-height: 1.65; }
+.sg-sentosa-info h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 14px; }
+.sg-sentosa-info p { margin: 8px 0; }
+.sg-sentosa-info a { color: var(--text-main); text-decoration: underline; }
 
 /* LTA construction enclosure: coloured tracks/codes, dotted limits and a solid left bracket. */
 .map-singapore { --sg-construction-ink: #2d2a26; }

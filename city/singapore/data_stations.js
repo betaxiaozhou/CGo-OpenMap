@@ -1,4 +1,4 @@
-// Chinese names checked against LTA SM_CH_(Ver210726)_CCL6.pdf. Station codes are separate from English search names.
+// MRT/LRT names: LTA Chinese map. Sentosa Express names/order: Sentosa official Chinese transport guide, April 2026.
 const stationsData = {
   "NS1": {
     "type": "tsf",
@@ -3535,5 +3535,93 @@ const stationsData = {
       "plannedOpening": "2026-12-26"
     },
     "stationCodes": "DT36"
+  },
+  "SENTOSA_VIVO": {
+    "type": "dot",
+    "x": 1420,
+    "y": 2132,
+    "cn": "怡丰城",
+    "en": "VivoCity",
+    "stationCodes": "",
+    "transportLabel": "圣淘沙捷运",
+    "sentosaExpress": true,
+    "align": "right",
+    "offset": {
+      "x": 19,
+      "y": 0
+    },
+    "aliases": [
+      "怡丰城",
+      "VivoCity",
+      "圣淘沙",
+      "Sentosa Express",
+      "VivoCity Station"
+    ]
+  },
+  "SENTOSA_RWS": {
+    "type": "dot",
+    "x": 1420,
+    "y": 2240,
+    "cn": "名胜世界",
+    "en": "Resorts World",
+    "stationCodes": "",
+    "transportLabel": "圣淘沙捷运",
+    "sentosaExpress": true,
+    "align": "right",
+    "offset": {
+      "x": 19,
+      "y": 0
+    },
+    "aliases": [
+      "名胜世界",
+      "Resorts World",
+      "圣淘沙",
+      "Sentosa Express",
+      "Resorts World Station"
+    ]
+  },
+  "SENTOSA_IMBIAH": {
+    "type": "dot",
+    "x": 1320,
+    "y": 2285,
+    "cn": "英比奥",
+    "en": "Imbiah",
+    "stationCodes": "",
+    "transportLabel": "圣淘沙捷运",
+    "sentosaExpress": true,
+    "align": "right",
+    "offset": {
+      "x": 19,
+      "y": 8
+    },
+    "aliases": [
+      "英比奥",
+      "Imbiah",
+      "圣淘沙",
+      "Sentosa Express",
+      "Imbiah Station"
+    ]
+  },
+  "SENTOSA_BEACH": {
+    "type": "dot",
+    "x": 1260,
+    "y": 2320,
+    "cn": "海滩",
+    "en": "Beach",
+    "stationCodes": "",
+    "transportLabel": "圣淘沙捷运",
+    "sentosaExpress": true,
+    "align": "right",
+    "offset": {
+      "x": 19,
+      "y": 6
+    },
+    "aliases": [
+      "海滩",
+      "Beach",
+      "圣淘沙",
+      "Sentosa Express",
+      "Beach Station"
+    ]
   }
 };
