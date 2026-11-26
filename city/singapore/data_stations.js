@@ -3477,7 +3477,7 @@ const stationsData = {
     "align": "right",
     "offset": {
       "x": 27.49,
-      "y": -0.01
+      "y": 20
     },
     "aliases": [
       "TE30",
@@ -3492,8 +3492,8 @@ const stationsData = {
   },
   "TE31": {
     "type": "no",
-    "x": 3068.46,
-    "y": 1255.55,
+    "x": 2984.848,
+    "y": 1279.519,
     "cn": "双溪勿洛",
     "en": "Sungei Bedok",
     "align": "right",
@@ -3516,8 +3516,8 @@ const stationsData = {
   },
   "DT36": {
     "type": "no",
-    "x": 3068.46,
-    "y": 1184.52,
+    "x": 3051.29,
+    "y": 1213.191,
     "cn": "锡林",
     "en": "Xilin",
     "align": "right",
@@ -3547,7 +3547,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 50,
+      "x": 19,
       "y": 0
     },
     "aliases": [
@@ -3569,7 +3569,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 50,
+      "x": 19,
       "y": 0
     },
     "aliases": [
@@ -3591,7 +3591,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 50,
+      "x": 19,
       "y": 8
     },
     "aliases": [
@@ -3613,7 +3613,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 50,
+      "x": 19,
       "y": 6
     },
     "aliases": [

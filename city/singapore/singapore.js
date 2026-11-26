@@ -83,8 +83,8 @@
     City.renderStationIcon = function (station) {
         if (station.sentosaExpress) {
             return {
-                html: '<img class="sg-sentosa-mark" data-symbol="monorail" data-source="lta-system-map" src="./city/singapore/assets/line/sentosa-express.svg' + (window.CGO_ASSET_VERSION ? '?v=' + window.CGO_ASSET_VERSION : '') + '" alt="" width="92" height="34">',
-                width: 92, height: 34, className: 'sg-station-sign sg-sentosa-sign', zIndex: 18
+                html: '<img class="sg-sentosa-mark" data-symbol="monorail" data-source="lta-system-map" src="./city/singapore/assets/line/sentosa-express.svg' + (window.CGO_ASSET_VERSION ? '?v=' + window.CGO_ASSET_VERSION : '') + '" alt="" width="36" height="34">',
+                width: 36, height: 34, className: 'sg-station-sign sg-sentosa-sign', zIndex: 18
             };
         }
         const codes = (station.stationCodes || station.en || '').split(' / ').filter(code => /^(?:(NS|EW|CG|CC|TE|BP|NE|DT|SE|SW|PE|PW)\d+|STC|PTC|CG)$/.test(code));
@@ -180,6 +180,19 @@
     City.renderConstruction = function () {
         const layer = document.getElementById('not-open-layer');
         if (!layer || typeof SG_CONSTRUCTION_ANNOTATION === 'undefined') return;
+        layer.querySelectorAll('.sg-construction-casing').forEach(el => el.remove());
+        const tracks = layer.querySelectorAll(':scope > path');
+        NOT_OPEN_LINES.forEach((track, index) => {
+            const path = tracks[index];
+            if (!path) return;
+            if (track.svgPath) path.setAttribute('d', track.svgPath);
+            path.dataset.trackId = track.id;
+            const casing = path.cloneNode(false);
+            casing.setAttribute('class', 'sg-construction-casing');
+            casing.setAttribute('stroke', 'var(--map-bg)');
+            casing.setAttribute('stroke-width', Number(track.style.width) + 4.5);
+            layer.insertBefore(casing, path);
+        });
         layer.querySelector('.sg-construction-annotation')?.remove();
         const ns = 'http://www.w3.org/2000/svg';
         const group = document.createElementNS(ns, 'g');

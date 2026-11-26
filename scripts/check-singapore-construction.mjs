@@ -23,8 +23,20 @@ for (const [trackId, lineId, colour] of [['TEL5', 'TE', '#9d5918'], ['DTL3e', 'D
 }
 assert.equal(lines.find(line => line.id === 'TE').stationIds.at(-1), 'TE29');
 assert.equal(lines.find(line => line.id === 'DT').stationIds.at(-1), 'CG1');
+const tel = tracks.find(track => track.id === 'TEL5');
+const dtl = tracks.find(track => track.id === 'DTL3e');
+assert(dtl.svgPath.includes('C'), 'DTL extension keeps the official curve before Xilin');
+assert(!tel.svgPath.includes('C'), 'TEL approaches Sungei Bedok on the official straight diagonal');
+const joint = stations.TE31;
+function entryX(track, y) {
+    const [a, b] = track.points.slice(-2);
+    return a.x + (y - a.y) * (b.x - a.x) / (b.y - a.y);
+}
+assert(entryX(dtl, joint.y - 16) > joint.x, 'DTL enters the top of the blue DT37 plate');
+assert(entryX(tel, joint.y + 16) < joint.x, 'TEL enters the bottom of the brown TE31 plate');
+assert(stations.DT36.x < dtl.points[0].x && stations.DT36.y < joint.y, 'Xilin follows the southwest bend before Sungei Bedok');
 assert.equal(annotation.filter(item => item['stroke-dasharray']).length, 2, 'Dotted top and bottom boundary');
 assert(annotation.some(item => item.tag === 'path' && !item['stroke-dasharray'] && item.d.includes('C')), 'Solid curved left bracket');
 assert(annotation.some(item => item.tag === 'rect' && item.fill === '#231f20'), 'Dark construction callout');
 assert.deepEqual(annotation.filter(item => item.tag === 'text').map(item => item.text), ['施工中']);
-console.log('PASS: 3 unopened stations; full-colour TEL5/DTL3e extensions; dotted enclosure, curved bracket and dark callout; no operating-route leakage.');
+console.log('PASS: 3 unopened stations; official DTL curve before Xilin and separate coloured Sungei Bedok plate entries; dotted enclosure and dark callout; no operating-route leakage.');

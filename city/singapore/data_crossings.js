@@ -1,4 +1,4 @@
-// Local separation gaps from LTA SM-26-01-EN; no continuous white casing.
+// Local separation gaps from LTA SM-26-01-EN; local reference gaps supplement the continuous map-background casing.
 const SG_CROSSING_GAPS = [
   {
     "d": "M1931.514 1509.092 L1928.724 1506.281 L1951.685 1483.462 L1954.475 1486.284 L1931.514 1509.092 Z",

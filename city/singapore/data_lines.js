@@ -11343,7 +11343,7 @@ const linesData = [
   {
     "id": "SENTOSA",
     "name": "圣淘沙捷运",
-    "color": "#44403c",
+    "color": "#000000",
     "company": "圣淘沙发展局",
     "stationIds": [
       "SENTOSA_VIVO",

@@ -95,24 +95,20 @@
 /* Both sides may be selected together; preserve the visible gap between fare-paid areas. */
 .map-singapore .station.sg-tap-out-sign.active { transform: translate(-50%, -50%); }
 
-/* PDF widths × 0.65; airport outer band minus hollow core leaves two 4.032px rails. */
-.map-singapore #lines-layer .line-visual-inner,
-.map-singapore #highlight-layer .line-visual-inner { stroke-width: 9.52445px !important; }
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="BP"] .line-visual-inner { stroke-width: 3.96695px !important; }
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="BPL"] .line-visual-inner { stroke-width: 3.96695px !important; }
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SE"] .line-visual-inner { stroke-width: 3.96695px !important; }
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SW"] .line-visual-inner { stroke-width: 3.96695px !important; }
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="PE"] .line-visual-inner { stroke-width: 3.96695px !important; }
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="PW"] .line-visual-inner { stroke-width: 3.96695px !important; }
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="CG"] .line-visual-inner { stroke-width: 13.5564px !important; }
-.map-singapore .line-visual-outer { stroke: none !important; }
+/* Reference widths with a 2.25px map-background edge on MRT tracks. */
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group { --sg-line-width: 9.52445px; --sg-casing-extra: 4.5px; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group:is([data-visual-id="BP"], [data-visual-id="BPL"], [data-visual-id="SE"], [data-visual-id="SW"], [data-visual-id="PE"], [data-visual-id="PW"]) { --sg-line-width: 3.96695px; --sg-casing-extra: 2.4px; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="CG"] { --sg-line-width: 13.5564px; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-inner { stroke-width: var(--sg-line-width) !important; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-outer { stroke: var(--map-bg) !important; stroke-width: calc(var(--sg-line-width) + var(--sg-casing-extra)) !important; }
 .map-singapore .sg-crossing-gaps { pointer-events: none; }
-.map-singapore { --sg-sentosa-track: #44403c; }
-.map-singapore[data-theme="dark"] { --sg-sentosa-track: #c6c4c1; }
+.map-singapore { --sg-sentosa-track: #000000; }
+.map-singapore[data-theme="dark"] { --sg-sentosa-track: #ffffff; }
 @media (prefers-color-scheme: dark) {
-    .map-singapore:not([data-theme="light"]) { --sg-sentosa-track: #c6c4c1; }
+    .map-singapore:not([data-theme="light"]) { --sg-sentosa-track: #ffffff; }
 }
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SENTOSA"] .line-visual-inner { stroke-width: 5.5px !important; stroke: var(--sg-sentosa-track); }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SENTOSA"] { --sg-line-width: 5.5px; --sg-casing-extra: 3px; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SENTOSA"] .line-visual-inner { stroke: var(--sg-sentosa-track); }
 
 .sg-airport-shuttle { margin-bottom: 14px; padding: 12px; border: 1px solid var(--border-color); border-left: 3px solid #009645; border-radius: 8px; background: var(--card-sub-bg); color: var(--text-main); font-size: 13px; line-height: 1.65; }
 .sg-airport-shuttle h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 14px; }
