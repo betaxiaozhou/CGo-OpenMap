@@ -223,29 +223,6 @@
             layer.appendChild(group);
         }
     };
-    City.renderSentosaAccess = function () {
-        const layer = document.querySelector('#lines-layer .virtual-connectors');
-        if (!layer || !stationsData.SENTOSA_VIVO) return;
-        layer.querySelector('.sg-sentosa-access')?.remove();
-        const ns = 'http://www.w3.org/2000/svg';
-        const group = document.createElementNS(ns, 'g');
-        group.setAttribute('class', 'sg-sentosa-access');
-        group.setAttribute('aria-label', '港湾出闸后步行至怡丰城3楼，另行检票乘圣淘沙捷运');
-        const path = document.createElementNS(ns, 'path');
-        path.setAttribute('d', 'M1460 2039 V2100 L1420 2132');
-        path.setAttribute('fill', 'none');
-        path.setAttribute('stroke', 'var(--text-light)');
-        path.setAttribute('stroke-width', '2.4');
-        path.setAttribute('stroke-dasharray', '5 4');
-        group.appendChild(path);
-        const text = document.createElementNS(ns, 'text');
-        text.setAttribute('x', '1472');
-        text.setAttribute('y', '2080');
-        text.setAttribute('fill', 'var(--text-light)');
-        text.textContent = '步行';
-        group.appendChild(text);
-        layer.appendChild(group);
-    };
     City.minScale = 0.1;
     City.isTramLine = function (id) { return this.TRAM_LINES.includes(id); };
     City.isTramStation = function (s) { return Boolean(s?.relatedLines?.some(id => this.isTramLine(id))); };
@@ -255,7 +232,6 @@
     document.addEventListener('DOMContentLoaded', () => {
         City.renderCrossingGaps();
         City.renderTapOutBridges();
-        City.renderSentosaAccess();
         City.renderConstruction();
         City.renderTerminalMarkers();
         const mobile = innerWidth < 600;

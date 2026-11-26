@@ -63,8 +63,6 @@
 .map-singapore #label_CC32 .stacn { width: 3em; white-space: normal; }
 .map-singapore :is(#label_TE18, #label_DT18) { --sg-label-size: 22px; --sg-label-leading: 25px; }
 .map-singapore .label-group[data-sid^="SENTOSA_"] { --sg-label-size: 22px; --sg-label-leading: 26px; }
-.map-singapore .sg-sentosa-access { pointer-events: none; }
-.map-singapore .sg-sentosa-access text { font-family: 'Singapore Chinese', sans-serif; font-size: 15px; }
 .map-singapore .sg-line-badges .sg-sentosa-mark { display: block; height: 100%; width: auto; }
 
 /* Official tap-out treatment: separate code plates joined by a narrow, two-colour solid neck. */
