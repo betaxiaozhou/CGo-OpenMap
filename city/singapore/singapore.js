@@ -83,8 +83,8 @@
     City.renderStationIcon = function (station) {
         if (station.sentosaExpress) {
             return {
-                html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 32" aria-hidden="true" data-symbol="monorail"><rect x="1" y="1" width="32" height="30" rx="6" fill="#f7931e" stroke="#ffffff" stroke-width="1.2"/><path d="M10 6H24Q28 6 28 10V19Q28 23 24 23H10Q6 23 6 19V10Q6 6 10 6Z" fill="#ffffff"/><path d="M10 10H16V16H10ZM18 10H24V16H18Z" fill="#f7931e"/><path d="M17 23V28M12 28H22" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none"/></svg>',
-                width: 36, height: 34, className: 'sg-station-sign sg-sentosa-sign', zIndex: 18
+                html: '<img class="sg-sentosa-mark" data-symbol="monorail" data-source="lta-system-map" src="./city/singapore/assets/line/sentosa-express.svg' + (window.CGO_ASSET_VERSION ? '?v=' + window.CGO_ASSET_VERSION : '') + '" alt="" width="92" height="34">',
+                width: 92, height: 34, className: 'sg-station-sign sg-sentosa-sign', zIndex: 18
             };
         }
         const codes = (station.stationCodes || station.en || '').split(' / ').filter(code => /^(?:(NS|EW|CG|CC|TE|BP|NE|DT|SE|SW|PE|PW)\d+|STC|PTC|CG)$/.test(code));

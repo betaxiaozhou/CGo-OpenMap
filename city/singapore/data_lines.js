@@ -11359,7 +11359,7 @@ const linesData = [
     "isLoop": false,
     "noOuter": true,
     "svg": "./city/singapore/assets/line/sentosa-express.svg",
-    "svgclr": "#f7931e",
+    "svgclr": "#2d2a26",
     "svgtext": "#ffffff",
     "pathPoints": [
       {

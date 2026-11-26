@@ -61,7 +61,7 @@ Tanah Merah 标牌的 EW4 与 CG 绿色色块之间保留白色分隔；中空�
 
 恢复原先遗漏的圣淘沙岛形，采用 LTA 全网图同一坐标变换下的岛屿轮廓；南部画布从 2300 扩到 2450，水系背景同步延伸，既有 MRT/LRT 站点坐标与线路中心线不变。海峡名称移到岛南侧。
 
-按[圣淘沙官方交通页](https://www.sentosa.com.sg/getting-around)和[2026 年官方华文交通指南](https://www.sentosa.com.sg/-/media/sentosa/hero-asset/promos/discovery-pass/fun-discovery-pass/brochure/2026/fun-discovery-pass-brochure-8-may-2026-cn.pdf)绘出 **怡丰城 → 名胜世界 → 英比奥 → 海滩** 四站。采用橙色自绘单轨图标及深色实线，不使用默认圆点、不编造 MRT 站码；该线路为社区示意走向，站距仍用 `??`。
+按[圣淘沙官方交通页](https://www.sentosa.com.sg/getting-around)和[2026 年官方华文交通指南](https://www.sentosa.com.sg/-/media/sentosa/hero-asset/promos/discovery-pass/fun-discovery-pass/brochure/2026/fun-discovery-pass-brochure-8-may-2026-cn.pdf)绘出 **怡丰城 → 名胜世界 → 英比奥 → 海滩** 四站。站标、线路图例与面板使用 LTA 官方中文地图底部图例的圣淘沙捷运原始矢量标志（侧视列车及两侧短划线），线路采用深色实线，不使用默认圆点、不编造 MRT 站码；该线路为社区示意走向，站距仍用 `??`。
 
 港湾地铁站与怡丰城捷运站为两个独立站点，在 `VIRTUAL_TRANSFER_MAP` 中以非免费计费换乘关系连接，地图不绘制两站间的步行线；衔接方式由车站信息卡说明。置顶卡片解释：从港湾出闸后步行到怡丰城 L 大厅 3 楼，再入闸乘车；地铁 15 分钟换乘计费规则不适用于这段捷运。怡丰城进岛标准票价 4 新元，岛内及出岛乘车免费，优惠和当日安排以官方为准。所有四站可搜索，并提供双向衔接与站点跳转。
 
@@ -122,3 +122,5 @@ node scripts/check-cache-assets.mjs
 ### 终点方向数字圆标
 
 按 LTA 中文全网图 `SM_CH_(Ver210726)_CCL6.pdf` 绘制线路色圆底、白色数字，字体采用站码相同的 Lato Bold：1巴西立、2大士连路、3樟宜机场、4裕廊东、5滨海南码头、6港湾、7榜鹅海岸、11武吉班让、12双溪勿洛（滨海市区线）、13兀兰北、14双溪勿洛（汤东线）。双溪勿洛仍属施工中，不进入运营线路；已成环的环线及轻轨、圣淘沙捷运不添加虚构方向编号。圆标作为城市独立覆盖层，避免改变车站点击范围和线路锚点。
+
+圣淘沙捷运标志位于 `assets/line/sentosa-express.svg`，直接提取自上述 LTA 中文全网图底部图例，保留来源说明；图形版权归原权利人，不纳入开源字体许可。四站与面板共用同一份素材，深色模式作整体反色以确保可读。

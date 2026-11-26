@@ -3,7 +3,7 @@
  */
 
 
-const APP_VERSION = "261126.171500";
+const APP_VERSION = "261126.183000";
 const originalTitle = document.title;
 const originalDesc = document.querySelector('meta[name="description"]')?.getAttribute('content') || "CGo OpenMap";
 

@@ -3547,7 +3547,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 19,
+      "x": 50,
       "y": 0
     },
     "aliases": [
@@ -3569,7 +3569,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 19,
+      "x": 50,
       "y": 0
     },
     "aliases": [
@@ -3591,7 +3591,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 19,
+      "x": 50,
       "y": 8
     },
     "aliases": [
@@ -3613,7 +3613,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 19,
+      "x": 50,
       "y": 6
     },
     "aliases": [

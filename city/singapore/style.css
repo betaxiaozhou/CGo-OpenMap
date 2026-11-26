@@ -64,6 +64,15 @@
 .map-singapore :is(#label_TE18, #label_DT18) { --sg-label-size: 22px; --sg-label-leading: 25px; }
 .map-singapore .label-group[data-sid^="SENTOSA_"] { --sg-label-size: 22px; --sg-label-leading: 26px; }
 .map-singapore .sg-line-badges .sg-sentosa-mark { display: block; height: 100%; width: auto; }
+.map-singapore { --sg-sentosa-logo-bg: #ffffff; }
+.map-singapore .sg-line-badges .line-badge:has(.sg-sentosa-mark) { background: var(--sg-sentosa-logo-bg); border-radius: 4px; padding: 3px 5px; }
+.map-singapore .sg-sentosa-sign .sg-sentosa-mark { display: block; width: 100%; height: 100%; }
+.map-singapore[data-theme="dark"] { --sg-sentosa-logo-bg: #1a1a1a; }
+.map-singapore[data-theme="dark"] .sg-sentosa-mark { filter: invert(1) grayscale(1); }
+@media (prefers-color-scheme: dark) {
+    .map-singapore:not([data-theme="light"]) { --sg-sentosa-logo-bg: #1a1a1a; }
+    .map-singapore:not([data-theme="light"]) .sg-sentosa-mark { filter: invert(1) grayscale(1); }
+}
 
 /* Official tap-out treatment: separate code plates joined by a narrow, two-colour solid neck. */
 .map-singapore .virtual-connectors > path { display: none; }
