@@ -1,4 +1,4 @@
-// Regression corridors from LTA SM-26-01-EN: shared signs must not pull tracks off their centrelines.
+// Official Chinese map corridors: shared signs must not pull tracks off their centrelines.
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -17,9 +17,9 @@ function xAtY(route, y) {
 }
 for (const y of [1790, 1810, 1830, 1850, 1870]) {
     const ns = xAtY(points('NS'), y), ew = xAtY(points('EW'), y);
-    assert(Math.abs(ns - 1857.02) < 0.05, `NS departs its straight corridor at y=${y}`);
-    assert(Math.abs(ew - 1877.36) < 0.05, `EW departs its straight corridor at y=${y}`);
-    assert(Math.abs(ew - ns - 20.34) < 0.05, `Parallel track spacing changes at y=${y}`);
+    assert(Math.abs(ns - 1855.364) < 0.05, `NS departs its Chinese-reference corridor at y=${y}`);
+    assert(Math.abs(ew - 1877.931) < 0.05, `EW departs its Chinese-reference corridor at y=${y}`);
+    assert(Math.abs(ew - ns - 22.567) < 0.05, `Parallel track spacing changes at y=${y}`);
 }
 for (const id of ['EW', 'TE', 'NE']) {
     const route = points(id).filter(p => p.x > 1400 && p.x < 1560 && p.y > 1710 && p.y < 1810);

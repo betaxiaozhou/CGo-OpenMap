@@ -22,7 +22,9 @@ for(let i=1;i<points.length;i++){
     assert(points[i].x >= points[i-1].x-0.001,'Forward centreline must not double back');
     assert(points[i].y >= points[i-1].y-0.001,'Forward centreline must not double back');
 }
-assert.equal(airport.overlayStyles[0].width,5.4925);
+const native = read('data_reference_geometry.js','SG_REFERENCE_GEOMETRY').CG;
+assert.equal(native.length,2,'The Chinese map supplies two exact rail ribbons');
+assert(native.every(shape=>shape.fill==='line' && shape.d.includes('C')),'Both rail ribbons retain the original curve');
 assert.equal(stations.EW4.stationCodes,'EW4 / CG');
 assert.equal(stations.CG1.stationCodes,'CG1 / DT35');
 assert.equal(stations.CG2.stationCodes,'CG2');

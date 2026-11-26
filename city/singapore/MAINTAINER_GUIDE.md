@@ -34,6 +34,7 @@ python3 -m http.server 8080
 # 浏览器打开 http://localhost:8080/main.html?city=singapore
 # 在另一个终端执行：
 node scripts/check-singapore-sentosa.mjs
+node scripts/check-singapore-chinese-reference.mjs
 node scripts/check-singapore-language.mjs
 node scripts/check-singapore-construction.mjs
 node scripts/check-singapore-airport.mjs

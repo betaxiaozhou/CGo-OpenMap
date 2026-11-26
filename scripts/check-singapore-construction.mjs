@@ -1,4 +1,4 @@
-// LTA SM-26-01-EN and 2026-11-04 TEL5 / DTL3e opening announcement.
+// LTA official Chinese map and 2026-11-04 TEL5 / DTL3e opening announcement.
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 const read = (file, variable) => new Function(readFileSync(new URL(`../city/singapore/${file}`, import.meta.url), 'utf8') + `;return ${variable};`)();
@@ -17,7 +17,7 @@ for (const id of futureIds) {
 for (const [trackId, lineId, colour] of [['TEL5', 'TE', '#9d5918'], ['DTL3e', 'DT', '#0055b8']]) {
     const track = tracks.find(item => item.id === trackId);
     assert.equal(track.style.color, colour);
-    assert.equal(track.style.width, 9.52445);
+    assert.equal(track.style.width, 9.52978);
     assert(!track.style.dashArray, 'Reference construction railway stays solid');
     assert.deepEqual(track.points[0], lines.find(line => line.id === lineId).pathPoints.at(-1), 'Extension joins actual route end without a gap');
 }

@@ -8,6 +8,7 @@
     const City = {
     "id": "singapore",
     "name": "新加坡",
+    "officialMapUrl": "https://www.lta.gov.sg/content/dam/ltagov/getting_around/public_transport/rail_network/pdf/SM_CH_(Ver210726)_CCL6.pdf",
     "center": {
         "x": 1680,
         "y": 1250
@@ -150,6 +151,7 @@
     };
     if (typeof document !== 'undefined' && document.write) {
         const v = window.CGO_ASSET_VERSION;
+        document.write('<script src="./city/singapore/data_reference_geometry.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/data_crossings.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/data_construction.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/modules/construction.js' + (v ? '?v=' + v : '') + '"><\/script>');
@@ -157,13 +159,33 @@
         document.write('<script src="./city/singapore/modules/unpaid-transfer.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/modules/sentosa-express.js' + (v ? '?v=' + v : '') + '"><\/script>');
     }
+    City.renderReferenceGeometry = function () {
+        if (typeof SG_REFERENCE_GEOMETRY === 'undefined') return;
+        const ns = 'http://www.w3.org/2000/svg';
+        for (const line of linesData) {
+            const shapes = SG_REFERENCE_GEOMETRY[line.id];
+            const group = document.querySelector(`#lines-layer .line-visual-group[data-visual-id="${line.id}"]`);
+            if (!shapes || !group) continue;
+            group.querySelector('.sg-reference-geometry')?.remove();
+            group.classList.add('sg-official-geometry');
+            const reference = document.createElementNS(ns, 'g');
+            reference.setAttribute('class', 'sg-reference-geometry');
+            reference.dataset.source = 'lta-chinese';
+            for (const attributes of shapes) {
+                const path = document.createElementNS(ns, 'path');
+                for (const [key, value] of Object.entries(attributes)) path.setAttribute(key, value === 'line' ? line.color : value);
+                reference.appendChild(path);
+            }
+            group.appendChild(reference);
+        }
+    };
     City.renderCrossingGaps = function () {
         const layer = document.getElementById('lines-layer');
         const connectors = layer?.querySelector('.virtual-connectors');
         if (!layer || typeof SG_CROSSING_GAPS === 'undefined') return;
         layer.querySelector('.sg-crossing-gaps')?.remove();
         // Match the reference drawing's paint order; line selection order is unchanged.
-        for (const id of ['CG','BP','BPL','SE','SW','PE','PW','TE','DT','CC','CCE','NE','EW','NS']) {
+        for (const id of ['BP','BPL','SE','SW','PE','PW','TE','DT','NE','CCE','CC','EW','CG','NS']) {
             const group = layer.querySelector(`.line-visual-group[data-visual-id="${id}"]`);
             if (group) layer.insertBefore(group, connectors);
         }
@@ -243,6 +265,7 @@
     City.formatCompanyString = list => [...new Set(list)].join(' / ');
     City.getNavigationUrl = (name, rail, { station } = {}) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((station?.en || name) + (station?.sentosaExpress ? ' Sentosa Express station Singapore' : ' MRT station Singapore'));
     document.addEventListener('DOMContentLoaded', () => {
+        City.renderReferenceGeometry();
         City.renderCrossingGaps();
         City.renderTapOutBridges();
         City.renderConstruction();

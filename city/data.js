@@ -69,7 +69,7 @@
             "title": "CGo OpenMap - 新加坡地铁与轻轨线路图",
             "keywords": "Singapore, SMRT, SBS Transit, MRT, LRT, 新加坡, 地铁",
             "description": "新加坡地铁与轻轨184站，另含圣淘沙捷运4站及港湾步行衔接。",
-            "officialMapUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network.html",
+            "officialMapUrl": "https://www.lta.gov.sg/content/dam/ltagov/getting_around/public_transport/rail_network/pdf/SM_CH_(Ver210726)_CCL6.pdf",
             "maintainers": [
                         {
                                     "name": "Deming ZHOU",

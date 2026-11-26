@@ -1,47 +1,47 @@
-// Official Chinese construction enclosure and callout.
+// Exact official Chinese enclosure; open-font Chinese callout text.
 const SG_CONSTRUCTION_ANNOTATION = [
   {
-    "tag": "path",
-    "d": "M3126.343 1153.734 L2853.572 1153.734",
+    "d": "M3120.786 1158.140 L2833.828 1158.140",
     "fill": "none",
     "stroke": "var(--sg-construction-ink)",
-    "stroke-width": 4.7177,
+    "stroke-width": 4.96354,
     "stroke-linecap": "round",
     "stroke-linejoin": "round",
-    "stroke-dasharray": "0.1118 11.0877"
+    "tag": "path",
+    "stroke-dasharray": "0.11 9.82"
   },
   {
-    "tag": "path",
-    "d": "M3126.343 1373.000 L2853.572 1373.000",
+    "d": "M3120.786 1374.628 L2833.828 1374.628",
     "fill": "none",
     "stroke": "var(--sg-construction-ink)",
-    "stroke-width": 4.7177,
+    "stroke-width": 4.96354,
     "stroke-linecap": "round",
     "stroke-linejoin": "round",
-    "stroke-dasharray": "0.1118 11.0877"
+    "tag": "path",
+    "stroke-dasharray": "0.11 9.82"
   },
   {
-    "tag": "path",
-    "d": "M2850.832 1153.74 L2842.174 1153.74 C2833.407 1153.74 2826.298 1160.848 2826.298 1169.615 L2826.298 1357.126 C2826.298 1365.892 2833.407 1373.001 2842.174 1373.001 L2850.832 1373.001",
+    "d": "M2830.945 1158.146 L2821.835 1158.146 C2812.613 1158.146 2805.136 1165.625 2805.136 1174.847 L2805.136 1357.928 C2805.136 1367.150 2812.613 1374.628 2821.835 1374.628 L2830.945 1374.628",
     "fill": "none",
     "stroke": "var(--sg-construction-ink)",
-    "stroke-width": 4.7177,
+    "stroke-width": 4.96354,
     "stroke-linecap": "round",
-    "stroke-linejoin": "round"
+    "stroke-linejoin": "round",
+    "tag": "path"
   },
   {
     "tag": "rect",
-    "x": 2736.773,
-    "y": 1234.454,
-    "width": 110,
-    "height": 48,
+    "x": 2747.577,
+    "y": 1245.645,
+    "width": 116.992,
+    "height": 50.171,
     "rx": 7,
     "fill": "#231f20"
   },
   {
     "tag": "text",
-    "x": 2791.773,
-    "y": 1258.454,
+    "x": 2806.073,
+    "y": 1270.731,
     "text-anchor": "middle",
     "dominant-baseline": "central",
     "fill": "#ffffff",
