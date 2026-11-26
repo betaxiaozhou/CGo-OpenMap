@@ -9,6 +9,12 @@ const LEGEND_CONFIG = [
   },
   {
     "type": "title",
+    "title": "终点方向编号",
+    "marginTop": 12,
+    "desc": "<div class=\"sg-terminal-key\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 28 28\" aria-hidden=\"true\"><circle cx=\"14\" cy=\"14\" r=\"13.7\" fill=\"#009645\"/><text x=\"14\" y=\"14\" text-anchor=\"middle\" dominant-baseline=\"central\" fill=\"#ffffff\" font-family=\"Singapore Lato, sans-serif\" font-size=\"16\" font-weight=\"700\">1</text></svg><span>数字圆标表示列车终点方向。双溪勿洛的12、14位于施工中延伸段。</span></div>"
+  },
+  {
+    "type": "title",
     "title": "地铁",
     "subtitle": "",
     "marginTop": 12

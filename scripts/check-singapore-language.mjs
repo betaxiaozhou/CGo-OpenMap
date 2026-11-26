@@ -15,6 +15,14 @@ for (const [id, name] of Object.entries({ NS25: '政府大厦', EW16: '欧南园
 globalThis.window = {};
 globalThis.document = {createElement: () => ({}), head: {appendChild() {}}, documentElement: {classList: {add() {}}}, addEventListener() {}};
 new Function(readFileSync(new URL('../city/singapore/singapore.js', import.meta.url), 'utf8'))();
+const directions = window.SINGAPORE_CITY.terminalMarkers;
+assert.deepEqual(directions.map(m => [m.number, m.code]), [[1,'EW1'],[2,'EW33'],[3,'CG2'],[4,'NS1'],[5,'NS28'],[6,'NE1'],[7,'NE18'],[11,'DT1'],[12,'DT37'],[13,'TE1'],[14,'TE31']]);
+for (const marker of directions) {
+    const station = stations[marker.stationId];
+    assert(station.stationCodes.split(' / ').includes(marker.code), `Direction ${marker.number} belongs to the station code`);
+    if (marker.number === 12 || marker.number === 14) assert.equal(station.type, 'no', 'Future terminus stays unopened');
+    else assert(lines.some(line => [line.stationIds[0], line.stationIds.at(-1)].includes(marker.stationId)), `Direction ${marker.number} is an operational terminus`);
+}
 for (const station of Object.values(stations)) {
     const html = window.SINGAPORE_CITY.renderStationIcon(station)?.html || '';
     assert(html.includes(station.sentosaExpress ? 'data-symbol="monorail"' : 'Singapore Lato'), 'Chinese names must not break custom station signs');
@@ -24,4 +32,4 @@ for (const svg of new Set(lines.map(line => line.svg))) {
     assert(source.includes(svg.endsWith('sentosa-express.svg') ? 'data-symbol="monorail"' : 'data-font="Lato Bold"'), 'Custom line mark matches the service');
     assert(!source.includes('<text'), 'Line lettering stays outlined');
 }
-console.log('PASS: 194 Chinese primary names; English/code searches preserved; custom station plates, monorail pictograms and Lato Bold line lettering retained.');
+console.log('PASS: 194 Chinese names; searches preserved; custom signs and Lato lettering retained; 11 official terminus numbers match station codes and construction status.');

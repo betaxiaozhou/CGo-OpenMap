@@ -3498,8 +3498,8 @@ const stationsData = {
     "en": "Sungei Bedok",
     "align": "right",
     "offset": {
-      "x": 67.27,
-      "y": -0.0
+      "x": -6,
+      "y": 38
     },
     "aliases": [
       "TE31",

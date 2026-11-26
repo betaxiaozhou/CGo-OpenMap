@@ -44,6 +44,41 @@
     "TRAM_LINES": ["BP","BPL","SE","SW","PE","PW"],
     "dataFiles": {}
 };
+    // Direction numbers from LTA SM_CH_(Ver210726)_CCL6; CCL is now a closed loop.
+    City.terminalMarkers = [
+        { stationId: 'EW1', code: 'EW1', number: 1, color: '#009645', dx: 0, dy: -34 },
+        { stationId: 'EW33', code: 'EW33', number: 2, color: '#009645', dx: 0, dy: -34 },
+        { stationId: 'CG2', code: 'CG2', number: 3, color: '#009645', dx: 46, dy: 0 },
+        { stationId: 'NS1', code: 'NS1', number: 4, color: '#e1251b', dx: -33, dy: -36 },
+        { stationId: 'NS28', code: 'NS28', number: 5, color: '#e1251b', dx: 0, dy: 34 },
+        { stationId: 'CC29', code: 'NE1', number: 6, color: '#9e28b5', dx: 84, dy: 0 },
+        { stationId: 'NE18', code: 'NE18', number: 7, color: '#9e28b5', dx: 0, dy: -34 },
+        { stationId: 'DT1', code: 'DT1', number: 11, color: '#0055b8', dx: 0, dy: 40 },
+        { stationId: 'TE31', code: 'DT37', number: 12, color: '#0055b8', dx: 86, dy: 0 },
+        { stationId: 'TE1', code: 'TE1', number: 13, color: '#9d5918', dx: 0, dy: -34 },
+        { stationId: 'TE31', code: 'TE31', number: 14, color: '#9d5918', dx: -86, dy: 0 }
+    ];
+    City.terminalMarkerSvg = function ({ number, color }) {
+        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13.7" fill="${color}"/><text x="14" y="14" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-family="Singapore Lato, sans-serif" font-size="16" font-weight="700">${number}</text></svg>`;
+    };
+    City.renderTerminalMarkers = function () {
+        const layer = document.getElementById('stations-layer');
+        if (!layer) return;
+        layer.querySelectorAll('.sg-terminal-marker').forEach(el => el.remove());
+        this.terminalMarkers.forEach(marker => {
+            const station = stationsData[marker.stationId];
+            const el = document.createElement('div');
+            el.className = 'sg-terminal-marker';
+            el.dataset.stationId = marker.stationId;
+            el.dataset.terminalNumber = marker.number;
+            el.style.left = (station.x + marker.dx) + 'px';
+            el.style.top = (station.y + marker.dy) + 'px';
+            el.setAttribute('role', 'img');
+            el.setAttribute('aria-label', `${station.cn}，终点方向编号${marker.number}${station.type === 'no' ? '（施工中）' : ''}`);
+            el.innerHTML = this.terminalMarkerSvg(marker);
+            layer.appendChild(el);
+        });
+    };
     // Bow-sided station codes; interchange segments share one continuous silhouette.
     City.renderStationIcon = function (station) {
         if (station.sentosaExpress) {
@@ -222,6 +257,7 @@
         City.renderTapOutBridges();
         City.renderSentosaAccess();
         City.renderConstruction();
+        City.renderTerminalMarkers();
         const mobile = innerWidth < 600;
         const scale = mobile ? 0.65 : Math.max(0.1, Math.min((innerWidth - 100) / 3400, (innerHeight - 130) / 2450, 0.7));
         window.setMapView?.({ scale, x: innerWidth / 2 - (mobile ? 1750 : 1680) * scale, y: innerHeight / 2 - (mobile ? 1500 : 1250) * scale });

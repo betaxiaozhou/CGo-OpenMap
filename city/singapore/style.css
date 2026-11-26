@@ -36,6 +36,10 @@
 .map-singapore .panel-cn-name { font-family: 'Singapore Chinese', 'Noto Sans SC', 'PingFang SC', sans-serif; }
 .map-singapore .panel-en-name { font-family: 'Singapore Lato', sans-serif; }
 .map-singapore .sg-station-sign text { font-family: 'Singapore Lato', sans-serif; }
+.map-singapore .sg-terminal-marker { position: absolute; width: 28px; height: 28px; transform: translate(-50%, -50%); pointer-events: none; z-index: 23; }
+.map-singapore .sg-terminal-marker svg { display: block; width: 100%; height: 100%; }
+.sg-terminal-key { display: flex; gap: 10px; align-items: center; font-size: 12px; line-height: 1.5; color: var(--text-main); }
+.sg-terminal-key svg { width: 28px; height: 28px; flex-shrink: 0; }
 .map-singapore .sg-line-badges .line-badge { height: 32px; width: auto; flex-shrink: 0; border-radius: 0; }
 .map-singapore .sg-line-badges .sg-line-mark { display: block; height: 100%; width: auto; }
 .map-singapore .station.sg-station-sign.active { transform: translate(-50%, -50%) scale(1.12); }
