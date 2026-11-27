@@ -104,9 +104,9 @@
 .map-singapore :is(.sg-crossing-gaps, .sg-water-crossing-casings) { pointer-events: none; }
 .map-singapore .sg-reference-geometry { pointer-events: none; }
 .map-singapore .sg-official-geometry > :is(.line-visual-inner, .line-visual-outer, .line-visual-overlay) { visibility: hidden; }
-/* Emphasize in place: moving the original knockouts to the front changes junction gaps. */
+/* Keep flat artwork and paint order when selected; shadows reveal invisible land casings. */
 .map-singapore #highlight-layer .sg-reference-geometry { display: none; }
-.map-singapore #lines-layer .sg-official-geometry.active > .sg-reference-geometry { filter: drop-shadow(0 0 2px rgba(0, 0, 0, .4)); }
+.map-singapore :is(#lines-layer, #highlight-layer) :is(.sg-reference-geometry, .line-visual-outer) { filter: none !important; }
 .map-singapore { --sg-sentosa-track: #000000; }
 .map-singapore[data-theme="dark"] { --sg-sentosa-track: #ffffff; }
 @media (prefers-color-scheme: dark) {
