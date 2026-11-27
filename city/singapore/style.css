@@ -101,7 +101,7 @@
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="CG"] { --sg-line-width: 13.5564px; }
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-inner { stroke-width: var(--sg-line-width) !important; }
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-outer { stroke: var(--map-bg) !important; stroke-width: calc(var(--sg-line-width) + var(--sg-casing-extra)) !important; }
-.map-singapore .sg-crossing-gaps { pointer-events: none; }
+.map-singapore :is(.sg-crossing-gaps, .sg-water-crossing-casings) { pointer-events: none; }
 .map-singapore .sg-reference-geometry { pointer-events: none; }
 .map-singapore .sg-official-geometry > :is(.line-visual-inner, .line-visual-outer, .line-visual-overlay) { visibility: hidden; }
 /* Emphasize in place: moving the original knockouts to the front changes junction gaps. */

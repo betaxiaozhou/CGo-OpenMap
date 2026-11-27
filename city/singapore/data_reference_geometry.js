@@ -24,6 +24,11 @@ const SG_REFERENCE_INFO = {
     "TE": 4
   }
 };
+// Original PDF drawings 108 and 111, painted below the tracks and above the water.
+const SG_WATER_CROSSING_CASINGS = [
+  { "d": "M2194.170 1883.462 L2158.971 1918.661 L2146.745 1906.443 L2181.952 1871.244 Z", "fill": "var(--map-bg)" },
+  { "d": "M2406.701 1870.669 L2355.280 1922.090 L2343.054 1909.872 L2394.483 1858.451 Z", "fill": "var(--map-bg)" }
+];
 const SG_REFERENCE_GEOMETRY = {
   "NS": [
     {

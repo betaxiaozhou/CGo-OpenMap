@@ -162,6 +162,17 @@
     City.renderReferenceGeometry = function () {
         if (typeof SG_REFERENCE_GEOMETRY === 'undefined') return;
         const ns = 'http://www.w3.org/2000/svg';
+        const layer = document.getElementById('lines-layer');
+        if (!layer) return;
+        layer.querySelector('.sg-water-crossing-casings')?.remove();
+        const casings = document.createElementNS(ns, 'g');
+        casings.setAttribute('class', 'sg-water-crossing-casings');
+        for (const attributes of SG_WATER_CROSSING_CASINGS) {
+            const path = document.createElementNS(ns, 'path');
+            for (const [key, value] of Object.entries(attributes)) path.setAttribute(key, value);
+            casings.appendChild(path);
+        }
+        layer.prepend(casings);
         for (const line of linesData) {
             const shapes = SG_REFERENCE_GEOMETRY[line.id];
             const group = document.querySelector(`#lines-layer .line-visual-group[data-visual-id="${line.id}"]`);
