@@ -145,7 +145,9 @@
                 if (!info.svg || seen.has(info.svg)) return false;
                 seen.add(info.svg);
                 return true;
-            }).map(info => `<span class="svg-icon-placeholder line-badge" data-src="${escape(info.svg)}" title="${escape(info.name)}" style="--svgclr:${escape(info.svgclr)};--svgtext:${escape(info.svgtext)}"></span>`).join('');
+            }).map(info => info.id === 'SENTOSA'
+                ? '<span class="svg-icon-placeholder line-badge sg-sentosa-brand" data-src="./city/singapore/assets/brand/sentosa.svg" title="Sentosa 圣淘沙"></span>'
+                : `<span class="svg-icon-placeholder line-badge" data-src="${escape(info.svg)}" title="${escape(info.name)}" style="--svgclr:${escape(info.svgclr)};--svgtext:${escape(info.svgtext)}"></span>`).join('');
             return `<div class="panel-badges sg-line-badges">${badges}</div>`;
         }
     };

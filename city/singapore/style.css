@@ -42,6 +42,12 @@
 .sg-terminal-key svg { width: 28px; height: 28px; flex-shrink: 0; }
 .map-singapore .sg-line-badges .line-badge { height: 32px; width: auto; flex-shrink: 0; border-radius: 0; }
 .map-singapore .sg-line-badges .sg-line-mark { display: block; height: 100%; width: auto; }
+.map-singapore .sg-line-badges .sg-sentosa-brand { height: 24px; width: 135px; flex-shrink: 0; background: transparent; padding: 0; }
+.map-singapore .sg-line-badges:has(.sg-sentosa-brand) { margin-right: 0; }
+.map-singapore .sg-sentosa-brand svg { display: block; height: 100%; width: 100%; }
+@media (max-width: 380px) {
+    .map-singapore .sg-line-badges .sg-sentosa-brand { height: 20px; width: 112.5px; }
+}
 .map-singapore .station.sg-station-sign.active { transform: translate(-50%, -50%) scale(1.12); }
 .map-singapore #scattered-layer { pointer-events: none; }
 .map-singapore #scattered-layer .scattered-item:has(img[src*="water-dark.svg"]) { display: none; }
