@@ -167,44 +167,75 @@
         document.write('<script src="./city/singapore/modules/unpaid-transfer.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/modules/sentosa-express.js' + (v ? '?v=' + v : '') + '"><\/script>');
     }
+    City.routeCasingWidths = { mrt: 8.272, lrt: 2.4, monorail: 3 };
     City.renderReferenceGeometry = async function () {
-        if (typeof SG_VISIBLE_ROUTE_GEOMETRY === 'undefined') return;
         const layer = document.getElementById('lines-layer');
         if (!layer) return;
+        const native = typeof SG_VISIBLE_ROUTE_GEOMETRY === 'undefined' ? {} : SG_VISIBLE_ROUTE_GEOMETRY;
         const ns = 'http://www.w3.org/2000/svg';
-        const path = attributes => {
-            const node = document.createElementNS(ns, 'path');
+        const element = (tag, attributes = {}) => {
+            const node = document.createElementNS(ns, tag);
             for (const [key, value] of Object.entries(attributes)) node.setAttribute(key, value);
             return node;
         };
-        for (const line of linesData) {
+        // Unwrap existing families before rebuilding; retain core hit paths and selection state.
+        layer.querySelectorAll('.sg-route-family .line-visual-group').forEach(group => layer.appendChild(group));
+        layer.querySelectorAll('.sg-route-family').forEach(group => group.remove());
+        const order = ['BP','BPL','SE','SW','PE','PW','TE','DT','NE','CCE','CC','EW','CG','NS','SENTOSA'];
+        const records = linesData.flatMap(line => {
+            if (line.isPointOnly) return [];
             const group = layer.querySelector(`.line-visual-group[data-visual-id="${line.id}"]`);
-            if (!group) continue;
+            if (!group) return [];
             const sentosa = line.id === 'SENTOSA';
-            const d = sentosa ? group.querySelector('.line-visual-inner').getAttribute('d') : SG_VISIBLE_ROUTE_GEOMETRY[line.id];
-            if (!d) continue;
+            const edge = City.routeCasingWidths[sentosa ? 'monorail' : City.TRAM_LINES.includes(line.id) ? 'lrt' : 'mrt'];
+            const colour = sentosa ? 'var(--sg-sentosa-track)' : line.color;
+            // Every rendered route gets a casing, including future routes without baked geometry.
+            const shapes = native[line.id] ? [{ d: native[line.id], fill: colour }] :
+                [...group.querySelectorAll('.line-visual-inner')].map(path => ({
+                    d: path.getAttribute('d'), fill: 'none', stroke: colour,
+                    'stroke-width': Number.parseFloat(getComputedStyle(path).strokeWidth),
+                    'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+                })).filter(path => path.d);
+            if (!shapes.length) return [];
             group.querySelectorAll('.sg-reference-geometry, .sg-route-casing').forEach(node => node.remove());
             group.classList.add('sg-official-geometry');
-            const lightRail = City.TRAM_LINES.includes(line.id);
-            const edge = lightRail ? 2.4 : 8.272;
-            const casing = sentosa
-                ? { d, fill: 'none', stroke: 'var(--map-bg)', 'stroke-width': 8.5 }
-                : { d, fill: 'var(--map-bg)', stroke: 'var(--map-bg)', 'stroke-width': edge };
-            group.appendChild(path({ ...casing, class: 'sg-route-casing', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }));
-            const ink = document.createElementNS(ns, 'g');
-            ink.setAttribute('class', 'sg-reference-geometry');
-            ink.dataset.source = sentosa ? 'community-sentosa' : 'lta-chinese';
-            ink.appendChild(path(sentosa
-                ? { d, fill: 'none', stroke: 'var(--sg-sentosa-track)', 'stroke-width': 5.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }
-                : { d, fill: line.color }));
+            const casing = element('g', { class: 'sg-route-casing', 'data-route-id': line.id });
+            const ink = element('g', { class: 'sg-reference-geometry', 'data-source': sentosa ? 'community-sentosa' : 'lta-chinese' });
+            for (const shape of shapes) {
+                casing.appendChild(element('path', { ...shape,
+                    fill: shape.fill === 'none' ? 'none' : 'var(--map-bg)', stroke: 'var(--map-bg)',
+                    'stroke-width': (shape['stroke-width'] || 0) + edge,
+                    'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+                }));
+                ink.appendChild(element('path', shape));
+            }
             group.appendChild(ink);
-        }
-        // Keep the official over/under order, including while a station is selected.
+            return [{ line, group, casing, rank: order.includes(line.id) ? order.indexOf(line.id) : order.length }];
+        });
+        // Same-colour routes sharing a station form a paint family. Their casings must never
+        // sit between their coloured paths: a branch junction belongs to one continuous service.
+        const parent = records.map((_, index) => index);
+        const root = index => parent[index] === index ? index : (parent[index] = root(parent[index]));
+        records.forEach((a, i) => records.slice(i + 1).forEach((b, offset) => {
+            if (a.line.color.toLowerCase() === b.line.color.toLowerCase() &&
+                a.line.stationIds.some(id => b.line.stationIds.includes(id))) parent[root(i + offset + 1)] = root(i);
+        }));
+        const families = new Map();
+        records.forEach((record, index) => {
+            const key = root(index);
+            if (!families.has(key)) families.set(key, []);
+            families.get(key).push(record);
+        });
         const connectors = layer.querySelector('.virtual-connectors');
-        for (const id of ['BP','BPL','SE','SW','PE','PW','TE','DT','NE','CCE','CC','EW','CG','NS']) {
-            const group = layer.querySelector(`.line-visual-group[data-visual-id="${id}"]`);
-            if (group) layer.insertBefore(group, connectors);
-        }
+        [...families.values()].sort((a, b) => Math.max(...a.map(r => r.rank)) - Math.max(...b.map(r => r.rank))).forEach(members => {
+            members.sort((a, b) => a.rank - b.rank);
+            const family = element('g', { class: 'sg-route-family', 'data-route-ids': members.map(r => r.line.id).join(' ') });
+            const casings = element('g', { class: 'sg-family-casings' });
+            const ink = element('g', { class: 'sg-family-ink' });
+            members.forEach(record => { casings.appendChild(record.casing); ink.appendChild(record.group); });
+            family.append(casings, ink);
+            layer.insertBefore(family, connectors);
+        });
     };
     City.renderConstruction = function () {
         const layer = document.getElementById('not-open-layer');
@@ -219,7 +250,7 @@
             const casing = path.cloneNode(false);
             casing.setAttribute('class', 'sg-construction-casing');
             casing.setAttribute('stroke', 'var(--map-bg)');
-            casing.setAttribute('stroke-width', Number(track.style.width) + 8.272);
+            casing.setAttribute('stroke-width', Number(track.style.width) + City.routeCasingWidths.mrt);
             layer.insertBefore(casing, path);
         });
         layer.querySelector('.sg-construction-annotation')?.remove();

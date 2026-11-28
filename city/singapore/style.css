@@ -120,9 +120,12 @@
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-outer { stroke: var(--map-bg) !important; stroke-width: calc(var(--sg-line-width) + var(--sg-casing-extra)) !important; }
 .map-singapore :is(.sg-reference-geometry, .sg-route-casing) { pointer-events: none; }
 .map-singapore .sg-official-geometry > :is(.line-visual-inner, .line-visual-outer, .line-visual-overlay) { display: none; }
-/* One original route group paints its casing and ink together. Highlight clones never repaint it. */
+/* Same-service branches share a casing layer. Shadows use coloured alpha only.
+   When every member is selected, filter their combined ink to avoid seams at joins;
+   a partially selected family (e.g. the airport shuttle) shadows only its selected routes. */
 .map-singapore #highlight-layer .sg-official-geometry { display: none; }
-.map-singapore #lines-layer .sg-official-geometry.active { filter: drop-shadow(0 0 2px rgba(0, 0, 0, .4)); }
+.map-singapore #lines-layer .sg-family-ink:has(> .line-visual-group.active):not(:has(> .line-visual-group:not(.active))),
+.map-singapore #lines-layer .sg-family-ink:has(> .line-visual-group:not(.active)) > .line-visual-group.active > .sg-reference-geometry { filter: drop-shadow(0 0 2px rgba(0, 0, 0, .4)); }
 .map-singapore { --sg-sentosa-track: #000000; }
 .map-singapore[data-theme="dark"] { --sg-sentosa-track: #ffffff; }
 @media (prefers-color-scheme: dark) {
