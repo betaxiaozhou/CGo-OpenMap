@@ -45,7 +45,9 @@
 .map-singapore .panel-badges.sg-station-badges { --sg-card-sign-height: 24px; gap: 0; margin-right: 0; }
 .map-singapore .sg-card-station-sign { display: block; flex-shrink: 0; height: var(--sg-card-sign-height); width: calc(var(--sg-card-sign-height) * var(--sg-card-sign-ratio)); }
 .map-singapore .sg-card-station-sign > svg { display: block; width: 100%; height: 100%; }
-.map-singapore .sg-card-transfer-connector { display: block; flex-shrink: 0; width: 10px; height: 1px; background: linear-gradient(to right, var(--sg-connector-from) 50%, var(--sg-connector-to) 50%); }
+/* Chinese legend: 24.134pt neck / 67.792pt colour plate. Scale to the card's 25/27 colour/viewBox ratio;
+   overlap the bowed ends so the station outlines do not cut white seams across the connection. */
+.map-singapore .sg-card-transfer-connector { display: block; flex-shrink: 0; position: relative; z-index: 1; width: calc(var(--sg-card-sign-height) * .712774); height: calc(var(--sg-card-sign-height) * .329627); margin: 0 calc(var(--sg-card-sign-height) * -.123634); }
 @media (max-width: 380px) {
     .map-singapore .panel-badges.sg-station-badges { --sg-card-sign-height: 22px; }
 }

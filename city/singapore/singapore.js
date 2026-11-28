@@ -145,16 +145,13 @@
             const escape = window.CGoA11y.escapeHtml;
             // Card signs share the map silhouette, with a single size for all code cells.
             const sign = item => City.renderStationIcon(item, { compact: true, idPrefix: 'sg-card-code-' });
-            let items = [station];
-            if (station.paidAreaTransfer) {
-                const pair = VIRTUAL_FREE_CONNECT_LINES.find(({ from, to }) =>
-                    from === station.id || to === station.id);
-                if (pair) items = [stationsData[pair.from], stationsData[pair.to]];
-            }
+            const peer = station.paidAreaTransfer && stationsData[station.paidAreaTransfer.peerId];
+            const items = peer ? [station, peer] : [station];
             const signs = items.map(sign);
             if (signs.some(item => !item)) return '';
             const plates = signs.map((item, index) => {
-                const connector = index ? `<span class="sg-card-transfer-connector" aria-hidden="true" style="--sg-connector-from:${signs[index - 1].color};--sg-connector-to:${item.color}"></span>` : '';
+                // LTA Chinese legend paths 1371/1372: solid two-colour neck with an oblique join.
+                const connector = index ? `<svg class="sg-card-transfer-connector" viewBox="0 0 52.186 24.134" aria-hidden="true"><path d="M0 0 H52.186 V24.134 H0 Z" fill="${item.color}"/><path d="M0 0 H30.766 L21.406 24.134 H0 Z" fill="${signs[index - 1].color}"/></svg>` : '';
                 return connector + `<span class="sg-card-station-sign" data-codes="${escape(items[index].stationCodes)}" style="--sg-card-sign-ratio:${item.width / item.height}">${item.html}</span>`;
             }).join('');
             const description = items.map(item => item.stationCodes).join('，出闸换乘，');
