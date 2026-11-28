@@ -132,10 +132,18 @@ node scripts/check-cache-assets.mjs
 
 圣淘沙捷运标志位于 `assets/line/sentosa-express.svg`，直接提取自上述 LTA 中文全网图底部图例，保留来源说明；图形版权归原权利人，不纳入开源字体许可。地图四站与线路图例共用中央列车素材，去掉圆角矩形两侧的点划装饰，深色模式作整体反色以确保可读。车站卡片顶部单独使用圣淘沙发展局[官方品牌页](https://www.sentosa.gov.sg/who-we-are/our-brands-and-subsidiaries/)的橙色横向 Sentosa 字标，位于 `assets/brand/sentosa.svg`；保留原始透明 PNG 像素，只用 SVG 视窗去掉透明留白，不拉伸、不加方形底板、不反色。字标及商标归 Sentosa Development Corporation 所有。
 
-运营线路与施工区段统一使用连续底色轮廓，包括圣淘沙；浅色为白、深色为地图底色。在同色陆地上自然不显眼，跨水或其他线路时露出间隔。MRT填充轮廓的描边总宽4.136px（彩色形状外侧约2.068px），LRT为2.4px；圣淘沙为8.5px底色轨道加5.5px实体。CG仍保留原始中空双轨。
+运营线路与施工区段统一使用连续底色轮廓，包括圣淘沙；浅色为白、深色为地图底色。在同色陆地上自然不显眼，跨水或其他线路时露出间隔。MRT填充轮廓的描边总宽8.272px（彩色形状外侧每侧约4.136px），LRT为2.4px；圣淘沙为8.5px底色轨道加5.5px实体。CG仍保留原始中空双轨。
 
 每条线路在原图顺序中绘制一次“轮廓＋实体”，选中时为整组加2px阴影，顺序与几何保持不变。已移除水域/其他轨道遮罩、全局交叉补片和额外的跨水补片。不会把白色切口当成彩色实体的孔洞去投影。
 
 原始路径和来源指纹保留在 `data_reference_geometry.js`。修改原始路径后，在作者环境安装fonttools、skia-pathops并运行 `python scripts/derive-singapore-route-shapes.py` 重建可见路径；网站运行不需要这些工具。布尔运算保留矢量曲线，圆头描边展开误差小于0.001画布单位。
 
 多美歌环线支线按中文原始矢量从 CC1 色块右侧中部接入，不再对英文末端曲线作局部位移补丁。
+
+线路描边的浏览器回归检查（测试环境需Python Playwright与Chromium）：
+
+```sh
+python scripts/check-singapore-route-casings.py 'http://127.0.0.1:8080/main.html?city=singapore'
+```
+
+检查普通/选中状态的几何、线宽和交叉顺序保持一致，轮廓与实体共用路径，高亮副本不重复绘制，以及深浅色、手机缩放与离线加载。

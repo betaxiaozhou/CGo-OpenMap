@@ -186,7 +186,7 @@
             group.querySelectorAll('.sg-reference-geometry, .sg-route-casing').forEach(node => node.remove());
             group.classList.add('sg-official-geometry');
             const lightRail = City.TRAM_LINES.includes(line.id);
-            const edge = lightRail ? 2.4 : 4.136;
+            const edge = lightRail ? 2.4 : 8.272;
             const casing = sentosa
                 ? { d, fill: 'none', stroke: 'var(--map-bg)', 'stroke-width': 8.5 }
                 : { d, fill: 'var(--map-bg)', stroke: 'var(--map-bg)', 'stroke-width': edge };
@@ -219,7 +219,7 @@
             const casing = path.cloneNode(false);
             casing.setAttribute('class', 'sg-construction-casing');
             casing.setAttribute('stroke', 'var(--map-bg)');
-            casing.setAttribute('stroke-width', Number(track.style.width) + 4.136);
+            casing.setAttribute('stroke-width', Number(track.style.width) + 8.272);
             layer.insertBefore(casing, path);
         });
         layer.querySelector('.sg-construction-annotation')?.remove();

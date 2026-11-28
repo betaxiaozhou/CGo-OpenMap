@@ -113,7 +113,7 @@
 .map-singapore .station.sg-tap-out-sign.active { transform: translate(-50%, -50%); }
 
 /* Fallback widths before the city geometry finishes loading. */
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group { --sg-line-width: 9.52445px; --sg-casing-extra: 4.5px; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group { --sg-line-width: 9.52445px; --sg-casing-extra: 8.272px; }
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group:is([data-visual-id="BP"], [data-visual-id="BPL"], [data-visual-id="SE"], [data-visual-id="SW"], [data-visual-id="PE"], [data-visual-id="PW"]) { --sg-line-width: 3.96695px; --sg-casing-extra: 2.4px; }
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="CG"] { --sg-line-width: 13.5564px; }
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-inner { stroke-width: var(--sg-line-width) !important; }
