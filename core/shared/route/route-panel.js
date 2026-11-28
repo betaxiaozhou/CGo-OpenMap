@@ -50,8 +50,17 @@
     const allLines = () => window.linesData || [];
     const stationName = (sid) => allStations()[sid]?.cn || sid;
     const stationEn = (sid) => allStations()[sid]?.en || "";
-    const linesAt = (sid) => allLines().filter((line) => !line.isPointOnly
-        && (line.stationIds || []).includes(sid));
+    const linesAt = (sid) => {
+        const routing = window.CGoLineRouting;
+        return allLines().filter((line) => {
+            if (!line || line.isPointOnly) return false;
+            if (routing && typeof routing.waysOfStation === "function") {
+                return routing.waysOfStation(line, sid).length > 0;
+            }
+            if ((line.stationIds || []).includes(sid)) return true;
+            return Object.keys(line).some((k) => k.startsWith("stationIds-") && Array.isArray(line[k]) && line[k].includes(sid));
+        });
+    };
     /** 可参与规划：已开通且至少属于一条可规划线路（国铁等点状线路的站不可用） */
     const pickable = (sid) => allStations()[sid]?.type !== "no" && linesAt(sid).length > 0;
 
@@ -111,18 +120,18 @@
         }
         const { html: facHtml, types } = recommendFacRows(sid, alt);
         if (!facHtml) {
-            return `<div class="cgo-rt-leg-line muted" data-role="gate"><span>推荐改用 ${alt.join("、")} 口</span></div>`;
+            return `<div class="cgo-rt-leg-line muted" data-role="gate"><span>推荐改用 ${escAttr(alt.join("、"))} 口</span></div>`;
         }
         return `
-            <div class="cgo-rt-leg-line muted cgo-rt-expandable" data-role="gate" data-expand="${key}" title="查看推荐出入口设施">
+            <div class="cgo-rt-leg-line muted cgo-rt-expandable" data-role="gate" data-expand="${escAttr(key)}" title="查看推荐出入口设施">
                 <cgo-icon class="cgo-rt-expand-caret" name="chevron-down" size="14"></cgo-icon>
-                <span>推荐改用 ${alt.join("、")} 口 · 设施：${types.join("、")}</span>
+                <span>推荐改用 ${escAttr(alt.join("、"))} 口 · 设施：${escAttr(types.join("、"))}</span>
             </div>
-            <div data-list="${key}" hidden><div class="cgo-rt-leg-line muted" data-role="fac"><div class="cgo-rt-facwrap">${facHtml}</div></div></div>
+            <div data-list="${escAttr(key)}" hidden><div class="cgo-rt-leg-line muted" data-role="fac"><div class="cgo-rt-facwrap">${facHtml}</div></div></div>
         `;
     }
     const warnLineHtml = (text) => `<div class="cgo-rt-leg-line cgo-rt-warn" data-role="gate">
-        <cgo-icon name="warning" size="13"></cgo-icon><span>${text}</span>
+        <cgo-icon name="warning" size="13"></cgo-icon><span>${escAttr(text)}</span>
     </div>`;
     /**
      * 进 / 出站条的设施折叠组（按口，item.text 无线路归属 → 明细直接拆段）：
@@ -238,14 +247,14 @@
                 <span>设施：${types.join("、")}</span>
             </div>` : "";
         const panel = facHtml ? `
-            <div data-list="${key}" hidden>
+            <div data-list="${escAttr(key)}" hidden>
                 <div class="cgo-rt-leg-line muted" data-role="fac"><div class="cgo-rt-facwrap">${facHtml}</div></div>
             </div>` : "";
         return `
             <li class="cgo-rt-leg exitgate">
                 <div class="cgo-rt-leg-head" data-role="gate">
                     <span class="cgo-rt-mode exitgate"><cgo-icon name="${mark}" size="16"></cgo-icon></span>
-                    <span class="cgo-rt-leg-name"><b>${names.join("、")}</b><em>推荐${dir === "entry" ? "可进站" : "可出站"}出入口</em></span>
+                    <span class="cgo-rt-leg-name"><b>${escAttr(names.join("、"))}</b><em>推荐${dir === "entry" ? "可进站" : "可出站"}出入口</em></span>
                 </div>
                 ${summary}
                 ${panel}
@@ -292,7 +301,7 @@
         let bestDist = Infinity;
         for (const name of alts) {
             const [x, y] = String(exitOf(sid, name)?.pos || "").split(",").map(Number);
-            if (!Number.isFinite(x) || !Number.isFinite(ox)) continue;
+            if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(ox) || !Number.isFinite(oy)) continue;
             const dist = (x - ox) ** 2 + (y - oy) ** 2;
             if (dist < bestDist) { bestDist = dist; best = name; }
         }
@@ -486,6 +495,7 @@
     }
     // 重建或切回桌面侧栏时一并释放抽屉监听与固定底栏。
     function removePanel(panel) {
+        panel._cgoDragCleanup?.();
         panel._cgoSheetCleanup?.();
         panel.remove();
     }
@@ -948,7 +958,7 @@
             trigger.hidden = false;
             const current = state[exitKey(field)];
             trigger.innerHTML = `<cgo-icon name="location" size="12"></cgo-icon>`
-                + `<span>${current || "全部"}</span>`
+                + `<span>${escAttr(current || "全部")}</span>`
                 + `<cgo-icon name="chevron-down" size="10"></cgo-icon>`;
             trigger.classList.toggle("active", Boolean(current));
             trigger.title = current ? `出入口：${current} 口（点击更换）` : "选择出入口（当前：不指定）";
@@ -1022,7 +1032,7 @@
                     need && ok === false ? `无满足「${need.name}」的设施` : ""
                 ].filter(Boolean).join(" · ");
                 return `<button type="button" class="cgo-rt-exit-chip${active ? " active" : ""}${closed}${unmet}"
-                    data-exit-code="${escAttr(code)}" title="${escAttr(title)}">${code}</button>`;
+                    data-exit-code="${escAttr(code)}" title="${escAttr(title)}">${escAttr(code)}</button>`;
             })
         ];
         menu.innerHTML = `${notice}${hint}<div class="cgo-rt-gaterow">${chips.join("")}</div>`;
@@ -1353,8 +1363,11 @@
             resultPanel.style.removeProperty("left");
             resultPanel.style.removeProperty("top");
             resultPanel.style.removeProperty("right");
-            renderRoutes(routes);
+            // ⚠️ 先开窗再渲染：renderActiveRoute() 里的 isResultVisible() 会同时看
+            // CGoWMAdapter.isOpen("route-result")，窗还没开时它判为不可见，
+            // applyHighlight() 就被跳过 —— 表现为「结果面板有内容、地图上却没有高亮线」。
             window.CGoWMAdapter.open("route-result");
+            renderRoutes(routes);
         } else {
             if (resultPanel.dataset.cgoMode === "section") {
                 // 固定侧栏：结果面板入驻动态内容区，独占侧栏的剩余高度
@@ -1560,12 +1573,27 @@
         return panel;
     }
 
+    /**
+     * 切换到指定路线页签。
+     * 鼠标点击、键盘 Enter/Space、方向键导航都走这里，保证三条路径的状态更新一致。
+     * @param {HTMLElement|null} tab 带 data-route 的页签
+     */
+    function selectRouteTab(tab) {
+        if (!tab) return;
+        const index = Number(tab.dataset.route);
+        if (!Number.isInteger(index) || index < 0 || index >= (state.routes || []).length) return;
+        if (state.routeIndex === index) return;
+        state.routeIndex = index;
+        renderActiveRoute();
+    }
+
     function bindResultEvents(panel) {
         panel.querySelector('[data-close="result"]')?.addEventListener("click", () => closePanel("result"));
         // 页签与分享按钮都在 routebar 上做事件委托：分享按钮是出结果后才由 paintRouteBar
         // 注入的，面板创建时该节点还不存在，直接 querySelector 会取空、监听根本绑不上。
         // 原「重新选择」按钮已移除：回到查询面板改起终点，直接展开查询面板的 section-header 即可
-        panel.querySelector(".cgo-rt-routebar").addEventListener("click", (event) => {
+        const routebar = panel.querySelector(".cgo-rt-routebar");
+        routebar.addEventListener("click", (event) => {
             if (event.target.closest('[data-share="route"]')) {
                 event.stopPropagation();
                 shareRoute();
@@ -1578,8 +1606,38 @@
             }
             const tab = event.target.closest("[data-route]");
             if (!tab) return;
-            state.routeIndex = Number(tab.dataset.route) || 0;
-            renderActiveRoute();
+            selectRouteTab(tab);
+        });
+        // 页签是原生 <button>，Enter/Space 本可由浏览器激活；这里显式处理既能覆盖
+        // 辅助技术合成的按键，也把 Space 的页面滚动一起挡掉。方向键 / Home / End
+        // 用于在多个候选方案之间快速移动并切换，Tab 仍可逐个访问每个页签。
+        routebar.addEventListener("keydown", (event) => {
+            if (event.ctrlKey || event.metaKey || event.altKey) return;
+            const tab = event.target.closest("[data-route]");
+            if (!tab) return;
+            const tabs = Array.from(routebar.querySelectorAll("[data-route]"))
+                .filter((node) => node.getClientRects().length > 0);
+            const index = tabs.indexOf(tab);
+            if (index < 0) return;
+
+            if (event.key === "Enter" || event.key === " " || event.key === "Spacebar" || event.code === "Space") {
+                event.preventDefault();
+                event.stopPropagation();
+                if (!event.repeat) selectRouteTab(tab);
+                return;
+            }
+
+            let next = -1;
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % tabs.length;
+            else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index - 1 + tabs.length) % tabs.length;
+            else if (event.key === "Home") next = 0;
+            else if (event.key === "End") next = tabs.length - 1;
+            if (next === -1) return;
+            event.preventDefault();
+            event.stopPropagation();
+            const target = tabs[next];
+            selectRouteTab(target);
+            target.focus({ preventScroll: true });
         });
         const body = panel.querySelector(".cgo-rt-result-body");
         body.addEventListener("click", (event) => {
@@ -1789,14 +1847,14 @@
                 <li class="cgo-rt-leg exitgate">
                     <div class="cgo-rt-leg-head">
                         <span class="cgo-rt-mode exitgate"><cgo-icon name="depart" size="16"></cgo-icon></span>
-                        <span class="cgo-rt-leg-name"><b>${state.fromExitLandmark || stationName(state.from)}</b><em>出发</em></span>
+                        <span class="cgo-rt-leg-name"><b>${escAttr(state.fromExitLandmark || stationName(state.from))}</b><em>出发</em></span>
                     </div>
-                    <div class="cgo-rt-leg-line muted${entryFac ? " cgo-rt-expandable" : ""}" data-role="fac"${entryFac ? ` data-expand="${entryKey}" title="查看出入口设施"` : ""}>
+                    <div class="cgo-rt-leg-line muted${entryFac ? " cgo-rt-expandable" : ""}" data-role="fac"${entryFac ? ` data-expand="${escAttr(entryKey)}" title="查看出入口设施"` : ""}>
                         ${entryFac ? `<cgo-icon class="cgo-rt-expand-caret" name="chevron-down" size="14"></cgo-icon>` : ""}
                         <span>经 ${boldExitCode(state.fromExit)} 进站${entrySpec ? gateNote(entrySpec) : ""}</span>
                     </div>
                     ${gateAdviseLine(state.from, state.fromExit, "entry", `fac-${++facSeq}`)}
-                    ${entryFac ? `<div data-list="${entryKey}" hidden><div class="cgo-rt-leg-line muted" data-role="fac"><div class="cgo-rt-facwrap">${entryFac}</div></div></div>` : ""}
+                    ${entryFac ? `<div data-list="${escAttr(entryKey)}" hidden><div class="cgo-rt-leg-line muted" data-role="fac"><div class="cgo-rt-facwrap">${entryFac}</div></div></div>` : ""}
                 </li>
             `);
         } else {
@@ -1811,7 +1869,7 @@
                 const first = segments[0];
                 const last = segments[segments.length - 1];
                 const line = lineOf(first.line);
-                lastLineId = first.line;
+                lastLineId = last.line;
                 const start = first.stops[0];
                 const terminus = rideTerminus(last);
                 const stopsCount = segments.reduce((n, seg) => n + Math.max(0, seg.stops.length - 1), 0);
@@ -2032,18 +2090,19 @@
             return;
         }
         bar.innerHTML = `
-            <div class="panel-tabs-nav">
+            <div class="panel-tabs-nav" role="group" aria-label="备选路线">
                 ${routes.map((route, index) => `
                     <button type="button" class="tab-item${index === state.routeIndex ? " cgo-rt-tab-active" : ""}" data-route="${index}"
-                            aria-pressed="${index === state.routeIndex ? "true" : "false"}">
-                        ${routeTabLabel(route, index)}
+                            aria-pressed="${index === state.routeIndex ? "true" : "false"}"
+                            aria-label="${escAttr(`方案 ${index + 1}：${routeTabLabel(route, index)}`)}">
+                        ${escAttr(routeTabLabel(route, index))}
                     </button>
                 `).join("")}
             </div>
-            <button class="panel-share-btn" title="查看全程" data-fit="route">
+            <button type="button" class="panel-share-btn" title="查看全程" data-fit="route">
                 <cgo-icon name="map" size="20"></cgo-icon>
             </button>
-            <button class="panel-share-btn" title="分享路线信息" data-share="route">
+            <button type="button" class="panel-share-btn" title="分享路线信息" data-share="route">
                 <cgo-icon name="external" size="20"></cgo-icon>
             </button>
         `;
@@ -2167,7 +2226,8 @@
         panel.querySelectorAll(".cgo-rt-routebar .tab-item").forEach((tab) => {
             const active = Number(tab.dataset.route) === state.routeIndex;
             tab.classList.toggle("cgo-rt-tab-active", active);
-            // 页签是非原生控件，选中态只体现在 class 上；一并同步给读屏
+            // 页签是原生 <button>：Enter/Space 由浏览器与上面的 keydown 处理；
+            // 这里只同步视觉选中态与读屏的 aria-pressed。
             tab.setAttribute("aria-pressed", active ? "true" : "false");
         });
 
@@ -2514,6 +2574,30 @@
         wanted.forEach((item) => ensureRipple(item.sid, item.role));
     }
 
+    /** 把地图上剩余的起终点涟漪全部摘掉（行程面板全关时收尾用） */
+    function clearPickedRipples() {
+        const layer = window.stationsLayer || document.getElementById("stations-layer");
+        if (!layer) return;
+        layer.querySelectorAll(`.${RIPPLE_CLASS}`).forEach((el) => el.remove());
+    }
+
+    /**
+     * 行程面板（查询 / 结果）是否还有一扇开着。
+     *
+     * 涟漪是「正在看这条行程」的附属标注，应随面板一起进退：面板全关后还留着两圈脉冲，
+     * 会被误读成「地图上还有没撤销的选中态」（用户反馈：关掉行程面板涟漪还在跳）。
+     * 面板一开（哪怕是只填了起点还没出结果）就该重新出现，故 paintPickedRipple 仍是唯一画入口。
+     */
+    function routeUiOpen() {
+        if (isCgoWmDesktop()) {
+            return !!window.CGoWMAdapter?.isOpen?.("route-plan")
+                || !!window.CGoWMAdapter?.isOpen?.("route-result");
+        }
+        if (panelMode() === "section") return planExpanded || isResultVisible();
+        return !!document.getElementById(PLAN_ID)?.classList.contains("show")
+            || !!document.getElementById(RESULT_ID)?.classList.contains("show");
+    }
+
     /**
      * 保活：起终点的 active 随时可能被核心清掉（每次 selectStation 都会先 clearHighlights()，
      * 点空白处的 resetMapState() 同理），而此时结果窗口还开着、路线高亮也还在，起终点不该跟着熄灭。
@@ -2826,7 +2910,7 @@
             event.preventDefault();
         });
 
-        document.addEventListener("mousemove", (event) => {
+        const onMove = (event) => {
             if (!dragging) return;
             const maxLeft = Math.max(0, window.innerWidth - panel.offsetWidth);
             const maxTop = Math.max(0, window.innerHeight - panel.offsetHeight);
@@ -2835,9 +2919,8 @@
             panel.style.left = `${left}px`;
             panel.style.top = `${top}px`;
             ghost()?.classList.toggle("active", event.clientX < DOCK_EDGE_PX);
-        });
-
-        document.addEventListener("mouseup", () => {
+        };
+        const onUp = () => {
             if (!dragging) return;
             dragging = false;
             document.body.style.cursor = "";
@@ -2845,7 +2928,13 @@
             if (!hint?.classList.contains("active")) return;
             hint.classList.remove("active");
             pinToSidebar(panel);
-        });
+        };
+        document.addEventListener("mousemove", onMove);
+        document.addEventListener("mouseup", onUp);
+        panel._cgoDragCleanup = () => {
+            document.removeEventListener("mousemove", onMove);
+            document.removeEventListener("mouseup", onUp);
+        };
     }
 
     /**
@@ -3201,6 +3290,7 @@
                 }
             }
             if (!isResultVisible()) clearHighlight();
+            if (!routeUiOpen()) clearPickedRipples();
             emit("cgo:route-closed", {});
             return;
         }
@@ -3209,6 +3299,7 @@
             // 结果面板则是按需存在的窗口，收起它同样保留内容，展开可恢复
             if (which === "result") collapseResultSection();
             else setPlanExpanded(false);
+            if (!routeUiOpen()) clearPickedRipples();
             emit("cgo:route-closed", {});
             return;
         }
@@ -3231,6 +3322,7 @@
         }
         // 高亮归结果面板所有：它不可见了才撤销（查询面板开着与否与此无关）
         if (!isResultVisible()) clearHighlight();
+        if (!routeUiOpen()) clearPickedRipples();
         emit("cgo:route-closed", {});
     }
 
@@ -3353,7 +3445,16 @@
      */
     function collapseResultSection() {
         const panel = livePanel(RESULT_ID);
-        if (!panel?.classList.contains("show")) return;
+        if (!panel) return;
+        if (isCgoWmDesktop()) {
+            if (window.CGoWMAdapter?.isOpen?.("route-result")) {
+                closingResultFromWm = true;
+                try { window.CGoWMAdapter.close("route-result"); } finally { closingResultFromWm = false; }
+            }
+            clearHighlight();
+            return;
+        }
+        if (!panel.classList.contains("show")) return;
         if (panel.dataset.cgoMode === "section") {
             if (panel.classList.contains("collapsed")) return;
             panel.classList.add("collapsed");

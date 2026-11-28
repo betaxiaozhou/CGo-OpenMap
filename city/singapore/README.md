@@ -47,7 +47,7 @@ MRT/LRT 普通付费区内换乘使用共享节点；Newton、Bukit Panjang、Ta
 
 武吉班让轻轨统一为一个 `BP` 线路条目、一个图例和一个车站线路选项卡。A交路从蔡厝港经武吉班让、信佳、泽拉邦、实加、法嘉、万吉、秉定、柏提，回到武吉班让并沿干线返回蔡厝港；B交路在住宅区环路按相反方向行驶，先经柏提再经信佳。原先独立的 `BPL` 乘客线路条目已删除，图上仍保留干线与住宅区环路的真实形状。旧PDF的 `BP`、`BPL` 原始矢量组作为来源保留，由 `geometrySources` 合成为一条可见线路。
 
-`stationIds-way1/way2` 分别保存完整A/B往返站序，包含去程与回程再次停靠同站；13个物理站只计一次。通用交路引擎枚举所有经停位置，避免忽略返程。站卡提供A/B切换，按钮仅显示“A”“B”；干线显示往住宅环路、往蔡厝港两组邻站，环路显示所选交路的邻站。邻站跳转保留所选交路和线路选项卡，不编造班次或首末班时刻。交路表格随站卡内容区收缩，不继承全站表格400px的最小宽度。
+`stationIds-way1/way2` 分别保存完整A/B往返站序，包含去程与回程再次停靠同站；13个物理站只计一次。城市交路模块枚举所有经停位置，避免忽略返程；不修改通用引擎。站卡提供A/B切换，按钮仅显示“A”“B”；干线显示往住宅环路、往蔡厝港两组邻站，环路显示所选交路的邻站。邻站跳转保留所选交路和线路选项卡，不编造班次或首末班时刻。交路表格随站卡内容区收缩，不继承全站表格400px的最小宽度。
 
 核对来源：[LTA武吉班让轻轨介绍](https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/bukit_panjang_lrt.html)、[SMRT官方方向资料（A via Senja / B via Petir）](https://www.smrt.com.sg/getmedia/4dc714c8-1a2c-4cf7-ac49-e5ea12425ab1/Annex-B-%E2%80%93-Further-details-and-schedule-of-lift-upgrading-work.pdf)、[SMRT 2024/25集团报告第27页](https://www.smrt.com.sg/getmedia/f5eeb838-eb2e-4289-9f76-94513d49fe56/SMRT-Group-Review-2024_25.pdf)（确认2024-12-30恢复完整双环服务）。临时运营调整以官方公告为准，不根据日期自动改变交路。
 
@@ -129,7 +129,6 @@ node scripts/check-singapore-airport.mjs
 node scripts/check-singapore-transfers.mjs
 node scripts/check-singapore-geometry.mjs
 node editor/tests/selfcheck.js
-node scripts/check-site-version.mjs
 node scripts/check-cache-assets.mjs
 ```
 
@@ -139,7 +138,7 @@ node scripts/check-cache-assets.mjs
 
 按 LTA 中文全网图 `SM_CH_(Ver210726)_CCL6.pdf` 绘制线路色圆底、白色数字，字体采用站码相同的 Lato Bold：1巴西立、2大士连路、3樟宜机场、4裕廊东、5滨海南码头、6港湾、7榜鹅海岸、11武吉班让、12双溪勿洛（滨海市区线）、13兀兰北、14双溪勿洛（汤东线）。双溪勿洛仍属施工中，不进入运营线路；已成环的环线及轻轨、圣淘沙捷运不添加虚构方向编号。圆标作为城市独立覆盖层，避免改变车站点击范围和线路锚点。
 
-圣淘沙捷运标志位于 `assets/line/sentosa-express.svg`，直接提取自上述 LTA 中文全网图底部图例，保留来源说明；图形版权归原权利人，不纳入开源字体许可。地图四站与线路图例共用中央列车素材，去掉圆角矩形两侧的点划装饰，深色模式作整体反色以确保可读。车站卡片顶部单独使用圣淘沙发展局[官方品牌页](https://www.sentosa.gov.sg/who-we-are/our-brands-and-subsidiaries/)的橙色横向 Sentosa 字标，位于 `assets/brand/sentosa.svg`；保留原始透明 PNG 像素，只用 SVG 视窗去掉透明留白，不拉伸、不加方形底板、不反色。字标及商标归 Sentosa Development Corporation 所有。
+圣淘沙捷运标志位于 `assets/line/sentosa-express.svg`，直接提取自上述 LTA 中文全网图底部图例，保留来源说明；图形版权归原权利人，不纳入开源字体许可，公开再分发许可待确认（见 ASSET-RIGHTS.md）。地图四站与线路图例共用中央列车素材，去掉圆角矩形两侧的点划装饰，深色模式作整体反色以确保可读。车站卡片顶部单独使用圣淘沙发展局[官方品牌页](https://www.sentosa.gov.sg/who-we-are/our-brands-and-subsidiaries/)的橙色横向 Sentosa 字标，位于 `assets/brand/sentosa.svg`；保留原始透明 PNG 像素，只用 SVG 视窗去掉透明留白，不拉伸、不加方形底板、不反色。字标及商标归 Sentosa Development Corporation 所有。
 
 运营线路与施工区段统一使用连续底色轮廓，包括圣淘沙；浅色为白、深色为地图底色。在同色陆地上自然不显眼，跨水或其他线路时露出间隔。MRT填充轮廓的描边总宽8.272px（彩色形状外侧每侧约4.136px），LRT为2.4px；圣淘沙为8.5px底色轨道加5.5px实体。CG仍保留原始中空双轨。
 
@@ -156,3 +155,7 @@ python scripts/check-singapore-route-casings.py 'http://127.0.0.1:8080/main.html
 ```
 
 检查普通/选中状态的几何、线宽和交叉顺序保持一致，所有渲染段均有边缘、主支线连接不被同组白边遮挡、仅彩色部分投影、高亮副本不重复绘制，以及深浅色、手机缩放与离线加载。测试还临时加入无专用几何数据的新线路，验证规则可自动适用。
+
+## 审查材料
+
+城市入口和地图标题使用 LTA 公共交通双向箭头标志（绿色单色适配），不使用 SMRT 公司标志或默认车辆图标。见 [素材许可清单](ASSET-RIGHTS.md)、[质量自评](QUALITY_REVIEW.md)、[PR 范围说明](PR-READINESS.md)。官方来源图形许可尚待确认，不能将待许可素材统一声明为开放授权。

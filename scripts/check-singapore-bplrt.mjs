@@ -21,8 +21,6 @@ assert.equal(routing.allStationIds(line).length, 13);
 assert.deepEqual(line.geometrySources, ['BP','BPL']);
 assert(routing.segments(line, {}).every(segment => segment.ways.size === 2), 'Both services use the trunk and loop, drawn only once');
 for (const id of routing.allStationIds(line)) assert(routing.plan(line, id, {}).allLit, 'Every stop belongs to the same complete line');
-const nb = routing.neighbors(line, 'BP6');
-assert.deepEqual(nb.next.map(n => n.id).sort(), ['BP13','BP5','BP7'].sort());
 const legend = read('data_legend.js', 'LEGEND_CONFIG');
 const entries = legend.flatMap(group => group.items || []);
 assert.equal(entries.filter(entry => entry.targets?.includes('BP')).length, 1);

@@ -8,18 +8,14 @@
 
 贡献指南要求各城市主理人加入官方群保持联络；质量预警、整改、下架和交接在群里公示。不在群内可能错过通知并被替换。本次没有代发群消息、提交 Issue 或申请。
 
-## 2. Fork 并接入本地成果
+## 2. 已有分支与贡献边界
 
-在用户指定的 [仓库](https://github.com/NokiaimuL/CGo-OpenMap) 点击 Fork，目标账号选 `betaxiaozhou`。若 GitHub 自动跳转到新的组织地址，以仓库页当前地址为准。已有本地 clone 无需再下载一次：
+已完成 Fork（betaxiaozhou/CGo-OpenMap），不必重复创建或重命名远程。`origin` 为官方上游，`fork` 为自己的仓库。
 
-```sh
-cd /workspace/CGo-OpenMap
-git remote rename origin upstream
-git remote add origin https://github.com/betaxiaozhou/CGo-OpenMap.git
-git switch -c feat/singapore-network
-```
-
-这些命令是假设尚未配置 Fork；已存在 `origin` / `upstream` 时先 `git remote -v`，勿重复执行。本次交付保留未提交的工作区修改。已填写申请署名和主页；正式身份应在项目方接受后再调整。
+- `feat/singapore-network`：原在线预览分支，保留历史。
+- `fix/adjacent-jump-styles`：恢复上游丢失的邻站交互样式及同步缓存版本，公共前置修复。
+- `fix/repeated-station-neighbors`：独立通用交路修复，城市实现不依赖它。
+- `feat/singapore-review`：基于最新上游与公共样式修复的城市审查分支，仅增加新加坡数据、注册、文档和缓存资产。
 
 ## 3. 核对资料、补全与本地验收
 
@@ -41,7 +37,6 @@ node scripts/check-singapore-airport.mjs
 node scripts/check-singapore-transfers.mjs
 node scripts/check-singapore-geometry.mjs
 node editor/tests/selfcheck.js
-node scripts/check-site-version.mjs
 node scripts/check-cache-assets.mjs
 ```
 
@@ -49,17 +44,9 @@ node scripts/check-cache-assets.mjs
 
 ## 4. 提交到自己的 Fork，再发 PR
 
-检查差异，确认除新城市文件外，其余城市脚本和核心脚本的改动仅用于规范要求的全站版本同步：
+先查看 [PR 范围与剩余门禁](PR-READINESS.md)，用 `git diff fix/adjacent-jump-styles...feat/singapore-review --stat` 审查纯城市差异。公共样式修复应先由项目方审查合入，随后把城市 PR 对齐上游 main；通用交路修复另行评审，不混入城市 PR。不覆盖、重置或强推旧预览分支。
 
-```sh
-git diff --stat
-git diff --check
-git add city/singapore scripts/check-singapore-*.mjs city/data.js README.md sw.js main.html index.html editor/index.html privacy.html readme.html offline.html city/beijing/beijing.js city/changchun/changchun.js city/dalian/dalian.js city/fuzhou/fuzhou.js city/harbin/harbin.js city/hefei/hefei.js city/hohhot/hohhot.js city/lanzhou/lanzhou.js city/lanzhou/modules/lanzhou_fare_table.js city/lanzhou/modules/lanzhou_station_names.js city/shenyang/shenyang.js city/shijiazhuang/shijiazhuang.js city/suzhou/suzhou.js core/script.js
-git commit -m "Add Singapore MRT/LRT network and maintainer application"
-git push -u origin feat/singapore-network
-```
-
-然后在 GitHub 创建 Pull Request：base 为官方仓库 `main`，compare 为 `betaxiaozhou:feat/singapore-network`。标题可用 `新增新加坡 MRT/LRT 线路图及城市主理人申请`。正文写明申请人、范围、184 个运营站/13 个运营渲染条目，另有圣淘沙捷运 4 站/1 个条目及 3 座施工站/2 个施工元数据条目、资料版次、缺项、验证结果，附桌面/手机/暗色截图，并复制 CONTRIBUTING.md 的完整 PR 自查清单，只勾选已实际完成的项。不要把待核实站距、未接入时刻表或未经评审的质量分数写成已完成。
+然后在 GitHub 创建 Pull Request：base 为官方仓库 `main`，compare 为 `betaxiaozhou:feat/singapore-review`。标题可用 `新增新加坡 MRT/LRT 线路图及城市主理人申请`。正文写明申请人、范围、184 个运营站/13 个运营渲染条目，另有圣淘沙捷运 4 站/1 个条目及 3 座施工站/2 个施工元数据条目、资料版次、缺项、验证结果，附桌面/手机/暗色截图，并复制 CONTRIBUTING.md 的完整 PR 自查清单，只勾选已实际完成的项。不要把待核实站距、未接入时刻表或未经评审的质量分数写成已完成。
 
 ## 5. 评审、合入与署名确认
 

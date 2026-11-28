@@ -2,57 +2,56 @@
  * CGo OpenMap - PWA 渐进式离线缓存 Service Worker (sw.js)
  */
 
-const CACHE_NAME = 'cgo-openmap-v261128.180611';
+const CACHE_NAME = 'cgo-openmap-v261128.184551';
 // 地图瓦片专用缓存：与静态资源版本无关，激活新版本时需保留
 const TILE_CACHE_NAME = 'map-tiles-cache';
 const ASSETS_TO_CACHE = [
-    './city/singapore/modules/sentosa-express.js',
-    './city/singapore/modules/service-patterns.js',
-    './city/singapore/assets/line/sentosa-express.svg',
-    './city/singapore/assets/brand/sentosa.svg',
-    './scripts/check-singapore-sentosa.mjs',
-    './scripts/check-singapore-language.mjs',
-    './city/singapore/assets/fonts/SingaporeChinese-Regular.woff',
-    './city/singapore/assets/fonts/SingaporeChinese-Bold.woff',
-    './city/singapore/assets/fonts/OFL-NotoSansCJK.txt',
-    './city/singapore/assets/line/BP.svg',
-    './city/singapore/assets/line/CCL.svg',
-    './city/singapore/assets/line/DTL.svg',
-    './city/singapore/assets/line/EWL.svg',
-    './city/singapore/assets/line/NEL.svg',
-    './city/singapore/assets/line/NSL.svg',
-    './city/singapore/assets/line/PTC.svg',
-    './city/singapore/assets/line/STC.svg',
-    './city/singapore/assets/line/TEL.svg',
-    './scripts/check-singapore-airport.mjs',
-    './scripts/check-singapore-construction.mjs',
-    './scripts/check-singapore-transfers.mjs',
-    './scripts/check-singapore-geometry.mjs',
-    './scripts/check-singapore-chinese-reference.mjs',
-    './city/singapore/README.md',
-    './city/singapore/MAINTAINER_GUIDE.md',
-    './city/singapore/FONT-NOTICE.md',
-    './city/singapore/assets/water-light.svg',
-    './city/singapore/assets/water-dark.svg',
-    './city/singapore/assets/fonts/Lato-Regular.ttf',
-    './city/singapore/assets/fonts/Lato-Bold.ttf',
-    './city/singapore/assets/fonts/OFL.txt',
-    './city/singapore/modules/unpaid-transfer.js',
-    './city/singapore/data_reference_geometry.js',
-    './city/singapore/modules/airport-shuttle.js',
-    './city/singapore/modules/construction.js',
-    './city/singapore/data_construction.js',
-    // Singapore SMRT
-    './city/singapore/data_legend.js',
-    './city/singapore/data_stations.js',
-    './city/singapore/singapore.js',
-    './city/singapore/style.css',
-    './city/singapore/data_virtual_transfers.js',
-    './city/singapore/data_scattered.js',
-    './city/singapore/data_timetable.js',
-    './city/singapore/data_notopen.js',
-    './city/singapore/data_lines.js',
-    './city/singapore/stacard/script.js',
+    "./city/singapore/ASSET-RIGHTS.md",
+    "./city/singapore/QUALITY_REVIEW.md",
+    "./city/singapore/PR-READINESS.md",
+    "./city/singapore/permissions/LTA-request.md",
+    "./city/singapore/permissions/Sentosa-request.md",
+
+    "./city/singapore/assets/brand/public-transport.svg",
+    "./city/singapore/modules/sentosa-express.js",
+    "./city/singapore/modules/service-patterns.js",
+    "./city/singapore/assets/line/sentosa-express.svg",
+    "./city/singapore/assets/brand/sentosa.svg",
+    "./city/singapore/assets/fonts/SingaporeChinese-Regular.woff",
+    "./city/singapore/assets/fonts/SingaporeChinese-Bold.woff",
+    "./city/singapore/assets/fonts/OFL-NotoSansCJK.txt",
+    "./city/singapore/assets/line/BP.svg",
+    "./city/singapore/assets/line/CCL.svg",
+    "./city/singapore/assets/line/DTL.svg",
+    "./city/singapore/assets/line/EWL.svg",
+    "./city/singapore/assets/line/NEL.svg",
+    "./city/singapore/assets/line/NSL.svg",
+    "./city/singapore/assets/line/PTC.svg",
+    "./city/singapore/assets/line/STC.svg",
+    "./city/singapore/assets/line/TEL.svg",
+    "./city/singapore/README.md",
+    "./city/singapore/MAINTAINER_GUIDE.md",
+    "./city/singapore/FONT-NOTICE.md",
+    "./city/singapore/assets/water-light.svg",
+    "./city/singapore/assets/water-dark.svg",
+    "./city/singapore/assets/fonts/Lato-Regular.ttf",
+    "./city/singapore/assets/fonts/Lato-Bold.ttf",
+    "./city/singapore/assets/fonts/OFL.txt",
+    "./city/singapore/modules/unpaid-transfer.js",
+    "./city/singapore/data_reference_geometry.js",
+    "./city/singapore/modules/airport-shuttle.js",
+    "./city/singapore/modules/construction.js",
+    "./city/singapore/data_construction.js",
+    "./city/singapore/data_legend.js",
+    "./city/singapore/data_stations.js",
+    "./city/singapore/singapore.js",
+    "./city/singapore/style.css",
+    "./city/singapore/data_virtual_transfers.js",
+    "./city/singapore/data_scattered.js",
+    "./city/singapore/data_timetable.js",
+    "./city/singapore/data_notopen.js",
+    "./city/singapore/data_lines.js",
+    "./city/singapore/stacard/script.js",
 
     // 页面与入口
     './',
@@ -73,7 +72,6 @@ const ASSETS_TO_CACHE = [
 
     // 样式表
     './css/style.css',
-    './css/tool-style.css',
     './css/cgo_clr.css',
     './css/cgo_element.css',
     './css/cgo_ui.css',
@@ -84,7 +82,6 @@ const ASSETS_TO_CACHE = [
     // CGoWM 统一窗口管理系统与适配层
     './core/cgo-wm/addons.js',
     './core/cgo-wm/bridge.js',
-    './core/cgo-wm/builtin-addons.js',
     './core/cgo-wm/constants.js',
     './core/cgo-wm/dialogs.js',
     './core/cgo-wm/emitter.js',
@@ -106,8 +103,6 @@ const ASSETS_TO_CACHE = [
     // 核心通用 JS 库
     './core/cgo-ui.js',
     './core/tool-theme.js',
-    './core/portal-data.js',
-    './core/portal-view.js',
     './core/station-board.js',
     './core/image-viewer.js',
     './core/station-addons.js',
@@ -328,7 +323,6 @@ const ASSETS_TO_CACHE = [
     './core/shared/base/station-title.js',
     './core/shared/base/rdot-label.js',
     './core/shared/base/viewport-inset.js',
-    './core/shared/base/panel-tab-swipe-relay.js',
     // 分享卡（车站卡 / 行程卡）：DOM → canvas 海报 + 弹窗三动作，六城共用
     './core/shared/base/svg-raster.js',
     './core/shared/base/poster.js',
@@ -363,6 +357,9 @@ const ASSETS_TO_CACHE = [
     './core/shared/route/route-planner.js',
     './core/shared/route/route-panel.js',
     './core/shared/route/route-panel.css',
+    // 行程面板的按需脚本：面板图标与「站点搜索」，由各城 route-panel 之前顺序加载
+    './core/shared/route/route-panel-icons.js',
+    './core/shared/route/route-panel-search.js',
     // 跨城市「查找最近车站」（三城共用）：接管核心 LBS 的 confirm，改用 cgo-modal 三选一
     './core/shared/station/nearest-station.js',
     './core/shared/station/nearest-station.css',
@@ -373,6 +370,7 @@ const ASSETS_TO_CACHE = [
     './core/shared/base/station-panel-glass.css',
     // 地图小工具（东北四市共用）：票价图 / 等时圈，入口在「查找最近车站」按钮下方
     './core/shared/tools/map-tools.js',
+    './core/shared/tools/map-tools-color.js',
     './core/shared/tools/map-tools.css',
     // 线网发展史（沈阳）：按开通沿革把线网逐段「长」出来，作为免选站工具挂进地图小工具。
     // 三层结构：内核 + 状态计算（model）+ 视频导出（export），按此顺序加载，经 window.CGoOpeningHistoryShared 互通
@@ -902,23 +900,29 @@ const CORE_SHELL_PATTERNS = [
     /^\.\/assets\/images\//
 ];
 
+const CACHE_VERSION = CACHE_NAME.replace(/^cgo-openmap-v/, '');
 const PRECACHE_BATCH_SIZE = 2;
 const PRECACHE_BATCH_GAP_MS = 180;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function precacheBatch(cache, assets) {
+    let added = 0;
     for (let i = 0; i < assets.length; i += PRECACHE_BATCH_SIZE) {
         const batch = assets.slice(i, i + PRECACHE_BATCH_SIZE);
         await Promise.allSettled(batch.map(async (url) => {
             try {
                 const matched = await cache.match(url);
-                if (!matched) await cache.add(url);
+                if (!matched) {
+                    await cache.add(url);
+                    added++;
+                }
             } catch (err) {
                 // 单项非核心资源失败只静默跳过，不阻断运行
             }
         }));
         await sleep(PRECACHE_BATCH_GAP_MS);
     }
+    return added;
 }
 
 let isPrecaching = false;
@@ -951,8 +955,9 @@ async function runPrecacheRemaining(notifyClients = false) {
             }
         }
 
+        let newlyAdded = 0;
         if (unhitAssets.length > 0) {
-            await precacheBatch(cache, unhitAssets);
+            newlyAdded = await precacheBatch(cache, unhitAssets);
         }
 
         if (notifyClients) {
@@ -961,7 +966,7 @@ async function runPrecacheRemaining(notifyClients = false) {
                 c.postMessage({
                     type: 'PRECACHE_COMPLETE',
                     version: CACHE_NAME,
-                    cachedCount: remainingAssets.length - unhitAssets.length + unhitAssets.length
+                    cachedCount: remainingAssets.length - unhitAssets.length + newlyAdded
                 });
             });
         }
@@ -1068,15 +1073,21 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // 静态资源（CSS/JS/图片等）：精准匹配优先 -> 网络获取并更新缓存 -> 离线模糊回退
+    // 静态资源（CSS/JS/图片等）：精准匹配优先 -> 若 ?v= 与当前版本一致则命中无 query 预缓存 -> 网络获取并更新缓存 -> 离线模糊回退
     event.respondWith((async () => {
         const cache = await caches.open(CACHE_NAME);
 
-        // 优先精确匹配（如果版本号 query 完全一致且已缓存）
+        // 1. 优先精确匹配（含完整 query）
         const exactMatch = await cache.match(event.request);
         if (exactMatch) return exactMatch;
 
-        // 精确未命中（例如资源刚升级了 ?v= 版本号）：网络优先拉取最新版本并写入缓存
+        // 2. 若请求携带的 ?v= 与当前 CACHE_NAME 版本完全一致，允许直接复用无 query 的预缓存副本
+        if (reqUrl.searchParams.get('v') === CACHE_VERSION) {
+            const verMatch = await cache.match(event.request, { ignoreSearch: true });
+            if (verMatch) return verMatch;
+        }
+
+        // 3. 未命中或版本号已变更：网络拉取最新版本并写入缓存
         try {
             const networkRes = await fetch(event.request);
             if (networkRes && networkRes.status === 200) {
@@ -1093,78 +1104,7 @@ self.addEventListener('fetch', (event) => {
     })());
 });
 
-// 4. 定期后台同步 (Periodic Background Sync) - 支持定时更新城市线网和站点数据
-self.addEventListener('periodicsync', (event) => {
-    if (event.tag === 'update-city-data' || event.tag === 'cgo-sync') {
-        event.waitUntil((async () => {
-            try {
-                console.log('[SW] Periodic Sync: 正在后台静默检查城市数据更新');
-                const cache = await caches.open(CACHE_NAME);
-                const res = await fetch('./core/portal-data.js?t=' + Date.now());
-                if (res && res.status === 200) {
-                    await cache.put('./core/portal-data.js', res);
-                }
-            } catch (err) {
-                console.warn('[SW] Periodic Sync 异常:', err);
-            }
-        })());
-    }
-});
-
-// 5. 后台同步 (Background Sync) - 在网络重连后同步用户暂存的操作或编辑反馈
-self.addEventListener('sync', (event) => {
-    if (event.tag === 'sync-user-feedback' || event.tag === 'sync-editor-data' || event.tag === 'cgo-background-sync') {
-        event.waitUntil((async () => {
-            try {
-                console.log('[SW] Background Sync: 网络已恢复，正在同步队列任务');
-            } catch (err) {
-                console.warn('[SW] Background Sync 异常:', err);
-            }
-        })());
-    }
-});
-
-// 6. 推送通知 (Push Notifications) 与点击激活
-self.addEventListener('push', (event) => {
-    let data = {
-        title: 'CGo OpenMap 线路图开放平台',
-        body: '城市轨道交通线网有最新车站与时刻表更新上线！',
-        icon: './assets/icons/icon-192.png'
-    };
-    if (event.data) {
-        try {
-            data = event.data.json();
-        } catch (e) {
-            data.body = event.data.text();
-        }
-    }
-    const options = {
-        body: data.body,
-        icon: data.icon || './assets/icons/icon-192.png',
-        badge: './assets/icons/mapicon2.png',
-        data: { url: data.url || './index.html' }
-    };
-    event.waitUntil(self.registration.showNotification(data.title, options));
-});
-
-self.addEventListener('notificationclick', (event) => {
-    event.notification.close();
-    const targetUrl = (event.notification.data && event.notification.data.url) ? event.notification.data.url : './index.html';
-    event.waitUntil(
-        self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
-            for (const client of windowClients) {
-                if (client.url === targetUrl && 'focus' in client) {
-                    return client.focus();
-                }
-            }
-            if (self.clients.openWindow) {
-                return self.clients.openWindow(targetUrl);
-            }
-        })
-    );
-});
-
-// 7. 消息通讯控制 (例如由页面触发 SKIP_WAITING 立即激活新 SW，或由受控页面在空闲期延长生命周期预热)
+// 4. 消息通讯控制 (例如由页面触发 SKIP_WAITING 立即激活新 SW，或由受控页面在空闲期延长生命周期预热)
 self.addEventListener('message', (event) => {
     if (!event.data) return;
     if (event.data.type === 'SKIP_WAITING') {
