@@ -3583,8 +3583,8 @@ const stationsData = {
   },
   "SENTOSA_IMBIAH": {
     "type": "dot",
-    "x": 1375,
-    "y": 2285,
+    "x": 1380,
+    "y": 2280,
     "cn": "英比奥",
     "en": "Imbiah",
     "stationCodes": "",
