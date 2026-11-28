@@ -27,10 +27,11 @@
     font-display: swap;
 }
 .map-singapore .stacn { font-family: 'Singapore Chinese', 'Noto Sans SC', 'PingFang SC', sans-serif; font-weight: 400; }
-.map-singapore .label-group { --sg-label-size: 24px; --sg-label-leading: 28px; line-height: 1.08; }
+/* Match visible Chinese glyph centres to the signs, rather than the font line box. */
+.map-singapore .label-group { --sg-label-size: 24px; --sg-label-leading: 28px; --sg-label-optical-shift: -1px; line-height: 1.08; }
 /* Keep the city label metrics when the generic selected-state style is applied. */
 .map-singapore .label-group .stacn,
-.map-singapore .label-group.active .stacn { font-size: var(--sg-label-size); line-height: var(--sg-label-leading); }
+.map-singapore .label-group.active .stacn { font-size: var(--sg-label-size); line-height: var(--sg-label-leading); position: relative; top: var(--sg-label-optical-shift); }
 .map-singapore .label-group.type-tsf .stacn { font-weight: 700; }
 .map-singapore .staen { display: none; }
 .map-singapore .panel-cn-name { font-family: 'Singapore Chinese', 'Noto Sans SC', 'PingFang SC', sans-serif; }
@@ -64,11 +65,11 @@
 .map-singapore .label-group[data-sid^="SW"],
 .map-singapore .label-group[data-sid^="PE"],
 .map-singapore .label-group[data-sid^="PW"],
-.map-singapore .label-group.type-dot[data-sid^="BP"] { --sg-label-size: 19px; --sg-label-leading: 22px; }
+.map-singapore .label-group.type-dot[data-sid^="BP"] { --sg-label-size: 19px; --sg-label-leading: 22px; --sg-label-optical-shift: -.5px; }
 .map-singapore :is(#label_NE5, #label_NS25, #label_DT18) .stacn { width: 2em; white-space: normal; }
 .map-singapore #label_CC32 .stacn { width: 3em; white-space: normal; }
-.map-singapore :is(#label_TE18, #label_DT18) { --sg-label-size: 22px; --sg-label-leading: 25px; }
-.map-singapore .label-group[data-sid^="SENTOSA_"] { --sg-label-size: 22px; --sg-label-leading: 26px; }
+.map-singapore :is(#label_TE18, #label_DT18) { --sg-label-size: 22px; --sg-label-leading: 25px; --sg-label-optical-shift: -1.5px; }
+.map-singapore .label-group[data-sid^="SENTOSA_"] { --sg-label-size: 22px; --sg-label-leading: 26px; --sg-label-optical-shift: -2px; }
 .map-singapore .sg-line-badges .sg-sentosa-mark { display: block; height: 100%; width: auto; }
 .map-singapore { --sg-sentosa-logo-bg: #ffffff; }
 .map-singapore .sg-line-badges .line-badge:has(.sg-sentosa-mark) { background: var(--sg-sentosa-logo-bg); border-radius: 4px; padding: 3px 5px; }

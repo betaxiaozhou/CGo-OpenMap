@@ -1,4 +1,5 @@
-// Station positions: LTA official Chinese SM_CH_(Ver210726)_CCL6. Code/name/fare-area identities are preserved.
+// Station and label positions: LTA Chinese SM_CH_(Ver210726)_CCL6; real eight-direction label anchors.
+// Label offsets allow for the custom sign sizes. Code/name/fare-area identities are preserved.
 const stationsData = {
   "NS1": {
     "type": "tsf",
@@ -6,10 +7,10 @@ const stationsData = {
     "y": 1421.549,
     "cn": "裕廊东",
     "en": "Jurong East",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -26.0,
-      "y": 37.99
+      "x": 0.0,
+      "y": 15.8
     },
     "aliases": [
       "NS1",
@@ -28,8 +29,8 @@ const stationsData = {
     "en": "Bukit Batok",
     "align": "right",
     "offset": {
-      "x": -132.0,
-      "y": 3.99
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "NS2",
@@ -46,8 +47,8 @@ const stationsData = {
     "en": "Bukit Gombak",
     "align": "right",
     "offset": {
-      "x": -132.0,
-      "y": 3.99
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "NS3",
@@ -62,10 +63,10 @@ const stationsData = {
     "y": 891.316,
     "cn": "蔡厝港",
     "en": "Choa Chu Kang",
-    "align": "right",
+    "align": "bottom-right",
     "offset": {
-      "x": -142.32,
-      "y": -0.01
+      "x": -0.301,
+      "y": 15.0
     },
     "aliases": [
       "NS4",
@@ -82,10 +83,10 @@ const stationsData = {
     "y": 708.58,
     "cn": "油池",
     "en": "Yew Tee",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -84.0,
-      "y": -0.01
+      "x": -23.0,
+      "y": 0.0
     },
     "aliases": [
       "NS5",
@@ -100,10 +101,10 @@ const stationsData = {
     "y": 536.896,
     "cn": "克兰芝",
     "en": "Kranji",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -108.0,
-      "y": -0.01
+      "x": -23.0,
+      "y": 0.0
     },
     "aliases": [
       "NS7",
@@ -118,10 +119,10 @@ const stationsData = {
     "y": 340.229,
     "cn": "马西岭",
     "en": "Marsiling",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -108.01,
-      "y": -0.0
+      "x": -23.0,
+      "y": 0.0
     },
     "aliases": [
       "NS8",
@@ -136,10 +137,10 @@ const stationsData = {
     "y": 297.92,
     "cn": "兀兰",
     "en": "Woodlands",
-    "align": "right",
+    "align": "top-left",
     "offset": {
-      "x": -26.0,
-      "y": -50.01
+      "x": -57.32,
+      "y": -7.464
     },
     "aliases": [
       "NS9",
@@ -156,10 +157,10 @@ const stationsData = {
     "y": 299.091,
     "cn": "海军部",
     "en": "Admiralty",
-    "align": "right",
+    "align": "top",
     "offset": {
-      "x": -34.01,
-      "y": -34.5
+      "x": 0.0,
+      "y": -12.3
     },
     "aliases": [
       "NS10",
@@ -174,10 +175,10 @@ const stationsData = {
     "y": 299.091,
     "cn": "三巴旺",
     "en": "Sembawang",
-    "align": "right",
+    "align": "top",
     "offset": {
-      "x": -34.01,
-      "y": -34.5
+      "x": 0.0,
+      "y": -12.3
     },
     "aliases": [
       "NS11",
@@ -192,10 +193,10 @@ const stationsData = {
     "y": 299.091,
     "cn": "坎贝拉",
     "en": "Canberra",
-    "align": "right",
+    "align": "top",
     "offset": {
-      "x": -30.0,
-      "y": -34.5
+      "x": 0.0,
+      "y": -12.3
     },
     "aliases": [
       "NS12",
@@ -212,8 +213,8 @@ const stationsData = {
     "en": "Yishun",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NS13",
@@ -230,8 +231,8 @@ const stationsData = {
     "en": "Khatib",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NS14",
@@ -248,8 +249,8 @@ const stationsData = {
     "en": "Yio Chu Kang",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NS15",
@@ -266,8 +267,8 @@ const stationsData = {
     "en": "Ang Mo Kio",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NS16",
@@ -282,10 +283,10 @@ const stationsData = {
     "y": 762.073,
     "cn": "碧山",
     "en": "Bishan",
-    "align": "right",
+    "align": "top-right",
     "offset": {
-      "x": 1.99,
-      "y": -38.01
+      "x": 12.503,
+      "y": -15.0
     },
     "aliases": [
       "NS17",
@@ -304,8 +305,8 @@ const stationsData = {
     "en": "Braddell",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NS18",
@@ -322,8 +323,8 @@ const stationsData = {
     "en": "Toa Payoh",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NS19",
@@ -340,8 +341,8 @@ const stationsData = {
     "en": "Novena",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": -0.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NS20",
@@ -356,10 +357,10 @@ const stationsData = {
     "y": 1136.877,
     "cn": "纽顿",
     "en": "Newton",
-    "align": "right",
+    "align": "bottom-right",
     "offset": {
-      "x": -14.0,
-      "y": 38.0
+      "x": 4.27,
+      "y": 15.0
     },
     "aliases": [
       "Newton",
@@ -383,8 +384,8 @@ const stationsData = {
     "en": "Orchard",
     "align": "right",
     "offset": {
-      "x": 67.26,
-      "y": 3.99
+      "x": 66.28,
+      "y": 0.0
     },
     "aliases": [
       "NS22",
@@ -403,8 +404,8 @@ const stationsData = {
     "en": "Somerset",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NS23",
@@ -419,10 +420,10 @@ const stationsData = {
     "y": 1524.955,
     "cn": "多美歌",
     "en": "Dhoby Ghaut",
-    "align": "right",
+    "align": "top",
     "offset": {
-      "x": -50.01,
-      "y": -42.0
+      "x": 0.0,
+      "y": -15.8
     },
     "aliases": [
       "NS24",
@@ -442,8 +443,8 @@ const stationsData = {
     "en": "City Hall",
     "align": "right",
     "offset": {
-      "x": 67.26,
-      "y": 3.99
+      "x": 66.28,
+      "y": 0.0
     },
     "aliases": [
       "NS25",
@@ -460,10 +461,10 @@ const stationsData = {
     "y": 1863.756,
     "cn": "莱佛士坊",
     "en": "Raffles Place",
-    "align": "right",
+    "align": "bottom-right",
     "offset": {
-      "x": 67.27,
-      "y": 16.0
+      "x": 12.091,
+      "y": 15.0
     },
     "aliases": [
       "NS26",
@@ -480,10 +481,10 @@ const stationsData = {
     "y": 2016.437,
     "cn": "滨海湾",
     "en": "Marina Bay",
-    "align": "right",
+    "align": "bottom-right",
     "offset": {
-      "x": -191.92,
-      "y": 21.99
+      "x": 98.92,
+      "y": 4.202
     },
     "aliases": [
       "NS27",
@@ -503,8 +504,8 @@ const stationsData = {
     "en": "Marina South Pier",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NS28",
@@ -521,8 +522,8 @@ const stationsData = {
     "en": "Pasir Ris",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": 4.0
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "EW1",
@@ -539,8 +540,8 @@ const stationsData = {
     "en": "Tampines",
     "align": "right",
     "offset": {
-      "x": 30.14,
-      "y": -16.01
+      "x": 29.16,
+      "y": 0.0
     },
     "aliases": [
       "Tampines",
@@ -562,10 +563,10 @@ const stationsData = {
     "y": 942.092,
     "cn": "四美",
     "en": "Simei",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -84.02,
-      "y": -0.01
+      "x": -23.0,
+      "y": 0.0
     },
     "aliases": [
       "EW3",
@@ -580,10 +581,10 @@ const stationsData = {
     "y": 1001.525,
     "cn": "丹那美拉",
     "en": "Tanah Merah",
-    "align": "right",
+    "align": "bottom-left",
     "offset": {
-      "x": -86.01,
-      "y": 37.99
+      "x": 19.276,
+      "y": 15.0
     },
     "aliases": [
       "EW4",
@@ -600,10 +601,10 @@ const stationsData = {
     "y": 1001.314,
     "cn": "勿洛",
     "en": "Bedok",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -22.01,
-      "y": 34.49
+      "x": 0.0,
+      "y": 12.3
     },
     "aliases": [
       "EW5",
@@ -620,8 +621,8 @@ const stationsData = {
     "en": "Kembangan",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "EW6",
@@ -638,8 +639,8 @@ const stationsData = {
     "en": "Eunos",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "EW7",
@@ -656,8 +657,8 @@ const stationsData = {
     "en": "Paya Lebar",
     "align": "right",
     "offset": {
-      "x": 58.3,
-      "y": -0.01
+      "x": 57.32,
+      "y": 0.0
     },
     "aliases": [
       "EW8",
@@ -674,10 +675,10 @@ const stationsData = {
     "y": 1371.311,
     "cn": "阿裕尼",
     "en": "Aljunied",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -108.01,
-      "y": -0.01
+      "x": -23.0,
+      "y": 0.0
     },
     "aliases": [
       "EW9",
@@ -694,8 +695,8 @@ const stationsData = {
     "en": "Kallang",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW10",
@@ -712,8 +713,8 @@ const stationsData = {
     "en": "Lavender",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW11",
@@ -730,8 +731,8 @@ const stationsData = {
     "en": "Bugis",
     "align": "right",
     "offset": {
-      "x": 67.26,
-      "y": 3.99
+      "x": 66.28,
+      "y": 0.0
     },
     "aliases": [
       "EW12",
@@ -748,10 +749,10 @@ const stationsData = {
     "y": 1911.38,
     "cn": "丹戎巴葛",
     "en": "Tanjong Pagar",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -135.51,
-      "y": 4.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW15",
@@ -766,10 +767,10 @@ const stationsData = {
     "y": 1762.524,
     "cn": "欧南园",
     "en": "Outram Park",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -179.45,
-      "y": -0.01
+      "x": -94.44,
+      "y": 0.0
     },
     "aliases": [
       "EW16",
@@ -787,10 +788,10 @@ const stationsData = {
     "y": 1691.219,
     "cn": "中峇鲁",
     "en": "Tiong Bahru",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -111.51,
-      "y": -0.01
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW17",
@@ -807,8 +808,8 @@ const stationsData = {
     "en": "Redhill",
     "align": "right",
     "offset": {
-      "x": -87.51,
-      "y": -0.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW18",
@@ -825,8 +826,8 @@ const stationsData = {
     "en": "Queenstown",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW19",
@@ -843,8 +844,8 @@ const stationsData = {
     "en": "Commonwealth",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW20",
@@ -861,8 +862,8 @@ const stationsData = {
     "en": "Buona Vista",
     "align": "right",
     "offset": {
-      "x": 67.27,
-      "y": -0.0
+      "x": 66.28,
+      "y": 0.0
     },
     "aliases": [
       "EW21",
@@ -879,10 +880,10 @@ const stationsData = {
     "y": 1421.582,
     "cn": "杜弗",
     "en": "Dover",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -18.0,
-      "y": 34.48
+      "x": 0.0,
+      "y": 12.3
     },
     "aliases": [
       "EW22",
@@ -897,10 +898,10 @@ const stationsData = {
     "y": 1421.483,
     "cn": "金文泰",
     "en": "Clementi",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -30.0,
-      "y": 34.5
+      "x": 0.0,
+      "y": 12.3
     },
     "aliases": [
       "EW23",
@@ -915,10 +916,10 @@ const stationsData = {
     "y": 1421.458,
     "cn": "裕华园",
     "en": "Chinese Garden",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -26.0,
-      "y": 34.49
+      "x": 0.0,
+      "y": 12.3
     },
     "aliases": [
       "EW25",
@@ -933,10 +934,10 @@ const stationsData = {
     "y": 1421.458,
     "cn": "湖畔",
     "en": "Lakeside",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -18.0,
-      "y": 34.5
+      "x": 0.0,
+      "y": 12.3
     },
     "aliases": [
       "EW26",
@@ -953,8 +954,8 @@ const stationsData = {
     "en": "Boon Lay",
     "align": "right",
     "offset": {
-      "x": -87.51,
-      "y": 4.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW27",
@@ -971,8 +972,8 @@ const stationsData = {
     "en": "Pioneer",
     "align": "right",
     "offset": {
-      "x": -87.51,
-      "y": 4.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW28",
@@ -989,8 +990,8 @@ const stationsData = {
     "en": "Joo Koon",
     "align": "right",
     "offset": {
-      "x": -87.51,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW29",
@@ -1007,8 +1008,8 @@ const stationsData = {
     "en": "Gul Circle",
     "align": "right",
     "offset": {
-      "x": -111.51,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW30",
@@ -1025,8 +1026,8 @@ const stationsData = {
     "en": "Tuas Crescent",
     "align": "right",
     "offset": {
-      "x": -111.51,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW31",
@@ -1043,8 +1044,8 @@ const stationsData = {
     "en": "Tuas West Road",
     "align": "right",
     "offset": {
-      "x": -135.51,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW32",
@@ -1061,8 +1062,8 @@ const stationsData = {
     "en": "Tuas Link",
     "align": "right",
     "offset": {
-      "x": -135.51,
-      "y": -0.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "EW33",
@@ -1077,10 +1078,10 @@ const stationsData = {
     "y": 1618.547,
     "cn": "百胜",
     "en": "Bras Basah",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -84.0,
-      "y": 16.0
+      "x": -23.0,
+      "y": 0.0
     },
     "aliases": [
       "CC2",
@@ -1097,8 +1098,8 @@ const stationsData = {
     "en": "Esplanade",
     "align": "right",
     "offset": {
-      "x": 24.0,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "CC3",
@@ -1115,8 +1116,8 @@ const stationsData = {
     "en": "Promenade",
     "align": "right",
     "offset": {
-      "x": 62.79,
-      "y": 3.99
+      "x": 61.8,
+      "y": 0.0
     },
     "aliases": [
       "CC4",
@@ -1135,8 +1136,8 @@ const stationsData = {
     "en": "Nicoll Highway",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "CC5",
@@ -1153,8 +1154,8 @@ const stationsData = {
     "en": "Stadium",
     "align": "right",
     "offset": {
-      "x": 24.0,
-      "y": 3.99
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "CC6",
@@ -1171,8 +1172,8 @@ const stationsData = {
     "en": "Mountbatten",
     "align": "right",
     "offset": {
-      "x": 24.0,
-      "y": 4.0
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "CC7",
@@ -1189,8 +1190,8 @@ const stationsData = {
     "en": "Dakota",
     "align": "right",
     "offset": {
-      "x": 24.0,
-      "y": -0.0
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "CC8",
@@ -1205,10 +1206,10 @@ const stationsData = {
     "y": 1135.71,
     "cn": "麦波申",
     "en": "MacPherson",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -151.29,
-      "y": -0.0
+      "x": -66.28,
+      "y": 0.0
     },
     "aliases": [
       "CC10",
@@ -1227,8 +1228,8 @@ const stationsData = {
     "en": "Tai Seng",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": -4.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC11",
@@ -1245,8 +1246,8 @@ const stationsData = {
     "en": "Bartley",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC12",
@@ -1263,8 +1264,8 @@ const stationsData = {
     "en": "Serangoon",
     "align": "right",
     "offset": {
-      "x": 67.27,
-      "y": -0.01
+      "x": 66.28,
+      "y": 0.0
     },
     "aliases": [
       "CC13",
@@ -1281,10 +1282,10 @@ const stationsData = {
     "y": 775.9,
     "cn": "罗弄泉",
     "en": "Lorong Chuan",
-    "align": "right",
+    "align": "top",
     "offset": {
-      "x": -26.01,
-      "y": -34.51
+      "x": 0.0,
+      "y": -12.3
     },
     "aliases": [
       "CC14",
@@ -1299,10 +1300,10 @@ const stationsData = {
     "y": 794.877,
     "cn": "玛丽蒙",
     "en": "Marymount",
-    "align": "right",
+    "align": "top",
     "offset": {
-      "x": -26.0,
-      "y": 34.49
+      "x": 0.0,
+      "y": -12.3
     },
     "aliases": [
       "CC16",
@@ -1317,10 +1318,10 @@ const stationsData = {
     "y": 854.244,
     "cn": "加利谷",
     "en": "Caldecott",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -146.8,
-      "y": -4.01
+      "x": -61.8,
+      "y": 0.0
     },
     "aliases": [
       "CC17",
@@ -1337,10 +1338,10 @@ const stationsData = {
     "y": 1035.011,
     "cn": "植物园",
     "en": "Botanic Gardens",
-    "align": "right",
+    "align": "bottom-right",
     "offset": {
-      "x": -14.02,
-      "y": 37.99
+      "x": -6.261,
+      "y": 15.0
     },
     "aliases": [
       "CC19",
@@ -1357,10 +1358,10 @@ const stationsData = {
     "y": 1166.819,
     "cn": "花拉路",
     "en": "Farrer Road",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -111.51,
-      "y": 4.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC20",
@@ -1375,10 +1376,10 @@ const stationsData = {
     "y": 1276.907,
     "cn": "荷兰村",
     "en": "Holland Village",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -111.51,
-      "y": -0.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC21",
@@ -1393,10 +1394,10 @@ const stationsData = {
     "y": 1513.794,
     "cn": "纬壹",
     "en": "one-north",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -87.51,
-      "y": 4.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC23",
@@ -1411,10 +1412,10 @@ const stationsData = {
     "y": 1615.966,
     "cn": "肯特岗",
     "en": "Kent Ridge",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -111.5,
-      "y": 4.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC24",
@@ -1429,10 +1430,10 @@ const stationsData = {
     "y": 1708.69,
     "cn": "虎豹别墅",
     "en": "Haw Par Villa",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -135.51,
-      "y": -0.01
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC25",
@@ -1447,10 +1448,10 @@ const stationsData = {
     "y": 1790.479,
     "cn": "巴西班让",
     "en": "Pasir Panjang",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -135.51,
-      "y": -0.01
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC26",
@@ -1465,10 +1466,10 @@ const stationsData = {
     "y": 1871.416,
     "cn": "拉柏多公园",
     "en": "Labrador Park",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -159.51,
-      "y": -0.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC27",
@@ -1483,10 +1484,10 @@ const stationsData = {
     "y": 1946.065,
     "cn": "直落布兰雅",
     "en": "Telok Blangah",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -159.51,
-      "y": -0.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "CC28",
@@ -1501,10 +1502,10 @@ const stationsData = {
     "y": 2031.597,
     "cn": "港湾",
     "en": "HarbourFront",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -30.0,
-      "y": 38.0
+      "x": 0.0,
+      "y": 15.8
     },
     "aliases": [
       "CC29",
@@ -1521,10 +1522,10 @@ const stationsData = {
     "y": 2069.647,
     "cn": "吉宝",
     "en": "Keppel",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -18.01,
-      "y": 34.49
+      "x": 0.0,
+      "y": 12.3
     },
     "aliases": [
       "CC30",
@@ -1539,10 +1540,10 @@ const stationsData = {
     "y": 2086.423,
     "cn": "广东民",
     "en": "Cantonment",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -34.01,
-      "y": -34.51
+      "x": 0.0,
+      "y": 12.3
     },
     "aliases": [
       "CC31",
@@ -1557,10 +1558,10 @@ const stationsData = {
     "y": 2085.472,
     "cn": "爱德华太子路",
     "en": "Prince Edward Road",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -30.0,
-      "y": 48.49
+      "x": 0.0,
+      "y": 12.3
     },
     "aliases": [
       "CC32",
@@ -1577,8 +1578,8 @@ const stationsData = {
     "en": "Bayfront",
     "align": "right",
     "offset": {
-      "x": 67.27,
-      "y": -4.01
+      "x": 66.28,
+      "y": 0.0
     },
     "aliases": [
       "CC34",
@@ -1597,8 +1598,8 @@ const stationsData = {
     "en": "Woodlands North",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": -0.02
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "TE1",
@@ -1615,8 +1616,8 @@ const stationsData = {
     "en": "Woodlands South",
     "align": "right",
     "offset": {
-      "x": 24.0,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "TE3",
@@ -1633,7 +1634,7 @@ const stationsData = {
     "en": "Springleaf",
     "align": "right",
     "offset": {
-      "x": 24.0,
+      "x": 23.0,
       "y": 0.0
     },
     "aliases": [
@@ -1651,8 +1652,8 @@ const stationsData = {
     "en": "Lentor",
     "align": "right",
     "offset": {
-      "x": 24.0,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "TE5",
@@ -1669,8 +1670,8 @@ const stationsData = {
     "en": "Mayflower",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "TE6",
@@ -1687,8 +1688,8 @@ const stationsData = {
     "en": "Bright Hill",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": 4.0
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "TE7",
@@ -1703,10 +1704,10 @@ const stationsData = {
     "y": 746.079,
     "cn": "汤申路上段",
     "en": "Upper Thomson",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": 23.99,
-      "y": 3.99
+      "x": -23.0,
+      "y": 0.0
     },
     "aliases": [
       "TE8",
@@ -1721,10 +1722,10 @@ const stationsData = {
     "y": 1034.334,
     "cn": "史蒂芬",
     "en": "Stevens",
-    "align": "right",
+    "align": "top-left",
     "offset": {
-      "x": 2.0,
-      "y": 37.99
+      "x": -7.245,
+      "y": -15.0
     },
     "aliases": [
       "TE11",
@@ -1741,10 +1742,10 @@ const stationsData = {
     "y": 1128.02,
     "cn": "纳比雅",
     "en": "Napier",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": 1.98,
-      "y": 34.49
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE12",
@@ -1759,10 +1760,10 @@ const stationsData = {
     "y": 1208.722,
     "cn": "乌节大道",
     "en": "Orchard Boulevard",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -135.52,
-      "y": -0.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE13",
@@ -1777,10 +1778,10 @@ const stationsData = {
     "y": 1386.997,
     "cn": "大世界",
     "en": "Great World",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -111.52,
-      "y": -0.01
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE15",
@@ -1797,8 +1798,8 @@ const stationsData = {
     "en": "Havelock",
     "align": "right",
     "offset": {
-      "x": 27.48,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE16",
@@ -1813,10 +1814,10 @@ const stationsData = {
     "y": 1825.07,
     "cn": "麦士威",
     "en": "Maxwell",
-    "align": "right",
+    "align": "top-right",
     "offset": {
-      "x": 27.49,
-      "y": 4.0
+      "x": -13.503,
+      "y": -12.0
     },
     "aliases": [
       "TE18",
@@ -1831,10 +1832,10 @@ const stationsData = {
     "y": 1979.838,
     "cn": "珊顿道",
     "en": "Shenton Way",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -111.51,
-      "y": 3.99
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE19",
@@ -1851,8 +1852,8 @@ const stationsData = {
     "en": "Gardens by the Bay",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": -4.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE22",
@@ -1869,8 +1870,8 @@ const stationsData = {
     "en": "Tanjong Rhu",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE23",
@@ -1887,8 +1888,8 @@ const stationsData = {
     "en": "Katong Park",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE24",
@@ -1905,8 +1906,8 @@ const stationsData = {
     "en": "Tanjong Katong",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": 4.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE25",
@@ -1923,8 +1924,8 @@ const stationsData = {
     "en": "Marine Parade",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE26",
@@ -1941,8 +1942,8 @@ const stationsData = {
     "en": "Marine Terrace",
     "align": "right",
     "offset": {
-      "x": 27.5,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE27",
@@ -1959,8 +1960,8 @@ const stationsData = {
     "en": "Siglap",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE28",
@@ -1977,8 +1978,8 @@ const stationsData = {
     "en": "Bayshore",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE29",
@@ -1993,10 +1994,10 @@ const stationsData = {
     "y": 825.322,
     "cn": "南景",
     "en": "South View",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": 3.99
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "BP2",
@@ -2011,10 +2012,10 @@ const stationsData = {
     "y": 760.32,
     "cn": "吉丰",
     "en": "Keat Hong",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": 3.99
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "BP3",
@@ -2029,10 +2030,10 @@ const stationsData = {
     "y": 697.832,
     "cn": "德惠",
     "en": "Teck Whye",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": -0.01
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "BP4",
@@ -2047,10 +2048,10 @@ const stationsData = {
     "y": 632.639,
     "cn": "凤凰",
     "en": "Phoenix",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": 3.99
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "BP5",
@@ -2067,8 +2068,8 @@ const stationsData = {
     "en": "Bukit Panjang",
     "align": "right",
     "offset": {
-      "x": -138.17,
-      "y": -20.01
+      "x": 29.16,
+      "y": 0.0
     },
     "aliases": [
       "Bukit Panjang",
@@ -2092,8 +2093,8 @@ const stationsData = {
     "en": "Petir",
     "align": "right",
     "offset": {
-      "x": 17.84,
-      "y": -0.01
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "BP7",
@@ -2110,8 +2111,8 @@ const stationsData = {
     "en": "Pending",
     "align": "right",
     "offset": {
-      "x": 17.84,
-      "y": 4.0
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "BP8",
@@ -2128,8 +2129,8 @@ const stationsData = {
     "en": "Bangkit",
     "align": "right",
     "offset": {
-      "x": 17.82,
-      "y": 3.99
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "BP9",
@@ -2144,10 +2145,10 @@ const stationsData = {
     "y": 370.993,
     "cn": "法嘉",
     "en": "Fajar",
-    "align": "right",
+    "align": "top",
     "offset": {
-      "x": -13.01,
-      "y": -28.0
+      "x": 0.0,
+      "y": -9.3
     },
     "aliases": [
       "BP10",
@@ -2162,10 +2163,10 @@ const stationsData = {
     "y": 398.527,
     "cn": "实加",
     "en": "Segar",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -70.38,
-      "y": -0.01
+      "x": -19.36,
+      "y": 0.0
     },
     "aliases": [
       "BP11",
@@ -2180,10 +2181,10 @@ const stationsData = {
     "y": 442.738,
     "cn": "泽拉邦",
     "en": "Jelapang",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -89.39,
-      "y": 4.0
+      "x": -19.36,
+      "y": 0.0
     },
     "aliases": [
       "BP12",
@@ -2198,10 +2199,10 @@ const stationsData = {
     "y": 485.692,
     "cn": "信佳",
     "en": "Senja",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -70.38,
-      "y": -0.01
+      "x": -19.36,
+      "y": 0.0
     },
     "aliases": [
       "BP13",
@@ -2216,10 +2217,10 @@ const stationsData = {
     "y": 1115.972,
     "cn": "博览",
     "en": "Expo",
-    "align": "right",
+    "align": "top-left",
     "offset": {
-      "x": 1.99,
-      "y": -38.01
+      "x": -6.901,
+      "y": -15.0
     },
     "aliases": [
       "CG1",
@@ -2236,10 +2237,10 @@ const stationsData = {
     "y": 1116.142,
     "cn": "樟宜机场",
     "en": "Changi Airport",
-    "align": "right",
+    "align": "bottom-right",
     "offset": {
-      "x": -38.0,
-      "y": 34.5
+      "x": -39.303,
+      "y": 11.5
     },
     "aliases": [
       "CG2",
@@ -2256,8 +2257,8 @@ const stationsData = {
     "en": "Chinatown",
     "align": "right",
     "offset": {
-      "x": 62.79,
-      "y": 11.99
+      "x": 61.8,
+      "y": 0.0
     },
     "aliases": [
       "NE4",
@@ -2276,8 +2277,8 @@ const stationsData = {
     "en": "Clarke Quay",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": 16.0
+      "x": 23.0,
+      "y": 4.0
     },
     "aliases": [
       "NE5",
@@ -2294,8 +2295,8 @@ const stationsData = {
     "en": "Little India",
     "align": "right",
     "offset": {
-      "x": 62.79,
-      "y": -0.01
+      "x": 61.8,
+      "y": 0.0
     },
     "aliases": [
       "NE7",
@@ -2314,8 +2315,8 @@ const stationsData = {
     "en": "Farrer Park",
     "align": "right",
     "offset": {
-      "x": 24.0,
-      "y": 3.99
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "NE8",
@@ -2332,8 +2333,8 @@ const stationsData = {
     "en": "Boon Keng",
     "align": "right",
     "offset": {
-      "x": 24.0,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "NE9",
@@ -2350,8 +2351,8 @@ const stationsData = {
     "en": "Potong Pasir",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NE10",
@@ -2368,8 +2369,8 @@ const stationsData = {
     "en": "Woodleigh",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NE11",
@@ -2386,8 +2387,8 @@ const stationsData = {
     "en": "Kovan",
     "align": "right",
     "offset": {
-      "x": -87.51,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NE13",
@@ -2402,10 +2403,10 @@ const stationsData = {
     "y": 688.478,
     "cn": "后港",
     "en": "Hougang",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -87.5,
-      "y": -0.01
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "NE14",
@@ -2420,10 +2421,10 @@ const stationsData = {
     "y": 622.928,
     "cn": "万国",
     "en": "Buangkok",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -87.5,
-      "y": -0.01
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "NE15",
@@ -2438,10 +2439,10 @@ const stationsData = {
     "y": 555.943,
     "cn": "盛港",
     "en": "Sengkang",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -127.28,
-      "y": -0.01
+      "x": -66.28,
+      "y": 0.0
     },
     "aliases": [
       "NE16",
@@ -2460,8 +2461,8 @@ const stationsData = {
     "en": "Punggol",
     "align": "right",
     "offset": {
-      "x": 67.27,
-      "y": -0.01
+      "x": 66.28,
+      "y": 0.0
     },
     "aliases": [
       "NE17",
@@ -2480,8 +2481,8 @@ const stationsData = {
     "en": "Punggol Coast",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -4.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "NE18",
@@ -2498,8 +2499,8 @@ const stationsData = {
     "en": "Cashew",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "DT2",
@@ -2516,8 +2517,8 @@ const stationsData = {
     "en": "Hillview",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "DT3",
@@ -2534,8 +2535,8 @@ const stationsData = {
     "en": "Hume",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": 3.99
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "DT4",
@@ -2552,8 +2553,8 @@ const stationsData = {
     "en": "Beauty World",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": 3.99
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "DT5",
@@ -2570,8 +2571,8 @@ const stationsData = {
     "en": "King Albert Park",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": -0.01
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "DT6",
@@ -2588,8 +2589,8 @@ const stationsData = {
     "en": "Sixth Avenue",
     "align": "right",
     "offset": {
-      "x": 23.99,
-      "y": 3.99
+      "x": 23.0,
+      "y": 0.0
     },
     "aliases": [
       "DT7",
@@ -2604,10 +2605,10 @@ const stationsData = {
     "y": 1007.857,
     "cn": "陈嘉庚",
     "en": "Tan Kah Kee",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -108.0,
-      "y": -0.0
+      "x": -23.0,
+      "y": 0.0
     },
     "aliases": [
       "DT8",
@@ -2624,8 +2625,8 @@ const stationsData = {
     "en": "Rochor",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT13",
@@ -2640,10 +2641,10 @@ const stationsData = {
     "y": 1978.021,
     "cn": "市中心",
     "en": "Downtown",
-    "align": "right",
+    "align": "top",
     "offset": {
-      "x": -26.01,
-      "y": -34.5
+      "x": 0.0,
+      "y": -12.3
     },
     "aliases": [
       "DT17",
@@ -2658,10 +2659,10 @@ const stationsData = {
     "y": 1867.304,
     "cn": "直落亚逸",
     "en": "Telok Ayer",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -81.51,
-      "y": 8.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT18",
@@ -2676,10 +2677,10 @@ const stationsData = {
     "y": 1568.648,
     "cn": "福康宁",
     "en": "Fort Canning",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -111.51,
-      "y": -4.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT20",
@@ -2694,10 +2695,10 @@ const stationsData = {
     "y": 1537.71,
     "cn": "明古连",
     "en": "Bencoolen",
-    "align": "right",
+    "align": "top-left",
     "offset": {
-      "x": -74.01,
-      "y": -34.5
+      "x": 5.621,
+      "y": -11.5
     },
     "aliases": [
       "DT21",
@@ -2714,8 +2715,8 @@ const stationsData = {
     "en": "Jalan Besar",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT22",
@@ -2730,10 +2731,10 @@ const stationsData = {
     "y": 1354.758,
     "cn": "明地迷亚",
     "en": "Bendemeer",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -135.51,
-      "y": -4.01
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT23",
@@ -2748,10 +2749,10 @@ const stationsData = {
     "y": 1281.746,
     "cn": "芽笼峇鲁",
     "en": "Geylang Bahru",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -135.51,
-      "y": 4.0
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT24",
@@ -2766,10 +2767,10 @@ const stationsData = {
     "y": 1208.726,
     "cn": "玛达",
     "en": "Mattar",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -87.51,
-      "y": -0.01
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT25",
@@ -2786,8 +2787,8 @@ const stationsData = {
     "en": "Ubi",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT27",
@@ -2804,8 +2805,8 @@ const stationsData = {
     "en": "Kaki Bukit",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT28",
@@ -2820,10 +2821,10 @@ const stationsData = {
     "y": 904.759,
     "cn": "勿洛北",
     "en": "Bedok North",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": 27.5,
-      "y": 11.99
+      "x": -26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT29",
@@ -2838,10 +2839,10 @@ const stationsData = {
     "y": 879.313,
     "cn": "勿洛蓄水池",
     "en": "Bedok Reservoir",
-    "align": "right",
+    "align": "bottom",
     "offset": {
-      "x": -54.01,
-      "y": -34.5
+      "x": 0.0,
+      "y": 12.3
     },
     "aliases": [
       "DT30",
@@ -2856,10 +2857,10 @@ const stationsData = {
     "y": 879.313,
     "cn": "淡滨尼西",
     "en": "Tampines West",
-    "align": "right",
+    "align": "top",
     "offset": {
-      "x": -46.02,
-      "y": -34.5
+      "x": 0.0,
+      "y": -12.3
     },
     "aliases": [
       "DT31",
@@ -2876,8 +2877,8 @@ const stationsData = {
     "en": "Tampines East",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": 3.99
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT33",
@@ -2894,8 +2895,8 @@ const stationsData = {
     "en": "Upper Changi",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.01
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT34",
@@ -2912,8 +2913,8 @@ const stationsData = {
     "en": "Compassvale",
     "align": "right",
     "offset": {
-      "x": 17.82,
-      "y": 3.99
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "SE1",
@@ -2930,8 +2931,8 @@ const stationsData = {
     "en": "Rumbia",
     "align": "right",
     "offset": {
-      "x": 17.83,
-      "y": -0.01
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "SE2",
@@ -2948,8 +2949,8 @@ const stationsData = {
     "en": "Bakau",
     "align": "right",
     "offset": {
-      "x": 17.82,
-      "y": -0.01
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "SE3",
@@ -2964,10 +2965,10 @@ const stationsData = {
     "y": 722.544,
     "cn": "港脚",
     "en": "Kangkar",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": -0.01
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "SE4",
@@ -2982,10 +2983,10 @@ const stationsData = {
     "y": 682.63,
     "cn": "兰岗",
     "en": "Ranggung",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.85,
-      "y": -0.0
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "SE5",
@@ -3002,8 +3003,8 @@ const stationsData = {
     "en": "Cheng Lim",
     "align": "right",
     "offset": {
-      "x": 17.82,
-      "y": -4.0
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "SW1",
@@ -3020,8 +3021,8 @@ const stationsData = {
     "en": "Farmway",
     "align": "right",
     "offset": {
-      "x": 17.83,
-      "y": -0.01
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "SW2",
@@ -3038,8 +3039,8 @@ const stationsData = {
     "en": "Kupang",
     "align": "right",
     "offset": {
-      "x": 17.84,
-      "y": -0.0
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "SW3",
@@ -3054,10 +3055,10 @@ const stationsData = {
     "y": 362.729,
     "cn": "丹甘",
     "en": "Thanggam",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.87,
-      "y": 3.99
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "SW4",
@@ -3072,10 +3073,10 @@ const stationsData = {
     "y": 393.701,
     "cn": "芬微",
     "en": "Fernvale",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": -0.01
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "SW5",
@@ -3090,10 +3091,10 @@ const stationsData = {
     "y": 435.659,
     "cn": "拉雅",
     "en": "Layar",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.87,
-      "y": -0.0
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "SW6",
@@ -3108,10 +3109,10 @@ const stationsData = {
     "y": 470.675,
     "cn": "同港",
     "en": "Tongkang",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": -0.0
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "SW7",
@@ -3126,10 +3127,10 @@ const stationsData = {
     "y": 503.468,
     "cn": "仁宗",
     "en": "Renjong",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": -0.01
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "SW8",
@@ -3144,10 +3145,10 @@ const stationsData = {
     "y": 496.665,
     "cn": "海湾",
     "en": "Cove",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.87,
-      "y": 4.0
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "PE1",
@@ -3162,10 +3163,10 @@ const stationsData = {
     "y": 533.329,
     "cn": "丽园",
     "en": "Meridian",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": -0.01
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "PE2",
@@ -3180,10 +3181,10 @@ const stationsData = {
     "y": 570.673,
     "cn": "珊瑚",
     "en": "Coral Edge",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": -0.01
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "PE3",
@@ -3200,8 +3201,8 @@ const stationsData = {
     "en": "Riviera",
     "align": "right",
     "offset": {
-      "x": 17.83,
-      "y": -0.0
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "PE4",
@@ -3218,8 +3219,8 @@ const stationsData = {
     "en": "Kadaloor",
     "align": "right",
     "offset": {
-      "x": 17.83,
-      "y": -0.0
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "PE5",
@@ -3236,8 +3237,8 @@ const stationsData = {
     "en": "Oasis",
     "align": "right",
     "offset": {
-      "x": 17.83,
-      "y": -0.01
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "PE6",
@@ -3254,8 +3255,8 @@ const stationsData = {
     "en": "Damai",
     "align": "right",
     "offset": {
-      "x": 17.83,
-      "y": -4.0
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "PE7",
@@ -3272,8 +3273,8 @@ const stationsData = {
     "en": "Sam Kee",
     "align": "right",
     "offset": {
-      "x": 17.83,
-      "y": 3.99
+      "x": 16.84,
+      "y": 0.0
     },
     "aliases": [
       "PW1",
@@ -3290,7 +3291,7 @@ const stationsData = {
     "en": "Teck Lee",
     "align": "right",
     "offset": {
-      "x": 17.83,
+      "x": 16.84,
       "y": -0.0
     },
     "aliases": [
@@ -3308,8 +3309,8 @@ const stationsData = {
     "en": "Punggol Point",
     "align": "right",
     "offset": {
-      "x": 17.84,
-      "y": -4.01
+      "x": 16.84,
+      "y": -0.0
     },
     "aliases": [
       "PW3",
@@ -3324,10 +3325,10 @@ const stationsData = {
     "y": 208.972,
     "cn": "山姆",
     "en": "Samudera",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.87,
-      "y": -0.01
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "PW4",
@@ -3342,10 +3343,10 @@ const stationsData = {
     "y": 263.046,
     "cn": "尼蒙",
     "en": "Nibong",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.86,
-      "y": -0.01
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "PW5",
@@ -3360,10 +3361,10 @@ const stationsData = {
     "y": 299.678,
     "cn": "苏芒",
     "en": "Sumang",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.85,
-      "y": -0.0
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "PW6",
@@ -3378,10 +3379,10 @@ const stationsData = {
     "y": 336.048,
     "cn": "树德",
     "en": "Soo Teck",
-    "align": "right",
+    "align": "left",
     "offset": {
-      "x": -67.85,
-      "y": -4.0
+      "x": -16.84,
+      "y": 0.0
     },
     "aliases": [
       "PW7",
@@ -3476,8 +3477,8 @@ const stationsData = {
     "en": "Bedok South",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": 0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "TE30",
@@ -3496,10 +3497,10 @@ const stationsData = {
     "y": 1269.643,
     "cn": "双溪勿洛",
     "en": "Sungei Bedok",
-    "align": "right",
+    "align": "bottom-right",
     "offset": {
-      "x": -6,
-      "y": 38
+      "x": -7.1,
+      "y": 15.0
     },
     "aliases": [
       "TE31",
@@ -3522,8 +3523,8 @@ const stationsData = {
     "en": "Xilin",
     "align": "right",
     "offset": {
-      "x": 27.49,
-      "y": -0.0
+      "x": 26.5,
+      "y": 0.0
     },
     "aliases": [
       "DT36",
@@ -3547,7 +3548,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 19,
+      "x": 18.0,
       "y": 0
     },
     "aliases": [
@@ -3569,7 +3570,7 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 19,
+      "x": 18.0,
       "y": 0
     },
     "aliases": [
@@ -3591,8 +3592,8 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 19,
-      "y": 8
+      "x": 18.0,
+      "y": 0
     },
     "aliases": [
       "英比奥",
@@ -3613,8 +3614,8 @@ const stationsData = {
     "sentosaExpress": true,
     "align": "right",
     "offset": {
-      "x": 19,
-      "y": 6
+      "x": 18.0,
+      "y": 0
     },
     "aliases": [
       "海滩",
