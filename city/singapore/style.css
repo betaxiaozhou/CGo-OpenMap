@@ -41,6 +41,14 @@
 .map-singapore .sg-terminal-marker svg { display: block; width: 100%; height: 100%; }
 .sg-terminal-key { display: flex; gap: 10px; align-items: center; font-size: 12px; line-height: 1.5; color: var(--text-main); }
 .sg-terminal-key svg { width: 28px; height: 28px; flex-shrink: 0; }
+/* Same card code-cell height and lettering for ordinary, interchange and tap-out signs. */
+.map-singapore .panel-badges.sg-station-badges { --sg-card-sign-height: 24px; gap: 0; margin-right: 0; }
+.map-singapore .sg-card-station-sign { display: block; flex-shrink: 0; height: var(--sg-card-sign-height); width: calc(var(--sg-card-sign-height) * var(--sg-card-sign-ratio)); }
+.map-singapore .sg-card-station-sign > svg { display: block; width: 100%; height: 100%; }
+.map-singapore .sg-card-transfer-connector { display: block; flex-shrink: 0; width: 10px; height: 1px; background: linear-gradient(to right, var(--sg-connector-from) 50%, var(--sg-connector-to) 50%); }
+@media (max-width: 380px) {
+    .map-singapore .panel-badges.sg-station-badges { --sg-card-sign-height: 22px; }
+}
 .map-singapore .sg-line-badges .line-badge { height: 32px; width: auto; flex-shrink: 0; border-radius: 0; }
 .map-singapore .sg-line-badges .sg-line-mark { display: block; height: 100%; width: auto; }
 .map-singapore .sg-line-badges .sg-sentosa-brand { height: 24px; width: 135px; flex-shrink: 0; background: transparent; padding: 0; }

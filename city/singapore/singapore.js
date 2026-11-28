@@ -81,7 +81,7 @@
         });
     };
     // Bow-sided station codes; interchange segments share one continuous silhouette.
-    City.renderStationIcon = function (station) {
+    City.renderStationIcon = function (station, { compact = false, idPrefix = 'sg-code-' } = {}) {
         if (station.sentosaExpress) {
             return {
                 html: '<img class="sg-sentosa-mark" data-symbol="monorail" data-source="lta-system-map" src="./city/singapore/assets/line/sentosa-express.svg' + (window.CGO_ASSET_VERSION ? '?v=' + window.CGO_ASSET_VERSION : '') + '" alt="" width="36" height="34">',
@@ -93,9 +93,9 @@
         const palette = { NS: '#e1251b', EW: '#009645', CG: '#009645', CC: '#fa9e0d', TE: '#9d5918', BP: '#718472', NE: '#9e28b5', DT: '#0055b8', SE: '#718472', SW: '#718472', PE: '#718472', PW: '#718472', STC: '#718472', PTC: '#718472' };
         const transfer = codes.length > 1 || station.type === 'tsfo';
         const lightRail = !transfer && /^(BP|SE|SW|PE|PW)/.test(codes[0]);
-        const factor = lightRail ? 0.72 : 1;
-        const height = (transfer ? 32 : 25) * factor;
-        const cells = codes.map(code => ((code.match(/\d+$/)?.[0].length || 2) === 1 ? 44 : 51) * (transfer ? 1.28 : 1) * factor);
+        const factor = !compact && lightRail ? 0.72 : 1;
+        const height = (!compact && transfer ? 32 : 25) * factor;
+        const cells = codes.map(code => ((code.match(/\d+$/)?.[0].length || 2) === 1 ? 44 : 51) * (!compact && transfer ? 1.28 : 1) * factor);
         const width = cells.reduce((sum, cell) => sum + cell, 0);
         // Coordinates normalized from the characteristic bowed sides, not rounded rectangles.
         const h = height, w = width, n = v => Number(v.toFixed(2));
@@ -108,7 +108,7 @@
             C${n(.02875*h)} ${n(.7474*h)} 0 ${n(.6267*h)} 0 ${n(.5*h)}
             C0 ${n(.3733*h)} ${n(.02875*h)} ${n(.2526*h)} ${n(.0854*h)} ${n(.1402*h)}
             C${n(.102*h)} ${n(.1075*h)} ${n(.165*h)} 0 ${n(.276*h)} 0 Z`;
-        const clipId = 'sg-code-' + codes.join('-');
+        const clipId = idPrefix + codes.join('-');
         let x = 0;
         const plates = codes.map((code, index) => {
             const [, prefix, number = ''] = code.match(/^([A-Z]+)(\d*)$/);
@@ -116,13 +116,13 @@
             const ink = prefix === 'CC' ? '#2d2a26' : '#ffffff';
             const separator = code === 'CG' && index > 0 ? `<path d="M${x} 0 V${height}" stroke="#ffffff" stroke-width="1.5"/>` : '';
             const plate = `<rect x="${x}" y="0" width="${cell + 0.1}" height="${height}" fill="${palette[prefix]}"/>
-                <text x="${center}" y="${height/2}" dominant-baseline="central" text-anchor="middle" fill="${ink}" font-family="Singapore Lato, sans-serif" font-size="${(transfer ? 18.5 : 14.5) * factor}" font-weight="700">${prefix}${number ? ' ' + number : ''}</text>${separator}`;
+                <text x="${center}" y="${height/2}" dominant-baseline="central" text-anchor="middle" fill="${ink}" font-family="Singapore Lato, sans-serif" font-size="${(!compact && transfer ? 18.5 : 14.5) * factor}" font-weight="700">${prefix}${number ? ' ' + number : ''}</text>${separator}`;
             x += cell;
             return plate;
         }).join('');
         return {
             html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 ${width+2} ${height+2}" aria-hidden="true"><defs><clipPath id="${clipId}"><path d="${shape}"/></clipPath></defs><g clip-path="url(#${clipId})">${plates}</g><path d="${shape}" fill="none" stroke="#ffffff" stroke-width="1.2"/></svg>`,
-            width: width + 2, height: height + 2,
+            width: width + 2, height: height + 2, color: palette[codes[0].match(/^[A-Z]+/)[0]],
             className: station.type === 'tsfo' ? 'sg-station-sign sg-transfer-sign sg-tap-out-sign' : transfer ? 'sg-station-sign sg-transfer-sign' : 'sg-station-sign', zIndex: transfer ? 22 : 18
         };
     };
@@ -138,17 +138,27 @@
     };
     City.stationBoard.modules['header-badges'] = {
         slot: 'header', order: 30,
-        render({ relatedLinesInfo = [] }) {
-            const seen = new Set();
+        render({ station }) {
+            if (station.sentosaExpress) {
+                return '<div class="panel-badges sg-line-badges sg-station-badges"><span class="svg-icon-placeholder line-badge sg-sentosa-brand" data-src="./city/singapore/assets/brand/sentosa.svg" title="Sentosa 圣淘沙"></span></div>';
+            }
             const escape = window.CGoA11y.escapeHtml;
-            const badges = relatedLinesInfo.filter(info => {
-                if (!info.svg || seen.has(info.svg)) return false;
-                seen.add(info.svg);
-                return true;
-            }).map(info => info.id === 'SENTOSA'
-                ? '<span class="svg-icon-placeholder line-badge sg-sentosa-brand" data-src="./city/singapore/assets/brand/sentosa.svg" title="Sentosa 圣淘沙"></span>'
-                : `<span class="svg-icon-placeholder line-badge" data-src="${escape(info.svg)}" title="${escape(info.name)}" style="--svgclr:${escape(info.svgclr)};--svgtext:${escape(info.svgtext)}"></span>`).join('');
-            return `<div class="panel-badges sg-line-badges">${badges}</div>`;
+            // Card signs share the map silhouette, with a single size for all code cells.
+            const sign = item => City.renderStationIcon(item, { compact: true, idPrefix: 'sg-card-code-' });
+            let items = [station];
+            if (station.paidAreaTransfer) {
+                const pair = VIRTUAL_FREE_CONNECT_LINES.find(({ from, to }) =>
+                    from === station.id || to === station.id);
+                if (pair) items = [stationsData[pair.from], stationsData[pair.to]];
+            }
+            const signs = items.map(sign);
+            if (signs.some(item => !item)) return '';
+            const plates = signs.map((item, index) => {
+                const connector = index ? `<span class="sg-card-transfer-connector" aria-hidden="true" style="--sg-connector-from:${signs[index - 1].color};--sg-connector-to:${item.color}"></span>` : '';
+                return connector + `<span class="sg-card-station-sign" data-codes="${escape(items[index].stationCodes)}" style="--sg-card-sign-ratio:${item.width / item.height}">${item.html}</span>`;
+            }).join('');
+            const description = items.map(item => item.stationCodes).join('，出闸换乘，');
+            return `<div class="panel-badges sg-station-badges${items.length > 1 ? ' sg-card-tap-out' : ''}" role="img" aria-label="${escape(description)}">${plates}</div>`;
         }
     };
     if (typeof document !== 'undefined' && document.write) {
