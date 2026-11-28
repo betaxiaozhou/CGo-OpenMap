@@ -131,8 +131,7 @@
         slot: 'header', order: 20,
         render({ station }) {
             const escape = window.CGoA11y.escapeHtml;
-            const subtitle = [station.stationCodes || station.transportLabel, station.en].filter(Boolean).join(' · ');
-            return `<div class="header-name-group"><div class="panel-cn-name" role="heading" aria-level="2" tabindex="-1">${escape(station.cn)}</div><div class="panel-en-name" lang="en">${escape(subtitle)}</div></div>`;
+            return `<div class="header-name-group"><div class="panel-cn-name" role="heading" aria-level="2" tabindex="-1">${escape(station.cn)}</div><div class="panel-en-name" lang="en">${escape(station.en || '')}</div></div>`;
         }
     };
     City.stationBoard.modules['header-badges'] = {

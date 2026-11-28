@@ -163,8 +163,8 @@
 .sg-service-choices button { flex: 1; border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 8px; background: var(--btn-info-bg); color: var(--text-main); font: inherit; font-size: 12px; cursor: pointer; }
 .sg-service-choices button[aria-pressed="true"] { background: var(--primary-color); color: var(--btn-text); }
 .sg-service-panel[hidden] { display: none; }
-.sg-service-neighbors { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.5; }
-.sg-service-neighbors th, .sg-service-neighbors td { padding: 5px 4px; text-align: center; }
+.sg-service-neighbors { width: 100%; min-width: 0; max-width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 13px; line-height: 1.5; }
+.sg-service-neighbors th, .sg-service-neighbors td { font-size: inherit; padding: 5px 4px; text-align: center; }
 .sg-service-neighbors thead th { font-size: 11px; font-weight: 400; color: var(--text-light); }
 .sg-service-neighbors tbody tr { border-top: 1px solid var(--border-color); }
 .sg-service-neighbors tbody th { font-size: 11px; font-weight: 400; text-align: left; color: var(--text-light); }

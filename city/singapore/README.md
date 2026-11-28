@@ -23,7 +23,7 @@ MRT/LRT 普通付费区内换乘使用共享节点；Newton、Bukit Panjang、Ta
 - 汤东线运营至 Bayshore TE29，滨海市区线运营至 Expo DT35。另按施工状态绘出 TE30 Bedok South、TE31/DT37 Sungei Bedok 和 DT36 Xilin，未接入运营站序。LTA 已宣布 TEL5 / DTL3e 计划于 2026-12-26 开放载客。
 - 不收录未运营的 NS6 Sungei Kadut、CC18 Bukit Brown、TE10 Mount Pleasant、TE21 Marina South，以及已关闭的 BP14 Ten Mile Junction。
 - 已补齐东北线（含 Punggol Coast）、滨海市区线（含 Hume）与盛港/榜鹅轻轨全部已开通站（含 Teck Lee）。跨运营商换乘已按付费区内/外的实际关系显示。Newton（NS21↔DT11）、Bukit Panjang（BP6↔DT1）、Tampines（EW2↔DT32）均需出闸；已拆分站码、以双色窄实心带连接，并提供换乘条件与另一侧节点的跳转按钮。
-- 画布按 LTA 华文图展示中文站名，中文、英文和站码均可搜索。`cn` 为官方中文站名，`en` 为英文名，`stationCodes` 独立保存站码，避免改为中文后破坏自绘标牌。车站详情以中文为主，副标题保留站码和英文名供对照。轻轨小站使用较小站码与字号。
+- 画布按 LTA 华文图展示中文站名，中文、英文和站码均可搜索。`cn` 为官方中文站名，`en` 为英文名，`stationCodes` 独立保存站码，避免改为中文后破坏自绘标牌。车站详情以中文为主，标题下方仅显示英文站名，站码由右侧站标展示。轻轨小站使用较小站码与字号。
 - 未核实的站距统一使用规范允许的 `"??"`，未加入估算时刻、票价、行程耗时、实时服务或站点经纬度。
 
 ## 来源与版次
@@ -47,7 +47,7 @@ MRT/LRT 普通付费区内换乘使用共享节点；Newton、Bukit Panjang、Ta
 
 武吉班让轻轨统一为一个 `BP` 线路条目、一个图例和一个车站线路选项卡。A交路从蔡厝港经武吉班让、信佳、泽拉邦、实加、法嘉、万吉、秉定、柏提，回到武吉班让并沿干线返回蔡厝港；B交路在住宅区环路按相反方向行驶，先经柏提再经信佳。原先独立的 `BPL` 乘客线路条目已删除，图上仍保留干线与住宅区环路的真实形状。旧PDF的 `BP`、`BPL` 原始矢量组作为来源保留，由 `geometrySources` 合成为一条可见线路。
 
-`stationIds-way1/way2` 分别保存完整A/B往返站序，包含去程与回程再次停靠同站；13个物理站只计一次。通用交路引擎枚举所有经停位置，避免忽略返程。站卡提供A/B切换；干线显示往住宅环路、往蔡厝港两组邻站，环路显示所选交路的邻站。邻站跳转保留所选交路和线路选项卡，不编造班次或首末班时刻。
+`stationIds-way1/way2` 分别保存完整A/B往返站序，包含去程与回程再次停靠同站；13个物理站只计一次。通用交路引擎枚举所有经停位置，避免忽略返程。站卡提供A/B切换，按钮仅显示“A”“B”；干线显示往住宅环路、往蔡厝港两组邻站，环路显示所选交路的邻站。邻站跳转保留所选交路和线路选项卡，不编造班次或首末班时刻。交路表格随站卡内容区收缩，不继承全站表格400px的最小宽度。
 
 核对来源：[LTA武吉班让轻轨介绍](https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/bukit_panjang_lrt.html)、[SMRT官方方向资料（A via Senja / B via Petir）](https://www.smrt.com.sg/getmedia/4dc714c8-1a2c-4cf7-ac49-e5ea12425ab1/Annex-B-%E2%80%93-Further-details-and-schedule-of-lift-upgrading-work.pdf)、[SMRT 2024/25集团报告第27页](https://www.smrt.com.sg/getmedia/f5eeb838-eb2e-4289-9f76-94513d49fe56/SMRT-Group-Review-2024_25.pdf)（确认2024-12-30恢复完整双环服务）。临时运营调整以官方公告为准，不根据日期自动改变交路。
 

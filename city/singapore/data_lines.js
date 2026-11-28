@@ -8955,8 +8955,8 @@ const linesData = [
     "serviceNote": "A、B 均由蔡厝港出发，绕行后返回蔡厝港。",
     "hasbranch": true,
     "wayNames": {
-      "way1": "A 经信佳",
-      "way2": "B 经柏提"
+      "way1": "A",
+      "way2": "B"
     },
     "stationIds-way1": [
       "NS4",
