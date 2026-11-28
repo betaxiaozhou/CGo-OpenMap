@@ -154,22 +154,23 @@
             const byId = new Map();
             routeWays.forEach((w) => {
                 const ids = w.ids || [];
-                const idx = ids.indexOf(stationId);
-                if (idx < 0) return;
-                const tgt = idx + step;
-                if (tgt < 0 || tgt >= ids.length) return;
-                const dists = w.distances || [];
-                const distance = step < 0 ? dists[idx - 1] : dists[idx];
-                const exist = byId.get(ids[tgt]);
-                if (exist) {
-                    // 同一座邻站被多条交路共用：合并成一行，只记交路归属
-                    if (!exist.wayKeys.includes(w.key)) exist.wayKeys.push(w.key);
-                    if (exist.distance === undefined || exist.distance === null) exist.distance = distance;
-                    return;
-                }
-                const item = { id: ids[tgt], distance: distance, wayKeys: [w.key] };
-                byId.set(item.id, item);
-                items.push(item);
+                ids.forEach((id, idx) => {
+                    if (id !== stationId) return;
+                    const tgt = idx + step;
+                    if (tgt < 0 || tgt >= ids.length) return;
+                    const dists = w.distances || [];
+                    const distance = step < 0 ? dists[idx - 1] : dists[idx];
+                    const exist = byId.get(ids[tgt]);
+                    if (exist) {
+                        // 同一座邻站被多条交路共用：合并成一行，只记交路归属
+                        if (!exist.wayKeys.includes(w.key)) exist.wayKeys.push(w.key);
+                        if (exist.distance === undefined || exist.distance === null) exist.distance = distance;
+                        return;
+                    }
+                    const item = { id: ids[tgt], distance: distance, wayKeys: [w.key] };
+                    byId.set(item.id, item);
+                    items.push(item);
+                });
             });
             out[dir] = items;
         });

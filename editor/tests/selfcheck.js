@@ -437,6 +437,17 @@ section('交路模型 (core/line-routing.js)');
         && nbSingle.next[0].id === 'c' && nbSingle.next[0].distance === 20,
         'neighbors: 单交路线路按站序给出前后站与站距，multi 为 false');
 
+    const roundTrip = { id: 'R', 'stationIds-way1': ['a','b','c','d','e','c','b','a'], 'distances-way1': [1,2,3,4,5,2,1], 'stationIds-way2': ['a','b','c','e','d','c','b','a'] };
+    const junction = Routing.neighbors(roundTrip, 'c');
+    check(junction.prev.map(n => n.id).sort().join(',') === 'b,d,e' && junction.next.map(n => n.id).sort().join(',') === 'b,d,e',
+        'neighbors: 同一交路重复经停车站时保留去回程的全部邻站');
+    check(junction.next.find(n => n.id === 'b').wayKeys.join(',') === 'way1,way2',
+        'neighbors: 回程共用邻站合并且记录两条交路');
+    const terminus = Routing.neighbors(roundTrip, 'a');
+    check(terminus.prev[0].id === 'b' && terminus.next[0].id === 'b',
+        'neighbors: 往返交路的始发终到站同时保留到达与出发邻站');
+
+
     // 引擎侧仍从 path-geometry 的统一入口取走向，且拿到的是同一份交路归属
     const viaGeometry = G3.lineSegments(line, {});
     check(viaGeometry.length === segs.length && viaGeometry.every(s => s.ways instanceof Set),
