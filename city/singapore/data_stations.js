@@ -3539,7 +3539,7 @@ const stationsData = {
   "SENTOSA_VIVO": {
     "type": "dot",
     "x": 1420,
-    "y": 2132,
+    "y": 2108,
     "cn": "怡丰城",
     "en": "VivoCity",
     "stationCodes": "",
@@ -3582,7 +3582,7 @@ const stationsData = {
   },
   "SENTOSA_IMBIAH": {
     "type": "dot",
-    "x": 1320,
+    "x": 1375,
     "y": 2285,
     "cn": "英比奥",
     "en": "Imbiah",
@@ -3604,7 +3604,7 @@ const stationsData = {
   },
   "SENTOSA_BEACH": {
     "type": "dot",
-    "x": 1260,
+    "x": 1340,
     "y": 2320,
     "cn": "海滩",
     "en": "Beach",
