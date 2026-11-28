@@ -161,7 +161,6 @@
     if (typeof document !== 'undefined' && document.write) {
         const v = window.CGO_ASSET_VERSION;
         document.write('<script src="./city/singapore/data_reference_geometry.js' + (v ? '?v=' + v : '') + '"><\/script>');
-        document.write('<script src="./city/singapore/data_crossings.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/data_construction.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/modules/construction.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/modules/airport-shuttle.js' + (v ? '?v=' + v : '') + '"><\/script>');
@@ -169,121 +168,43 @@
         document.write('<script src="./city/singapore/modules/sentosa-express.js' + (v ? '?v=' + v : '') + '"><\/script>');
     }
     City.renderReferenceGeometry = async function () {
-        if (typeof SG_REFERENCE_GEOMETRY === 'undefined') return;
-        const ns = 'http://www.w3.org/2000/svg';
+        if (typeof SG_VISIBLE_ROUTE_GEOMETRY === 'undefined') return;
         const layer = document.getElementById('lines-layer');
         if (!layer) return;
-        // Reuse the actual water asset so clipping follows both banks without a second coastline.
-        City.waterFootprintPromise ||= fetch('./city/singapore/assets/water-light.svg').then(response => {
-            if (!response.ok) throw new Error('Singapore water geometry: ' + response.status);
-            return response.text();
-        }).then(text => {
-            const source = new DOMParser().parseFromString(text, 'image/svg+xml');
-            return ['sea', 'river-and-marina-bay'].map(id => {
-                const path = source.getElementById(id);
-                return { d: path.getAttribute('d'), 'fill-rule': path.getAttribute('fill-rule') || 'nonzero' };
-            });
-        });
-        const water = await City.waterFootprintPromise;
-        const create = (tag, attributes = {}) => {
-            const node = document.createElementNS(ns, tag);
+        const ns = 'http://www.w3.org/2000/svg';
+        const path = attributes => {
+            const node = document.createElementNS(ns, 'path');
             for (const [key, value] of Object.entries(attributes)) node.setAttribute(key, value);
             return node;
         };
-        const createMask = (id, type) => create('mask', { id, maskUnits: 'objectBoundingBox', maskContentUnits: 'userSpaceOnUse', x: '-1%', y: '-1%', width: '102%', height: '102%', style: 'mask-type:' + type });
-        const use = id => create('use', { href: '#' + id });
-        const isInk = path => path.fill === 'line' || path.stroke === 'line';
-        const gapsFor = path => {
-            if (path.fill === 'var(--map-bg)') return [path];
-            if (path.stroke === 'var(--map-bg)') return [{ ...path, fill: 'none' }];
-            return [];
-        };
-        const inkAttributes = (path, color) => Object.fromEntries(Object.entries(path).map(([key, value]) => [
-            key, value === 'line' ? color : value === 'var(--map-bg)' ? 'none' : value
-        ]));
-        const entries = linesData.flatMap(line => {
+        for (const line of linesData) {
             const group = layer.querySelector(`.line-visual-group[data-visual-id="${line.id}"]`);
-            if (!group) return [];
-            let shapes = SG_REFERENCE_GEOMETRY[line.id];
-            if (line.id === 'SENTOSA') {
-                const path = group.querySelector('.line-visual-inner');
-                shapes = [
-                    { d: path.getAttribute('d'), fill: 'none', stroke: 'var(--map-bg)', 'stroke-width': 8.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' },
-                    { d: path.getAttribute('d'), fill: 'none', stroke: 'line', 'stroke-width': 5.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }
-                ];
-            }
-            return shapes ? [{ line, group, shapes }] : [];
-        });
-        layer.querySelector('.sg-separation-defs')?.remove();
-        layer.querySelector('.sg-water-crossing-casings')?.remove();
-        const defs = create('defs', { class: 'sg-separation-defs' });
-        const waterFootprint = create('g', { id: 'sg-water-footprint' });
-        water.forEach(path => waterFootprint.appendChild(create('path', { ...path, fill: 'white' })));
-        defs.appendChild(waterFootprint);
-        for (const { line, shapes } of entries) {
-            const footprint = create('g', { id: 'sg-ink-footprint-' + line.id });
-            shapes.filter(isInk).forEach(path => footprint.appendChild(create('path', inkAttributes(path, 'white'))));
-            defs.appendChild(footprint);
-        }
-        const commonGaps = createMask('sg-local-gaps-all', 'alpha');
-        commonGaps.appendChild(use('sg-water-footprint'));
-        entries.forEach(entry => commonGaps.appendChild(use('sg-ink-footprint-' + entry.line.id)));
-        defs.appendChild(commonGaps);
-        for (const { line, group, shapes } of entries) {
-            group.querySelectorAll('.sg-reference-geometry, .sg-reference-separations').forEach(node => node.remove());
+            if (!group) continue;
+            const sentosa = line.id === 'SENTOSA';
+            const d = sentosa ? group.querySelector('.line-visual-inner').getAttribute('d') : SG_VISIBLE_ROUTE_GEOMETRY[line.id];
+            if (!d) continue;
+            group.querySelectorAll('.sg-reference-geometry, .sg-route-casing').forEach(node => node.remove());
             group.classList.add('sg-official-geometry');
-            const gaps = shapes.flatMap(gapsFor);
-            if (gaps.length) {
-                const maskId = 'sg-local-gaps-' + line.id;
-                const mask = createMask(maskId, 'alpha');
-                mask.appendChild(use('sg-water-footprint'));
-                entries.filter(entry => entry.line.id !== line.id).forEach(entry => mask.appendChild(use('sg-ink-footprint-' + entry.line.id)));
-                defs.appendChild(mask);
-                const separations = create('g', { class: 'sg-reference-separations', mask: `url(#${maskId})` });
-                gaps.forEach(path => separations.appendChild(create('path', path)));
-                group.appendChild(separations);
-            }
-            const reference = create('g', { class: 'sg-reference-geometry', 'data-source': line.id === 'SENTOSA' ? 'community-sentosa' : 'lta-chinese' });
-            shapes.forEach((attributes, index) => {
-                if (!isInk(attributes)) return;
-                const path = create('path', inkAttributes(attributes, line.id === 'SENTOSA' ? 'var(--sg-sentosa-track)' : line.color));
-                // Erase the source's later white cuts from the ink, without painting a white border.
-                const cuts = shapes.slice(index).flatMap(gapsFor);
-                if (cuts.length) {
-                    const maskId = `sg-visible-ink-${line.id}-${index}`;
-                    const mask = createMask(maskId, 'luminance');
-                    mask.appendChild(create('rect', { width: 3400, height: 2450, fill: 'white' }));
-                    cuts.forEach(cut => mask.appendChild(create('path', Object.fromEntries(Object.entries(cut).map(([key, value]) => [key, value === 'var(--map-bg)' ? 'black' : value])))));
-                    defs.appendChild(mask);
-                    path.setAttribute('mask', `url(#${maskId})`);
-                }
-                reference.appendChild(path);
-            });
-            group.appendChild(reference);
+            const lightRail = City.TRAM_LINES.includes(line.id);
+            const edge = lightRail ? 2.4 : 4.136;
+            const casing = sentosa
+                ? { d, fill: 'none', stroke: 'var(--map-bg)', 'stroke-width': 8.5 }
+                : { d, fill: 'var(--map-bg)', stroke: 'var(--map-bg)', 'stroke-width': edge };
+            group.appendChild(path({ ...casing, class: 'sg-route-casing', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }));
+            const ink = document.createElementNS(ns, 'g');
+            ink.setAttribute('class', 'sg-reference-geometry');
+            ink.dataset.source = sentosa ? 'community-sentosa' : 'lta-chinese';
+            ink.appendChild(path(sentosa
+                ? { d, fill: 'none', stroke: 'var(--sg-sentosa-track)', 'stroke-width': 5.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }
+                : { d, fill: line.color }));
+            group.appendChild(ink);
         }
-        const casings = create('g', { class: 'sg-water-crossing-casings' });
-        SG_WATER_CROSSING_CASINGS.forEach(path => casings.appendChild(create('path', path)));
-        layer.prepend(defs, casings);
-    };
-    City.renderCrossingGaps = function () {
-        const layer = document.getElementById('lines-layer');
-        const connectors = layer?.querySelector('.virtual-connectors');
-        if (!layer || typeof SG_CROSSING_GAPS === 'undefined') return;
-        layer.querySelector('.sg-crossing-gaps')?.remove();
-        // Match the reference drawing's paint order; line selection order is unchanged.
+        // Keep the official over/under order, including while a station is selected.
+        const connectors = layer.querySelector('.virtual-connectors');
         for (const id of ['BP','BPL','SE','SW','PE','PW','TE','DT','NE','CCE','CC','EW','CG','NS']) {
             const group = layer.querySelector(`.line-visual-group[data-visual-id="${id}"]`);
             if (group) layer.insertBefore(group, connectors);
         }
-        const ns = 'http://www.w3.org/2000/svg';
-        const group = document.createElementNS(ns, 'g');
-        group.setAttribute('class', 'sg-crossing-gaps');
-        for (const attributes of SG_CROSSING_GAPS) {
-            const path = document.createElementNS(ns, 'path');
-            for (const [key, value] of Object.entries(attributes)) path.setAttribute(key, value);
-            group.appendChild(path);
-        }
-        layer.insertBefore(group, connectors);
     };
     City.renderConstruction = function () {
         const layer = document.getElementById('not-open-layer');
@@ -297,9 +218,8 @@
             path.dataset.trackId = track.id;
             const casing = path.cloneNode(false);
             casing.setAttribute('class', 'sg-construction-casing');
-            casing.setAttribute('mask', 'url(#sg-local-gaps-all)');
             casing.setAttribute('stroke', 'var(--map-bg)');
-            casing.setAttribute('stroke-width', Number(track.style.width) + 4.5);
+            casing.setAttribute('stroke-width', Number(track.style.width) + 4.136);
             layer.insertBefore(casing, path);
         });
         layer.querySelector('.sg-construction-annotation')?.remove();
@@ -353,7 +273,6 @@
     City.getNavigationUrl = (name, rail, { station } = {}) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((station?.en || name) + (station?.sentosaExpress ? ' Sentosa Express station Singapore' : ' MRT station Singapore'));
     document.addEventListener('DOMContentLoaded', async () => {
         await City.renderReferenceGeometry();
-        City.renderCrossingGaps();
         City.renderTapOutBridges();
         City.renderConstruction();
         City.renderTerminalMarkers();
