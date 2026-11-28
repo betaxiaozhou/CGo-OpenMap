@@ -132,15 +132,11 @@
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SENTOSA"] { --sg-line-width: 5.5px; --sg-casing-extra: 3px; }
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="SENTOSA"] .line-visual-inner { stroke: var(--sg-sentosa-track); }
 
-.sg-airport-shuttle { margin-bottom: 14px; padding: 12px; border: 1px solid var(--border-color); border-left: 3px solid #009645; border-radius: 8px; background: var(--card-sub-bg); color: var(--text-main); font-size: 13px; line-height: 1.65; }
-.sg-airport-shuttle h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 14px; }
-.sg-airport-shuttle ol { margin: 8px 0; padding-left: 22px; }
-.sg-airport-shuttle p { margin: 8px 0; }
-.sg-airport-shuttle a { color: var(--text-main); text-decoration: underline; }
-.sg-sentosa-info { margin-bottom: 14px; padding: 12px; border: 1px solid var(--border-color); border-left: 3px solid #f7931e; border-radius: 8px; background: var(--card-sub-bg); color: var(--text-main); font-size: 13px; line-height: 1.65; }
-.sg-sentosa-info h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 14px; }
-.sg-sentosa-info p { margin: 8px 0; }
-.sg-sentosa-info a { color: var(--text-main); text-decoration: underline; }
+.sg-airport-shuttle, .sg-sentosa-info { margin-bottom: 10px; padding: 8px 10px; border: 1px solid var(--border-color); border-left: 3px solid #009645; border-radius: 6px; background: var(--card-sub-bg); color: var(--text-main); font-size: 12px; line-height: 1.5; }
+.sg-sentosa-info { border-left-color: #f7931e; }
+:is(.sg-airport-shuttle, .sg-sentosa-info) h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-size: 13px; line-height: 18px; }
+:is(.sg-airport-shuttle, .sg-sentosa-info) p { margin: 4px 0 0; }
+.sg-sentosa-hours a { color: var(--text-main); text-decoration: underline; }
 
 /* LTA construction enclosure: coloured tracks/codes, dotted limits and a solid left bracket. */
 .map-singapore { --sg-construction-ink: #2d2a26; }
