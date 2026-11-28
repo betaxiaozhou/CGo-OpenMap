@@ -1499,7 +1499,7 @@ const stationsData = {
   "CC29": {
     "type": "tsf",
     "x": 1415.444,
-    "y": 2031.597,
+    "y": 2022.705,
     "cn": "港湾",
     "en": "HarbourFront",
     "align": "bottom",

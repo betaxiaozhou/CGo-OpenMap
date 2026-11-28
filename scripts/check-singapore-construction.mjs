@@ -1,6 +1,8 @@
 // LTA official Chinese map and 2026-11-04 TEL5 / DTL3e opening announcement.
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+const routing = createRequire(import.meta.url)('../core/line-routing.js');
 const read = (file, variable) => new Function(readFileSync(new URL(`../city/singapore/${file}`, import.meta.url), 'utf8') + `;return ${variable};`)();
 const stations = read('data_stations.js', 'stationsData');
 const lines = read('data_lines.js', 'linesData');
@@ -11,8 +13,8 @@ assert.deepEqual(Object.keys(stations).filter(id => stations[id].type === 'no').
 assert.equal(stations.TE31.stationCodes, 'TE31 / DT37');
 for (const id of futureIds) {
     assert.equal(stations[id].construction.plannedOpening, '2026-12-26');
-    assert(!lines.some(line => !line.isPointOnly && line.stationIds.includes(id)), `${id}: unopened station must not become an operating stop`);
-    assert(lines.some(line => line.isPointOnly && line.stationIds.includes(id)), `${id}: construction metadata exists`);
+    assert(!lines.some(line => !line.isPointOnly && routing.allStationIds(line).includes(id)), `${id}: unopened station must not become an operating stop`);
+    assert(lines.some(line => line.isPointOnly && routing.allStationIds(line).includes(id)), `${id}: construction metadata exists`);
 }
 for (const [trackId, lineId, colour] of [['TEL5', 'TE', '#9d5918'], ['DTL3e', 'DT', '#0055b8']]) {
     const track = tracks.find(item => item.id === trackId);

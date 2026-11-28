@@ -8939,22 +8939,108 @@ const linesData = [
     "name": "武吉班让轻轨线",
     "color": "#718472",
     "company": "SMRT轻轨",
-    "stationIds": [
+    "noOuter": true,
+    "svg": "./city/singapore/assets/line/BP.svg",
+    "svgclr": "#718472",
+    "svgtext": "#ffffff",
+    "geometrySources": [
+      "BP",
+      "BPL"
+    ],
+    "serviceSelector": true,
+    "serviceVisitLabels": [
+      "往住宅环路",
+      "往蔡厝港"
+    ],
+    "serviceNote": "A、B 均由蔡厝港出发，绕行后返回蔡厝港。",
+    "hasbranch": true,
+    "wayNames": {
+      "way1": "A 经信佳",
+      "way2": "B 经柏提"
+    },
+    "stationIds-way1": [
       "NS4",
       "BP2",
       "BP3",
       "BP4",
       "BP5",
-      "BP6"
+      "BP6",
+      "BP13",
+      "BP12",
+      "BP11",
+      "BP10",
+      "BP9",
+      "BP8",
+      "BP7",
+      "BP6",
+      "BP5",
+      "BP4",
+      "BP3",
+      "BP2",
+      "NS4"
     ],
-    "distances": [
+    "distances-way1": [
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
       "??",
       "??",
       "??",
       "??",
       "??"
     ],
-    "pathPoints": [
+    "stationIds-way2": [
+      "NS4",
+      "BP2",
+      "BP3",
+      "BP4",
+      "BP5",
+      "BP6",
+      "BP7",
+      "BP8",
+      "BP9",
+      "BP10",
+      "BP11",
+      "BP12",
+      "BP13",
+      "BP6",
+      "BP5",
+      "BP4",
+      "BP3",
+      "BP2",
+      "NS4"
+    ],
+    "distances-way2": [
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??",
+      "??"
+    ],
+    "pathPoints-main": [
       {
         "x": 872.23,
         "y": 535.585,
@@ -9161,37 +9247,7 @@ const linesData = [
         "r": 0
       }
     ],
-    "noOuter": true,
-    "svg": "./city/singapore/assets/line/BP.svg",
-    "svgclr": "#718472",
-    "svgtext": "#ffffff"
-  },
-  {
-    "id": "BPL",
-    "name": "武吉班让轻轨环路",
-    "color": "#718472",
-    "company": "SMRT轻轨",
-    "stationIds": [
-      "BP6",
-      "BP7",
-      "BP8",
-      "BP9",
-      "BP10",
-      "BP11",
-      "BP12",
-      "BP13"
-    ],
-    "distances": [
-      "??",
-      "??",
-      "??",
-      "??",
-      "??",
-      "??",
-      "??",
-      "??"
-    ],
-    "pathPoints": [
+    "pathPoints-loop": [
       {
         "x": 936.748,
         "y": 435.636,
@@ -9548,11 +9604,7 @@ const linesData = [
         "r": 0
       }
     ],
-    "isLoop": true,
-    "noOuter": true,
-    "svg": "./city/singapore/assets/line/BP.svg",
-    "svgclr": "#718472",
-    "svgtext": "#ffffff"
+    "isLoop": false
   },
   {
     "id": "NE",

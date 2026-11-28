@@ -24,7 +24,7 @@ for (const id of ids) {
     assert(stations[id].sentosaExpress);
     assert.equal(stations[id].stationCodes, '', 'No invented MRT station codes');
     assert.notEqual(stations[id].physicalHubId, 'CC29', 'Separate ticketed station');
-    assert.deepEqual(lines.filter(l => l.stationIds.includes(id)).map(l => l.id), ['SENTOSA']);
+    assert.deepEqual(lines.filter(l => routing.allStationIds(l).includes(id)).map(l => l.id), ['SENTOSA']);
 }
 for (const theme of ['light', 'dark']) {
     const svg = readFileSync(new URL(`../city/singapore/assets/water-${theme}.svg`, import.meta.url), 'utf8');

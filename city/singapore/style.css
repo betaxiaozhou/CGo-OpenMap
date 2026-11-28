@@ -114,7 +114,7 @@
 
 /* Fallback widths before the city geometry finishes loading. */
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group { --sg-line-width: 9.52445px; --sg-casing-extra: 8.272px; }
-.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group:is([data-visual-id="BP"], [data-visual-id="BPL"], [data-visual-id="SE"], [data-visual-id="SW"], [data-visual-id="PE"], [data-visual-id="PW"]) { --sg-line-width: 3.96695px; --sg-casing-extra: 2.4px; }
+.map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group:is([data-visual-id="BP"], [data-visual-id="SE"], [data-visual-id="SW"], [data-visual-id="PE"], [data-visual-id="PW"]) { --sg-line-width: 3.96695px; --sg-casing-extra: 2.4px; }
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-group[data-visual-id="CG"] { --sg-line-width: 13.5564px; }
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-inner { stroke-width: var(--sg-line-width) !important; }
 .map-singapore :is(#lines-layer, #highlight-layer) .line-visual-outer { stroke: var(--map-bg) !important; stroke-width: calc(var(--sg-line-width) + var(--sg-casing-extra)) !important; }
@@ -157,3 +157,17 @@
 .sg-construction-key { display: flex; align-items: center; gap: 12px; font-weight: 400; }
 .sg-construction-key > span { flex: 0 0 auto; padding: 7px 10px; border-radius: 7px; background: #231f20; color: #ffffff; font-family: 'Singapore Lato', sans-serif; font-weight: 700; text-align: center; line-height: 1.2; }
 .sg-construction-key p { margin: 0; font-size: 12px; line-height: 1.5; }
+
+/* A single line may expose several complete operating patterns without duplicating its track. */
+.sg-service-choices { display: flex; gap: 6px; margin-bottom: 8px; }
+.sg-service-choices button { flex: 1; border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 8px; background: var(--btn-info-bg); color: var(--text-main); font: inherit; font-size: 12px; cursor: pointer; }
+.sg-service-choices button[aria-pressed="true"] { background: var(--primary-color); color: var(--btn-text); }
+.sg-service-panel[hidden] { display: none; }
+.sg-service-neighbors { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.5; }
+.sg-service-neighbors th, .sg-service-neighbors td { padding: 5px 4px; text-align: center; }
+.sg-service-neighbors thead th { font-size: 11px; font-weight: 400; color: var(--text-light); }
+.sg-service-neighbors tbody tr { border-top: 1px solid var(--border-color); }
+.sg-service-neighbors tbody th { font-size: 11px; font-weight: 400; text-align: left; color: var(--text-light); }
+.sg-service-neighbor { border: 0; padding: 0; min-height: 24px; background: transparent; color: var(--text-main); font: inherit; font-weight: 600; cursor: pointer; }
+.sg-service-patterns button:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; }
+.sg-service-note { margin: 8px 0 0; font-size: 11px; line-height: 1.5; color: var(--text-light); }

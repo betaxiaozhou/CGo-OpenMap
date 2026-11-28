@@ -26,15 +26,11 @@
         }
     ],
     "LINE_META": {},
-    "LINE_SORT_ORDER": ["NS", "EW", "CG", "NE", "CC", "CCE", "DT", "TE", "BP", "BPL", "SE", "SW", "PE", "PW", "SENTOSA", "TE-UC", "DT-UC"],
+    "LINE_SORT_ORDER": ["NS", "EW", "CG", "NE", "CC", "CCE", "DT", "TE", "BP", "SE", "SW", "PE", "PW", "SENTOSA", "TE-UC", "DT-UC"],
     "LINE_SYNC_GROUPS": [
         [
             "CC",
             "CCE"
-        ],
-        [
-            "BP",
-            "BPL"
         ],
         ["SE", "SW"],
         ["PE", "PW"]
@@ -42,7 +38,7 @@
     "SUBURBAN_LINES": [],
     "MERGE_STATIONS": [],
     "CROSS_PLATFORM_STATIONS": [],
-    "TRAM_LINES": ["BP","BPL","SE","SW","PE","PW"],
+    "TRAM_LINES": ["BP","SE","SW","PE","PW"],
     "dataFiles": {}
 };
     // Direction numbers from LTA SM_CH_(Ver210726)_CCL6; CCL is now a closed loop.
@@ -128,6 +124,9 @@
     };
     // The generic 'free interchange' wording does not describe Singapore distance fares.
     City.stationBoard = { modules: { transfers: { enabled: false } } };
+    City.stationBoard.modules['adjacent-stations'] = {
+        shouldRender: ({ lineInfo }) => !linesData.find(line => line.id === lineInfo?.id)?.serviceSelector
+    };
     City.stationBoard.modules['header-title'] = {
         slot: 'header', order: 20,
         render({ station }) {
@@ -166,7 +165,9 @@
         document.write('<script src="./city/singapore/modules/airport-shuttle.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/modules/unpaid-transfer.js' + (v ? '?v=' + v : '') + '"><\/script>');
         document.write('<script src="./city/singapore/modules/sentosa-express.js' + (v ? '?v=' + v : '') + '"><\/script>');
+        document.write('<script src="./city/singapore/modules/service-patterns.js' + (v ? '?v=' + v : '') + '"><\/script>');
     }
+    const stationIdsOf = line => window.CGoLineRouting?.allStationIds(line) || line.stationIds || [];
     City.routeCasingWidths = { mrt: 8.272, lrt: 2.4, monorail: 3 };
     City.renderReferenceGeometry = async function () {
         const layer = document.getElementById('lines-layer');
@@ -181,7 +182,7 @@
         // Unwrap existing families before rebuilding; retain core hit paths and selection state.
         layer.querySelectorAll('.sg-route-family .line-visual-group').forEach(group => layer.appendChild(group));
         layer.querySelectorAll('.sg-route-family').forEach(group => group.remove());
-        const order = ['BP','BPL','SE','SW','PE','PW','TE','DT','NE','CCE','CC','EW','CG','NS','SENTOSA'];
+        const order = ['BP','SE','SW','PE','PW','TE','DT','NE','CCE','CC','EW','CG','NS','SENTOSA'];
         const records = linesData.flatMap(line => {
             if (line.isPointOnly) return [];
             const group = layer.querySelector(`.line-visual-group[data-visual-id="${line.id}"]`);
@@ -218,7 +219,7 @@
         const root = index => parent[index] === index ? index : (parent[index] = root(parent[index]));
         records.forEach((a, i) => records.slice(i + 1).forEach((b, offset) => {
             if (a.line.color.toLowerCase() === b.line.color.toLowerCase() &&
-                a.line.stationIds.some(id => b.line.stationIds.includes(id))) parent[root(i + offset + 1)] = root(i);
+                stationIdsOf(a.line).some(id => stationIdsOf(b.line).includes(id))) parent[root(i + offset + 1)] = root(i);
         }));
         const families = new Map();
         records.forEach((record, index) => {
@@ -289,7 +290,7 @@
             for (const [points, id] of shapes) {
                 const polygon = document.createElementNS(svgNS, 'polygon');
                 polygon.setAttribute('points', points);
-                polygon.setAttribute('fill', linesData.find(line => line.stationIds.includes(id)).color);
+                polygon.setAttribute('fill', linesData.find(line => stationIdsOf(line).includes(id)).color);
                 polygon.setAttribute('stroke', 'none');
                 group.appendChild(polygon);
             }

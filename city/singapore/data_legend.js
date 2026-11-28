@@ -91,12 +91,6 @@ const LEGEND_CONFIG = [
       },
       {
         "targets": [
-          "BPL"
-        ],
-        "name": "武吉班让轻轨环路"
-      },
-      {
-        "targets": [
           "SE"
         ],
         "name": "盛港轻轨东环"

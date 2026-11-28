@@ -1,6 +1,8 @@
 // Chinese names: LTA SM_CH_(Ver210726)_CCL6.pdf and Sentosa official Chinese transport guide.
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+const routing = createRequire(import.meta.url)('../core/line-routing.js');
 const read = (file, variable) => new Function(readFileSync(new URL(`../city/singapore/${file}`, import.meta.url), 'utf8') + `;return ${variable};`)();
 const stations = read('data_stations.js', 'stationsData');
 const lines = read('data_lines.js', 'linesData');
@@ -21,7 +23,7 @@ for (const marker of directions) {
     const station = stations[marker.stationId];
     assert(station.stationCodes.split(' / ').includes(marker.code), `Direction ${marker.number} belongs to the station code`);
     if (marker.number === 12 || marker.number === 14) assert.equal(station.type, 'no', 'Future terminus stays unopened');
-    else assert(lines.some(line => [line.stationIds[0], line.stationIds.at(-1)].includes(marker.stationId)), `Direction ${marker.number} is an operational terminus`);
+    else assert(lines.some(line => routing.ways(line).some(way => [way.ids[0], way.ids.at(-1)].includes(marker.stationId))), `Direction ${marker.number} is an operational terminus`);
 }
 for (const station of Object.values(stations)) {
     const html = window.SINGAPORE_CITY.renderStationIcon(station)?.html || '';

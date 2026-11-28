@@ -59,7 +59,7 @@ git commit -m "Add Singapore MRT/LRT network and maintainer application"
 git push -u origin feat/singapore-network
 ```
 
-然后在 GitHub 创建 Pull Request：base 为官方仓库 `main`，compare 为 `betaxiaozhou:feat/singapore-network`。标题可用 `新增新加坡 MRT/LRT 线路图及城市主理人申请`。正文写明申请人、范围、184 个运营站/14 个运营渲染条目，另有圣淘沙捷运 4 站/1 个条目及 3 座施工站/2 个施工元数据条目、资料版次、缺项、验证结果，附桌面/手机/暗色截图，并复制 CONTRIBUTING.md 的完整 PR 自查清单，只勾选已实际完成的项。不要把待核实站距、未接入时刻表或未经评审的质量分数写成已完成。
+然后在 GitHub 创建 Pull Request：base 为官方仓库 `main`，compare 为 `betaxiaozhou:feat/singapore-network`。标题可用 `新增新加坡 MRT/LRT 线路图及城市主理人申请`。正文写明申请人、范围、184 个运营站/13 个运营渲染条目，另有圣淘沙捷运 4 站/1 个条目及 3 座施工站/2 个施工元数据条目、资料版次、缺项、验证结果，附桌面/手机/暗色截图，并复制 CONTRIBUTING.md 的完整 PR 自查清单，只勾选已实际完成的项。不要把待核实站距、未接入时刻表或未经评审的质量分数写成已完成。
 
 ## 5. 评审、合入与署名确认
 
